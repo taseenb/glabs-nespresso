@@ -1,5 +1,5 @@
 {
-  "name": "canada-interactive",
+  "name": "interactive",
   "private": true,
   "dependencies": {
     "requirejs": "~2.1.20",
