@@ -1,0 +1,61 @@
+@import 'vars';
+
+$guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
+
+/**
+  * Use pasteup for deployed app. Use local folder, for local: '/bower_components/guss-webfonts/webfonts'
+  */
+//match: /\/\/pasteup\.guim\.co\.uk\/fonts\/0\.1\.0/g,
+//replacement: '/bower_components/guss-webfonts/webfonts'
+
+@import '../vendor/pasteup-palette/src/_palette.scss';
+@import '../vendor/guss-webfonts/src/_webfonts.scss';
+@import '../vendor/guss-typography/_typography.scss';
+
+@include guss-webfonts('Guardian Agate Sans 1 Web');
+@include guss-typography-defaults;
+
+.js-on.is-modern .content--interactive .element-interactive {
+  background: none;
+}
+
+#nespresso-interactive {
+  * {
+    // user-select: none;
+    font-smoothing: antialiased;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  width: 100%;
+  font-family: 'Guardian Agate Sans 1 Web', sans-serif;
+  color: white;
+  background-image: url('#{$img-path}Background02.jpg');
+
+  a,
+  a:active,
+  a:focus,
+  button,
+  button:focus,
+  button:active {
+    outline: none;
+  }
+
+  input::-moz-focus-inner {
+    border: 0;
+  }
+
+  @import 'normalize';
+  @import 'helpers';
+  @import 'fonts';
+
+  // App
+  @import 'app/loader';
+
+  //@media #{$landscape-phone} {
+
+  //}
+}
+

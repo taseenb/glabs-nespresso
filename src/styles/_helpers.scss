@@ -1,0 +1,28 @@
+.remove {
+  display: none;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+
+.center-x {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.center-y {
+  top: 50%;
+  transform: translateY(-50%);
+}

@@ -1,0 +1,48 @@
+//$below-tablet: 'only screen and (max-width : #{$tabletMinWidth}-1px), only screen and (max-height : #{$tabletMinHeight}-1px)';
+$tablet-and-above: 'only screen and (min-width : #{$tabletMinWidth}) and (min-height : #{$tabletMinHeight})';
+$above-tablet: 'only screen and (min-width : #{$desktopMinWidth}) and (min-height : #{$tabletMinHeight})';
+
+$landscape-phone: 'only screen and (max-height : #{$tabletMinHeight - 1}) and (orientation: landscape)';
+$iphone4: 'only screen and (max-width : #{$iphone4MaxSize}) and (max-height : #{$iphone4MaxSize})';
+
+
+.only-tablet,
+.only-above-tablet,
+.only-tablet-and-above {
+  display: none;
+}
+
+@media #{$landscape-phone} {
+
+}
+
+@media #{$iphone4} {
+
+}
+
+@media #{$tablet-and-above} {
+  .only-mobile,
+  .only-above-tablet {
+    display: none;
+  }
+  .only-tablet,
+  .only-tablet-and-below,
+  .only-tablet-and-above {
+    display: block;
+  }
+}
+
+
+@media #{$above-tablet} {
+  .only-mobile,
+  .only-tablet,
+  .only-tablet-and-below,
+  .only-mobile-and-tablet {
+    display: none !important;
+  }
+
+  .only-above-tablet,
+  .only-tablet-and-above {
+    display: block;
+  }
+}

@@ -1,0 +1,17 @@
+.loader {
+
+  .hidden-images {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+
+    > img {
+      visibility: hidden;
+    }
+  }
+
+}

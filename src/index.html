@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <style>
+        html, body, figure {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            padding: 20px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0;">
+
+<!--<div style="background: black; color: white; padding: 20px;">header content</div>-->
+
+<!-- Use the same figure elm as NGW -->
+<figure class="element-interactive interactive"></figure>
+
+<!--<div style="background: black; color: white; padding: 20px;">footer content</div>-->
+
+<!-- Get require.js -->
+<script src="vendor/requirejs/require.js"></script>
+
+<!-- Simulate boot.js -->
+<script>
+
+    // Paths
+    var guardianRoot = window.guardianRoot || "{{remote-root}}";
+    var localRoot = window.localRoot || "{{local-root}}";
+
+    // DOM element
+    var el = document.querySelector( '.interactive' );
+
+    // Boot
+    require( ['boot.js'], function ( app ) {
+        app.boot( el );
+    } );
+
+</script>
+</body>
+</html>
