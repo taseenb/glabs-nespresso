@@ -1,0 +1,30 @@
+.nespresso-header {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: $max-width;
+  transform: translateX(-50%);
+
+  .nespresso-logo {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px 0;
+
+    .copy {
+      color: white;
+      font-size: 12px;
+      padding-left: 9px;
+    }
+
+    .img {
+      display: block;
+      margin-top: 5px;
+      width: 150px;
+    }
+
+  }
+
+}

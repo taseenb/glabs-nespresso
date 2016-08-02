@@ -6,6 +6,10 @@ define(function (require) {
     {
       id: 'intro',
       type: 'intro',
+      year: 'BC',
+      introCopy: 'Nespresso has been bringing barista-quality coffee into homes for the last 30 years, but its expertise is also built on centuries of experimentation.',
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '0',
@@ -13,6 +17,8 @@ define(function (require) {
       chapter: true,
       year: 1000,
       contentTpl: require('hbs!../tpl/scenes/chapters/0'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '1',
@@ -20,6 +26,8 @@ define(function (require) {
       chapter: true,
       year: 1450,
       contentTpl: require('hbs!../tpl/scenes/chapters/1'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '2',
@@ -27,6 +35,8 @@ define(function (require) {
       chapter: true,
       year: 1511,
       contentTpl: require('hbs!../tpl/scenes/chapters/2'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '3',
@@ -34,6 +44,8 @@ define(function (require) {
       chapter: true,
       year: 1600,
       contentTpl: require('hbs!../tpl/scenes/chapters/3'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '4',
@@ -41,6 +53,8 @@ define(function (require) {
       chapter: true,
       year: 1632,
       contentTpl: require('hbs!../tpl/scenes/chapters/4'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '5',
@@ -48,6 +62,8 @@ define(function (require) {
       chapter: true,
       year: 1652,
       contentTpl: require('hbs!../tpl/scenes/chapters/5'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '6',
@@ -55,6 +71,8 @@ define(function (require) {
       chapter: true,
       year: 1674,
       contentTpl: require('hbs!../tpl/scenes/chapters/6'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '7',
@@ -62,12 +80,16 @@ define(function (require) {
       chapter: true,
       year: 1732,
       contentTpl: require('hbs!../tpl/scenes/chapters/7'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '8',
       type: 'chapter',
       year: 1757,
       contentTpl: require('hbs!../tpl/scenes/chapters/8'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '9',
@@ -75,6 +97,8 @@ define(function (require) {
       chapter: true,
       year: 1773,
       contentTpl: require('hbs!../tpl/scenes/chapters/9'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '10',
@@ -82,6 +106,8 @@ define(function (require) {
       chapter: true,
       year: 1822,
       contentTpl: require('hbs!../tpl/scenes/chapters/10'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '11',
@@ -89,6 +115,8 @@ define(function (require) {
       chapter: true,
       year: 1938,
       contentTpl: require('hbs!../tpl/scenes/chapters/11'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: '12',
@@ -96,6 +124,8 @@ define(function (require) {
       chapter: true,
       year: 1986,
       contentTpl: require('hbs!../tpl/scenes/chapters/12'),
+      title: 'Title here',
+      copy: 'Copy here',
     },
     {
       id: 'end',

@@ -88,15 +88,12 @@ gulp.task('dist', ['clean-dist'], function () {
 });
 
 gulp.task('watch', function () {
-  livereload.listen();
   gulp.watch(['./src/styles/**/*.scss'], ['sass']);
-  gulp.watch(['./src/scripts/**/*.js'], ['scripts']);
+  gulp.watch(['./src/scripts/**'], ['scripts']);
   gulp.watch(['./src/*.html'], ['html']);
-  gulp.watch(['./src/templates/*.hbs'], ['scripts']);
   gulp.watch(['./src/boot.js'], ['bootjs']);
-  gulp.watch(['./src/json/*.json'], ['json']);
-  gulp.watch(['./src/icons/*.svg'], ['icons']);
   gulp.watch(['./src/images/*'], ['images']);
+  livereload.listen();
 });
 
 gulp.task('default', ['build', 'connect', 'watch']);

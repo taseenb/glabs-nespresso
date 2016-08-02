@@ -52,8 +52,10 @@ $guss-webfonts-base-url: '//pasteup.guim.co.uk/fonts/';
   @import 'fonts';
 
   // App
+  @import 'app/inner';
   @import 'app/loader';
   @import 'app/scene';
+  @import 'app/header';
 
   //@media #{$landscape-phone} {
 

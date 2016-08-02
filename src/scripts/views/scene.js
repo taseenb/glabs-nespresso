@@ -36,14 +36,26 @@ define(function (require) {
       var tplOptions = {
         id: 'scene-' + this.id,
         type: this.type,
+        year: this.data.year,
+        title: this.data.title,
+        copy: this.data.copy,
+        introCopy: this.data.introCopy,
       };
 
       if (this.type === 'chapter') {
         tplOptions.content = this.contentTpl({
           id: 'yoyo-' + this.id,
+          year: this.data.year,
         });
       } else if (this.type === 'intro') {
-        tplOptions.tiles = this.scenesData;
+        var scenesDataClone = _.clone(this.scenesData);
+        // Add intro element (BC image)
+        scenesDataClone.unshift({
+          id: 'BC',
+          year: 'BC',
+          chapter: true,
+        });
+        tplOptions.tiles = _.shuffle(scenesDataClone);
       }
 
       // Append template content

@@ -1,22 +1,45 @@
 &.intro-scene {
   border-bottom: 1px dotted white;
 
+  .logo-app {
+    max-width: 40%;
+    display: block;
+    padding-bottom: 60px;
+    margin: 0 auto;
+  }
 
-  .tile {
-    top: 20%;
-    left: 8%;
-    width: 22%;
+  .tiles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    width: 0;
+    height: 0;
+    overflow: visible;
 
-    img {
-      display: block;
-    }
+    .tile {
+      $tileSize: 200px;
+      position: absolute;
+      //top: 20%;
+      //left: 8%;
+      width: $tileSize;
+      left: -$tileSize*0.5;
+      top: -$tileSize*0.5;
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+      z-index: 1;
 
-    .img {
-      position: relative;
-      width: 100%;
-    }
+      img {
+        display: block;
+      }
 
-    .shadow {
+      .img {
+        position: relative;
+        width: 100%;
+      }
+
+      .shadow {
+
+      }
     }
   }
 
