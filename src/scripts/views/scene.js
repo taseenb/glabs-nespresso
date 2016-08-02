@@ -5,6 +5,10 @@ define(function (require) {
   var App = require('global');
   var TweenMax = require('TweenMax');
 
+  var ScrollMagicIntro = require('./scenes/intro');
+  var ScrollMagicChapter = require('./scenes/chapter');
+  var ScrollMagicEnd = require('./scenes/end');
+
 
   function View(options) {
     this.options = options;
@@ -18,6 +22,9 @@ define(function (require) {
       this.tpl = this.options.tpl;
       this.$parent = this.options.$parent;
       this.scenesData = this.options.scenesData;
+      this.controller = this.options.controller;
+
+      this.scrollMagicScene = null;
 
       // Scene data
       this.id = this.data.id;
@@ -49,6 +56,8 @@ define(function (require) {
       this.setupElements();
       this.setupEvents();
 
+      this.createScrollMagicScene();
+
       return this;
     },
 
@@ -58,6 +67,30 @@ define(function (require) {
 
     setupEvents: function () {
 
+    },
+
+    createScrollMagicScene: function () {
+      var options = {
+        controller: this.controller,
+        data: this.data,
+        $el: this.$el,
+      };
+
+      var fn = function() {};
+
+      switch (this.type) {
+        case 'intro':
+          fn = ScrollMagicIntro;
+          break;
+        case 'chapter':
+          fn = ScrollMagicChapter;
+          break;
+        case 'end':
+          fn = ScrollMagicEnd;
+          break;
+      }
+
+      this.scrollMagicScene = fn(options);
     },
 
   };

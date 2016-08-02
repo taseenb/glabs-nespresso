@@ -59,10 +59,10 @@ define(function (require) {
     onAssetsLoaded: function (e) {
       console.log(e);
 
-      this.renderScenes();
-
       // Scrollmagic
       this.controller = new ScrollMagic.Controller();
+
+      this.renderScenes();
 
       // Refresh sizes
       this.onResize();
@@ -76,9 +76,8 @@ define(function (require) {
       console.log(scenesData);
 
       scenesData.forEach(function (s, i) {
-        console.log(s.type);
-
         var scene = new SceneView({
+          controller: this.controller,
           data: s,
           tpl: scenesTpl[s.type],
           $parent: this.$app,
