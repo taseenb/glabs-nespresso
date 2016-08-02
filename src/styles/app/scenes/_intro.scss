@@ -1,0 +1,68 @@
+&.intro-scene {
+  border-bottom: 1px dotted white;
+
+
+  .tile {
+    top: 20%;
+    left: 8%;
+    width: 22%;
+
+    img {
+      display: block;
+    }
+
+    .img {
+      position: relative;
+      width: 100%;
+    }
+
+    .shadow {
+    }
+  }
+
+  .right-cup {
+    top: 25%;
+    right: 8%;
+    width: 19%;
+
+    .NespressoCup_01_Right {
+      width: 100%;
+    }
+
+    .Beans01 {
+      width: 100%;
+      top: 55%;
+      right: 30%;
+    }
+  }
+
+  img {
+    display: block;
+
+    &.scroll-icon {
+      bottom: 3%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 25px;
+      cursor: pointer;
+      padding: 20px;
+    }
+
+    &.BiscuitsOnPlate_01 {
+      top: 0;
+      left: 50%;
+      width: 20%;
+    }
+
+    &.NespressoCup_01_Left {
+      width: 19%;
+    }
+
+    &.NespressoCup_01_Left {
+      top: 50%;
+      left: 8%;
+    }
+
+  }
+
+}

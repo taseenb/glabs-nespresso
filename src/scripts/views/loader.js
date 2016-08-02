@@ -1,8 +1,10 @@
 define(function (require) {
 
   var $ = require('jquery');
+  var _ = require('underscore');
   var App = require('global');
   var imagesLoaded = require('imagesloaded');
+  var TweenMax = require('TweenMax');
 
   var tpl = require('hbs!../tpl/loader');
 
@@ -17,7 +19,7 @@ define(function (require) {
 
     initialize: function () {
       this.imgPath = this.options.imgPath;
-      this.onLoaded = this.options.onLoaded;
+      this.callback = this.options.callback;
       this.imagesToPreload = this.options.imagesToPreload;
     },
 
@@ -35,16 +37,47 @@ define(function (require) {
 
     load: function () {
       var el = this.$el.find('.hidden-images');
-      imagesLoaded(el, this.onLoaded);
+      var loader = imagesLoaded(el, this.onLoaded.bind(this));
+      loader.on('progress', this.onProgress.bind(this));
 
       this.$spin.hide();
 
       return this;
     },
 
+    onProgress: function(e) {
+      var percent = (e.progressedCount / e.images.length) * 100;
+
+      TweenMax.to(this.$progress, 0.2, {
+        x: -(100 - percent) + '%',
+      });
+    },
+
+    onLoaded: function(e) {
+      TweenMax.set(this.$progress, {x: '-100%'});
+
+      if (_.isFunction(this.callback)) {
+        this.callback();
+      }
+
+      this.remove();
+    },
+
+    remove: function() {
+      var that = this;
+
+      TweenMax.to(this.$el, 1, {
+        opacity: 0,
+        onComplete: function() {
+          that.$el.hide();
+          console.log('remove loader');
+        },
+      });
+    },
+
     setupElements: function () {
       this.$spin = this.$el.find('.spin');
-      this.$hiddenImages = this.$el.find('.hidden-images');
+      this.$progress = this.$el.find('.progress');
     },
 
     setupEvents: function () {

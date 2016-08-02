@@ -2,10 +2,27 @@ define(function (require) {
 
   var $ = require('jquery');
   var App = require('global');
+
+  // Scrollmagic
+  var ScrollMagic = require('ScrollMagic');
+  require('ScrollMagicAnimation');
+  require('ScrollMagicIndicators');
+
+  // Data
+  var scenesData = require('../data/scenes');
+
+  // Views
+  var SceneView = require('./scene');
   var LoaderView = require('./loader');
   var GAView = require('./google-analytics');
 
+  // Templates
   var tpl = require('hbs!../tpl/main');
+  var scenesTpl = {
+    intro: require('hbs!../tpl/scenes/intro'),
+    chapter: require('hbs!../tpl/scenes/chapter'),
+    end: require('hbs!../tpl/scenes/end'),
+  };
 
   function View(options) {
     this.options = options;
@@ -16,11 +33,11 @@ define(function (require) {
 
   View.prototype = {
 
-    initialize: function() {
+    initialize: function () {
 
     },
 
-    render: function() {
+    render: function () {
       this.$el.html(tpl({
         id: App.id,
       }));
@@ -29,7 +46,7 @@ define(function (require) {
         el: document.getElementById(App.id + '-loader'),
         imgPath: App.imgPath,
         imagesToPreload: App.imagesToPreload,
-        onLoaded: this.onAssetsLoaded.bind(this),
+        callback: this.onAssetsLoaded.bind(this),
       });
       this.loader.render().load();
 
@@ -39,8 +56,13 @@ define(function (require) {
       this.setupEvents();
     },
 
-    onAssetsLoaded: function(e) {
+    onAssetsLoaded: function (e) {
       console.log(e);
+
+      this.renderScenes();
+
+      // Scrollmagic
+      this.controller = new ScrollMagic.Controller();
 
       // Refresh sizes
       this.onResize();
@@ -48,7 +70,27 @@ define(function (require) {
       // this.renderGoogleAnalytics();
     },
 
-    renderGoogleAnalytics: function() {
+    renderScenes: function () {
+      this.scenes = [];
+
+      console.log(scenesData);
+
+      scenesData.forEach(function (s, i) {
+        console.log(s.type);
+
+        var scene = new SceneView({
+          data: s,
+          tpl: scenesTpl[s.type],
+          $parent: this.$app,
+          scenesData: scenesData,
+        });
+        scene.render();
+
+        this.scenes.push(scene);
+      }.bind(this));
+    },
+
+    renderGoogleAnalytics: function () {
       var ga = new GAView({
         el: document.getElementById(App.id + '-ga'),
         id: 'UA-0000000-1',
@@ -56,15 +98,15 @@ define(function (require) {
       ga.render();
     },
 
-    setupElements: function() {
-
+    setupElements: function () {
+      this.$app = this.$el.find('.app');
     },
 
-    setupEvents: function() {
+    setupEvents: function () {
       App.mediator.subscribe('resize', this.onResize.bind(this));
     },
 
-    onResize: function(e) {
+    onResize: function (e) {
       this.$el.find('.full-height').height(App.height);
     },
 

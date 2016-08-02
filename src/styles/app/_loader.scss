@@ -1,4 +1,29 @@
 .loader {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+
+  .progress-wrapper {
+    position: relative;
+    width: 100%;
+    height: 10px;
+    top: 0;
+    left: 0;
+
+    .progress {
+      position: relative;
+      background-color: white;
+      width: 100%;
+      height: 10px;
+      top: 0;
+      left: 0;
+
+      transform: translateX(-100%);
+    }
+  }
 
   .hidden-images {
     position: absolute;
