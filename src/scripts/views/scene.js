@@ -39,14 +39,13 @@ define(function (require) {
         year: this.data.year,
         title: this.data.title,
         copy: this.data.copy,
-        introCopy: this.data.introCopy,
       };
 
       if (this.type === 'chapter') {
-        tplOptions.content = this.contentTpl({
-          id: 'yoyo-' + this.id,
-          year: this.data.year,
-        });
+        // tplOptions.content = this.contentTpl({
+        //   id: 'yoyo-' + this.id,
+        //   year: this.data.year,
+        // });
       } else if (this.type === 'intro') {
         var scenesDataClone = _.clone(this.scenesData);
         // Add intro element (BC image)
@@ -56,6 +55,8 @@ define(function (require) {
           chapter: true,
         });
         tplOptions.tiles = _.shuffle(scenesDataClone);
+        tplOptions.introCopy1 = this.data.introCopy1;
+        tplOptions.introCopy2 = this.data.introCopy2;
       }
 
       // Append template content

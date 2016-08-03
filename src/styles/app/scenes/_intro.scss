@@ -1,44 +1,46 @@
 &.intro-scene {
-  border-bottom: 1px dotted white;
+  position: relative;
 
   .logo-app {
     max-width: 40%;
     display: block;
-    padding-bottom: 60px;
+    padding-bottom: 40px;
     margin: 0 auto;
+  }
+
+  .body {
+
+    .text {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+
+      .inner-1 {
+
+      }
+      .inner-2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+      }
+    }
+  }
+
+  .landmark {
+    opacity: 0;
   }
 
   .tiles {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 0;
-    height: 0;
+    width: $tileSize;
+    height: $tileSize;
     overflow: visible;
 
-    .tile {
-      $tileSize: 200px;
-      position: absolute;
-      //top: 20%;
-      //left: 8%;
-      width: $tileSize;
-      left: -$tileSize*0.5;
-      top: -$tileSize*0.5;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
-      z-index: 1;
-
-      img {
-        display: block;
-      }
-
-      .img {
-        position: relative;
-        width: 100%;
-      }
-
-      .shadow {
-
+    &.dark-shadows {
+      .tile {
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
       }
     }
   }
@@ -61,15 +63,6 @@
 
   img {
     display: block;
-
-    &.scroll-icon {
-      bottom: 3%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 25px;
-      cursor: pointer;
-      padding: 20px;
-    }
 
     &.BiscuitsOnPlate_01 {
       top: 0;

@@ -26,3 +26,20 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
+
+.rel {
+  position: relative;
+}
+
+.abs {
+  position: absolute;
+}
+
+.send-to-front {
+  z-index: 100;
+}
+
+.send-to-back {
+  z-index: 1;
+}

@@ -6,6 +6,63 @@
   @import "scenes/chapter";
   @import "scenes/end";
 
+  .inner {
+    width: 100%;
+    height: 100%;
+  }
+
+  .images-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+
+    .tile {
+      position: absolute;
+      width: $tileSize;
+      left: -$tileSize * 0.5;
+      top: -$tileSize * 0.5;
+      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+      z-index: 1;
+
+      img {
+        display: block;
+      }
+
+      .img {
+        position: relative;
+        width: 100%;
+      }
+
+      .shadow {
+
+      }
+    }
+  }
+
+  .landmark {
+    position: absolute;
+    width: $landmarkSize;
+    left: -$landmarkSize * 0.5;
+    top: -$landmarkSize * 0.5;
+    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
+    z-index: 1;
+
+    img {
+      display: block;
+    }
+
+    .img {
+      position: relative;
+      width: 100%;
+    }
+
+    .shadow {
+
+    }
+  }
+
   .body {
     position: absolute;
     left: 50%;
@@ -21,20 +78,5 @@
     }
   }
 
-  .rel {
-    position: relative;
-  }
-
-  .abs {
-    position: absolute;
-  }
-
-  .send-to-front {
-    z-index: 100;
-  }
-
-  .send-to-back {
-    z-index: 1;
-  }
 
 }
