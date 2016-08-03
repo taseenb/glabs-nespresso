@@ -1,23 +1,46 @@
-define(function(require) {
+define(function (require) {
 
-  return function(options) {
+  var $ = require('jquery');
+  var _ = require('underscore');
+  var App = require('global');
+  var TimelineMax = require('TimelineMax');
+  var TweenMax = require('TweenMax');
+  var ScrollMagic = require('ScrollMagic');
 
-    // console.log(options); //
+  function View(options) {
+    this.options = options;
+    this.el = options.el;
+    this.$el = $(this.el);
+    this.initialize();
+  }
+
+  View.prototype = {
+
+    initialize: function () {
+
+    },
+
+    render: function () {
+
+
+      this.setupElements();
+      this.setupEvents();
+    },
+
+    setupElements: function () {
+
+    },
+
+    setupEvents: function () {
+      App.mediator.subscribe('resize', this.onResize.bind(this));
+    },
+
+    onResize: function () {
+
+    },
 
   };
 
-  // this.introScene = new ScrollMagic.Scene({
-  //   triggerElement: '#main',
-  //   duration: window.App.height,
-  //   // duration: ,
-  //   offset: 0,
-  //   triggerHook: 0,
-  // })
-  // // .addIndicators()
-  //   .setPin('#intro', {
-  //     // pushFollowers: false,
-  //   })
-  //   .setTween(tl)
-  //   .addTo(this.controller);
+  return View;
 
 });

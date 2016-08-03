@@ -68,6 +68,10 @@ define(function (require) {
       this.onResize();
 
       // this.renderGoogleAnalytics();
+
+      setTimeout(function() {
+        this.loader.remove();
+      }.bind(this), 200);
     },
 
     renderScenes: function () {
@@ -107,6 +111,7 @@ define(function (require) {
 
     onResize: function (e) {
       this.$el.find('.full-height').height(App.height);
+      this.controller.update();
     },
 
   };

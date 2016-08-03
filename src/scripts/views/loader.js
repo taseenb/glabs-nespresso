@@ -21,6 +21,8 @@ define(function (require) {
       this.imgPath = this.options.imgPath;
       this.callback = this.options.callback;
       this.imagesToPreload = this.options.imagesToPreload;
+
+      this.$body = $('body');
     },
 
     render: function () {
@@ -48,29 +50,31 @@ define(function (require) {
     onProgress: function(e) {
       var percent = (e.progressedCount / e.images.length) * 100;
 
-      TweenMax.to(this.$progress, 0.2, {
+      TweenMax.set(this.$progress, {
         x: -(100 - percent) + '%',
       });
     },
 
     onLoaded: function(e) {
-      TweenMax.set(this.$progress, {x: '-100%'});
+      TweenMax.to(this.$progress, 0.2, {
+        x: 0,
+        onComplete: function() {
+          if (_.isFunction(this.callback)) {
+            this.callback();
+          }
+        }.bind(this),
+      });
 
-      if (_.isFunction(this.callback)) {
-        this.callback();
-      }
-
-      this.remove();
+      // this.remove();
     },
 
     remove: function() {
       var that = this;
 
-      TweenMax.to(this.$el, 1, {
+      TweenMax.to(this.$el, 0.2, {
         opacity: 0,
         onComplete: function() {
-          that.$el.hide();
-          console.log('remove loader');
+          that.$el.hide(); //
         },
       });
     },

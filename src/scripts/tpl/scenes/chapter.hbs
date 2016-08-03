@@ -1,23 +1,24 @@
 <div id="{{id}}" class="scene {{type}}-scene full-height">
 
     <div class="inner center abs">
-        <h1>{{title}}</h1>
+
 
         <div class="images-wrapper">
             <div id="tile-{{id}}" class="abs tile tile-{{year}}">
                 <img class="img" src="images/tiles/{{year}}.jpg">
                 <!--<img class="shadow" src="">-->
             </div>
+        </div>
 
-            <div id="landmark-{{year}}" class="abs landmark landmark-BC">
-                <img class="img" src="images/landmark/{{year}}.jpg">
-                <!--<img class="shadow" src="">-->
-            </div>
+        <div id="landmark-{{year}}" class="abs landmark landmark-BC">
+            <img class="img" src="images/landmark/{{year}}.jpg">
+            <!--<img class="shadow" src="">-->
         </div>
 
         <div class="body">
-            <div class="text">
-                {{copy}}
+            <div class="title abs">{{{title}}}</div>
+            <div class="text abs">
+                {{{copy}}}
             </div>
         </div>
     </div>

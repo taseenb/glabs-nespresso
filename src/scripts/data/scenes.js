@@ -9,8 +9,8 @@ define(function (require) {
       year: 'BC',
       introCopy1: 'Nespresso has been bringing barista-quality coffee into homes for the last 30 years, but its expertise is also built on centuries of experimentation.',
       introCopy2: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sodales magna nunc, sit amet ullamcorper justo lobortis id. Curabitur laoreet aliquet pretium.',
-      title: 'Title here',
-      copy: 'Copy here',
+      title: 'Did coffee’s Odyssey<br>start with Homer?',
+      copy: 'Was coffee mentioned by Homer in The Iliad? People are so keen to give the drink a long and noble lineage that you’ll find this claim repeated again and again. But nepenthe, the drug Homer said was added to wine to calm anger and banish painful memories, sounds much more like an opiate.',
     },
     {
       id: '0',

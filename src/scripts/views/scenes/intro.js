@@ -1,127 +1,197 @@
 define(function (require) {
 
-  var ScrollMagic = require('ScrollMagic');
+  var $ = require('jquery');
+  var _ = require('underscore');
   var App = require('global');
   var TimelineMax = require('TimelineMax');
   var TweenMax = require('TweenMax');
+  var ScrollMagic = require('ScrollMagic');
 
   // Elements
   var $NespressoCup_01_Left;
   var $rightCup;
   var $BiscuitsOnPlate_01;
-  var $tilesWrapper;
+  var $imagesWrapper;
   var $tiles;
   var $introTile;
   var $body;
-  var $text;
+  var $introText;
   var $logoApp;
-  var $text1, $text2;
+  var $introText1, $introText2;
   var $randomTile1, $randomTile2;
   var tilesCount;
+  var $landmark;
+  var $title, $text;
 
-  function setupElements($el) {
-    $NespressoCup_01_Left = $el.find('.NespressoCup_01_Left');
-    $rightCup = $el.find('.right-cup');
-    $BiscuitsOnPlate_01 = $el.find('.BiscuitsOnPlate_01');
-    $tilesWrapper = $el.find('.images-wrapper');
-    $tiles = $tilesWrapper.find('.tile');
-    $introTile = $tiles.filter('#tile-BC');
-    $body = $el.find('.body');
-    $text = $body.find('.text');
-    $logoApp = $body.find('.logo-app');
-    $text1 = $text.find('.inner-1');
-    $text2 = $text.find('.inner-2');
 
-    tilesCount = $tiles.length;
-    $randomTile1 = $tiles.not($introTile)[Math.floor(Math.random() * tilesCount)];
-    $randomTile2 = $tiles.not($introTile)[Math.floor(Math.random() * tilesCount)];
+  function View(options) {
+    this.options = options;
+    this.el = options.el;
+    this.$el = $(this.el);
+    this.initialize();
   }
 
-  return function (options) {
-    setupElements(options.$el);
+  View.prototype = {
 
-    var tl = new TimelineMax();
-    var duration = App.height * 5;
-    var tileSize = $tiles.eq(0).width(); //
+    initialize: function () {
+      this.controller = this.options.controller;
+      this.duration = App.height * 5;
+    },
 
-    // Build timeline
-    tl.to([$NespressoCup_01_Left, $rightCup, $BiscuitsOnPlate_01], 1, {y: -App.height});
-    tl.to($text1, 1, {y: -20, opacity: 0}, '-=0.8');
-    tl.to($text2, 1, {y: 0, opacity: 1}, '-=0.3');
-    tl.to($text2, 1, {y: -20, opacity: 0}, '+=0.5');
-    tl.to($logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
-    tl.to($tilesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
+    render: function () {
+      this.setupElements(this.$el);
 
-    $tiles.each(function (i, tile) {
-      var obj;
+      this.renderScrollMagic();
 
-      if (tile.id === 'tile-BC') {
-        obj = {
-          x: 0,
-          y: 0,
-          zIndex: 50,
-          ease: Back.easeOut,
-        };
-      } else {
-        var screenW = App.width - tileSize * 1.5;
-        var screenH = App.height - tileSize * 1.5;
-        obj = {
-          x: -(screenW / 2) + Math.random() * screenW,
-          y: -(screenH / 2) + Math.random() * screenH,
-          ease: Back.easeOut,
-        };
-      }
-      tl.to(tile, 1, obj, '-=0.96');
-    }.bind(this));
+      this.setupEvents();
+    },
 
-    tl.staggerTo($tiles.not($introTile), 1, {y: App.height}, -0.3);
+    renderScrollMagic: function () {
+      this.updatePositions();
+      this.updateTimeline();
+      this.createScrollMagicScene();
+    },
 
-    tl.set($tiles.not($introTile), {display: 'none'});
-
-    tl.to($introTile, 1, {
-      scale: 1.3,
-      x: '-100%',
-      rotation: '-7',
-      ease: Back.easeOut,
-    }, '-=1.5');
-
-    // Create scene
-    var scene = new ScrollMagic.Scene({
-      triggerElement: options.$el[0],
-      duration: duration,
-      // duration: ,
-      offset: 0,
-      triggerHook: 0,
-    })
-    .addIndicators()
-    .setPin(options.$el[0], {
-      // pushFollowers: false,
-    })
-    .setTween(tl)
-    .addTo(options.controller);
-
-
-    // Position the tiles at the beginning
-    // and rotate/translate a couple of tiles
-    setTimeout(function () {
-      TweenMax.set($tilesWrapper, {x: '-32%', y: '-20%'});
+    updatePositions: function () {
+      TweenMax.set($title, {y: 20, opacity: 0});
+      TweenMax.set($text, {y: -20, opacity: 0});
+      TweenMax.set($landmark, {x: App.width, y: '-50%', opacity: 1});
+      // TweenMax.set($landmark, {x: 0, y: 0, opacity: 1}); //
+      TweenMax.set($tiles, {x: 0, y: 0, rotation: 0});
+      TweenMax.set($imagesWrapper, {x: '0%', y: '0%'});
+      TweenMax.set($imagesWrapper, {x: '-32%', y: '-20%'});
 
       // Animate 2 random tiles
       TweenMax.to($randomTile1, 0.66, {
         rotation: -5 + Math.random() * -5,
         x: Math.random() * -10,
         y: Math.random() * 10,
+        ease: Back.easeOut,
       });
       TweenMax.to($randomTile2, 0.66, {
+        delay: 0.1,
         rotation: 5 + Math.random() * 5,
         x: Math.random() * 10,
         y: Math.random() * -10,
+        ease: Back.easeOut,
       });
-    }, 0);
+    },
 
-    return scene;
+    updateTimeline: function () {
+      this.tl = new TimelineMax();
+      var tl = this.tl;
+      var tileSize = $tiles.eq(0).width();
+
+      tl.to([$NespressoCup_01_Left, $rightCup, $BiscuitsOnPlate_01], 1, {y: -App.height});
+      tl.to($introText1, 1, {y: -20, opacity: 0}, '-=1');
+      tl.to($introText2, 1, {y: 0, opacity: 1}, '-=0.3');
+      tl.to($introText2, 1, {y: -20, opacity: 0}, '+=0.5');
+      tl.to($logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
+      tl.to($imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
+
+      $tiles.each(function (i, tile) {
+        var obj;
+
+        if (tile.id === 'tile-BC') {
+          obj = {
+            x: 0,
+            y: 0,
+            zIndex: 50,
+            ease: Back.easeOut,
+          };
+        } else {
+          var screenW = App.width - tileSize * 1.5;
+          var screenH = App.height - tileSize * 1.5;
+          obj = {
+            x: -(screenW / 2) + Math.random() * screenW,
+            y: -(screenH / 2) + Math.random() * screenH,
+            rotation: (Math.random() > 0.5 ? -1 : 1) * Math.random() * 4,
+            ease: Back.easeOut,
+          };
+        }
+        tl.to(tile, 1, obj, '-=0.96');
+      }.bind(this));
+
+      tl.staggerTo($tiles.not($introTile), 1, {y: App.height}, -0.3);
+
+      tl.set($tiles.not($introTile), {display: 'none'});
+
+      tl.to($introTile, 1, {
+        scale: 1.3,
+        x: '-50%',
+        rotation: '-7',
+        ease: Back.easeOut,
+      }, '-=1.5');
+
+      tl.to($landmark, 1, {
+        x: -20,
+        y: '-50%',
+        rotation: 5,
+        ease: Back.easeOut,
+      }, '-=0.5');
+
+      tl.to($title, 1, {
+        y: -20,
+        opacity: 1,
+        rotation: -8 + Math.random() * 8,
+      }, '-=0.5');
+
+      tl.to($text, 1, {
+        y: 20,
+        opacity: 1,
+      }, '-=0.5');
+    },
+
+    createScrollMagicScene: function () {
+      this.scene = new ScrollMagic.Scene({
+        triggerElement: this.el,
+        duration: this.duration,
+        offset: 0,
+        triggerHook: 0,
+      })
+        .addIndicators()
+        .setPin(this.el)
+        .setTween(this.tl)
+        .addTo(this.controller);
+    },
+
+    setupElements: function ($el) {
+      $NespressoCup_01_Left = $el.find('.NespressoCup_01_Left');
+      $rightCup = $el.find('.right-cup');
+      $BiscuitsOnPlate_01 = $el.find('.BiscuitsOnPlate_01');
+      $imagesWrapper = $el.find('.images-wrapper');
+      $tiles = $imagesWrapper.find('.tile');
+      $introTile = $tiles.filter('#tile-BC');
+      $body = $el.find('.body');
+      $introText = $body.find('.intro-text');
+      $logoApp = $body.find('.logo-app');
+      $introText1 = $introText.find('.inner-1');
+      $introText2 = $introText.find('.inner-2');
+      $landmark = $el.find('.landmark');
+      $title = $body.find('.title');
+      $text = $body.find('.text');
+
+      // Get 2 random tiles (except the intro tile)
+      tilesCount = Math.floor($tiles.length / 2);
+      var rndIdx1 = Math.floor(Math.random() * tilesCount);
+      var rndIdx2 = tilesCount + Math.floor(Math.random() * tilesCount);
+      $randomTile1 = $tiles.not($introTile)[rndIdx1];
+      $randomTile2 = $tiles.not($introTile)[rndIdx2];
+
+      console.log($tiles, tilesCount, rndIdx1, rndIdx1, $randomTile1, $randomTile2);
+    },
+
+    setupEvents: function () {
+      App.mediator.subscribe('resize', this.onResize.bind(this));
+    },
+
+    onResize: function () {
+      this.scene.destroy(true);
+      this.renderScrollMagic();
+    },
 
   };
 
+  return View;
 
 });

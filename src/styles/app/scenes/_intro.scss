@@ -1,27 +1,37 @@
 &.intro-scene {
   position: relative;
 
-  .logo-app {
-    max-width: 40%;
-    display: block;
-    padding-bottom: 40px;
-    margin: 0 auto;
-  }
+
 
   .body {
 
-    .text {
-      position: relative;
-      transform: translate3d(0, 0, 0);
+    .intro-block {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translate3d(0, -50%, 0);
+      font-size: 17px;
 
-      .inner-1 {
-
+      .logo-app {
+        width: 60%;
+        max-width: 280px;
+        display: block;
+        padding-bottom: 40px;
+        margin: 0 auto;
       }
-      .inner-2 {
-        position: absolute;
-        top: 0;
-        left: 0;
-        opacity: 0;
+
+      .intro-text {
+        position: relative;
+
+        .inner-1 {
+
+        }
+        .inner-2 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          opacity: 0;
+        }
       }
     }
   }

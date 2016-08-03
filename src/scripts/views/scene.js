@@ -5,9 +5,11 @@ define(function (require) {
   var App = require('global');
   var TweenMax = require('TweenMax');
 
-  var ScrollMagicIntro = require('./scenes/intro');
-  var ScrollMagicChapter = require('./scenes/chapter');
-  var ScrollMagicEnd = require('./scenes/end');
+  var SceneViews = {
+    intro: require('./scenes/intro'),
+    chapter: require('./scenes/chapter'),
+    end: require('./scenes/end'),
+  };
 
 
   function View(options) {
@@ -69,7 +71,9 @@ define(function (require) {
       this.setupElements();
       this.setupEvents();
 
-      this.createScrollMagicScene();
+      setTimeout(function () {
+        this.createSceneView();
+      }.bind(this), 0);
 
       return this;
     },
@@ -79,31 +83,25 @@ define(function (require) {
     },
 
     setupEvents: function () {
+      App.mediator.subscribe('resize', this.onResize.bind(this));
+    },
+
+    /**
+     * Initializes specific scene elements (depending on the scene type)
+     * and creates ScrollMagic scenes.
+     */
+    createSceneView: function () {
+      this.sceneView = new SceneViews[this.data.type]({
+        controller: this.controller,
+        data: this.data,
+        el: this.el,
+      });
+      this.sceneView.render();
 
     },
 
-    createScrollMagicScene: function () {
-      var options = {
-        controller: this.controller,
-        data: this.data,
-        $el: this.$el,
-      };
+    onResize: function () {
 
-      var fn = function() {};
-
-      switch (this.type) {
-        case 'intro':
-          fn = ScrollMagicIntro;
-          break;
-        case 'chapter':
-          fn = ScrollMagicChapter;
-          break;
-        case 'end':
-          fn = ScrollMagicEnd;
-          break;
-      }
-
-      this.scrollMagicScene = fn(options);
     },
 
   };

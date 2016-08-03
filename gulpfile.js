@@ -33,6 +33,12 @@ gulp.task('sass', function () {
     .pipe(livereload());
 });
 
+gulp.task('fonts', function () {
+  return gulp.src('./src/fonts/**')
+    .pipe(gulp.dest('./' + options.env + '/fonts'));
+});
+
+
 gulp.task('images', function () {
   return gulp.src('./src/images/**')
     .pipe($.imagemin({
@@ -78,13 +84,13 @@ gulp.task('scripts', ['requirejs'], function () {
 
 gulp.task('build', ['clean-build'], function () {
   console.log('Clean up complete. Build ' + options.env);
-  gulp.start(['html', 'images', 'json', 'bootjs', 'sass', 'scripts']);
+  gulp.start(['html', 'images', 'fonts', 'json', 'bootjs', 'sass', 'scripts']);
 });
 
 gulp.task('dist', ['clean-dist'], function () {
   options.env = "dist";
   console.log('Clean up complete. Build ' + options.env);
-  gulp.start(['html', 'images', 'json', 'bootjs', 'sass', 'scripts']);
+  gulp.start(['html', 'images', 'fonts', 'json', 'bootjs', 'sass', 'scripts']);
 });
 
 gulp.task('watch', function () {

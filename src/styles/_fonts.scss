@@ -1,7 +1,7 @@
 @font-face {
-  font-family: 'angelinaregular';
-  src: url('#{$fonts-path}angelina-webfont.woff2') format('woff2'),
-  url('#{$fonts-path}angelina-webfont.woff') format('woff');
+  font-family: "angelinaregular";
+  src: url("#{$fonts-path}angelina-webfont.woff2") format("woff2"),
+  url("#{$fonts-path}angelina-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
