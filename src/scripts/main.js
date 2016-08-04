@@ -20,6 +20,7 @@ define(function (require) {
     $(App.el).html('<div id="' + App.id + '"></div>');
 
     // Images path and images to preload
+    App.basePath = App.root;
     App.imgPath = 'images/';
     App.imagesToPreload = require('./data/images-to-preload');
 
@@ -37,7 +38,9 @@ define(function (require) {
 
     // Render main view
     var MainView = require('./views/main');
-    var mainView = new MainView({el: document.getElementById(App.id)});
+    var mainView = new MainView({
+      el: document.getElementById(App.id),
+    });
     mainView.render();
   }
 

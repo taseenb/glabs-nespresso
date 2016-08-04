@@ -4,15 +4,15 @@
 
         <div class="pin">
             <div class="images-wrapper">
-                <div id="tile-{{id}}" class="abs tile tile-{{year}}">
-                    <img class="img" src="images/tiles/{{year}}.jpg">
-                    <!--<img class="shadow" src="">-->
+                <div id="tile-{{year}}" class="abs tile tile-{{year}} shadow">
+                    <img class="img" src="{{basePath}}images/tiles/{{year}}.jpg">
+                    <!--<div class="shadow"></div>-->
                 </div>
             </div>
 
-            <div id="landmark-{{year}}" class="abs landmark landmark-BC">
-                <img class="img" src="images/landmark/{{year}}.jpg">
-                <!--<img class="shadow" src="">-->
+            <div id="landmark-{{year}}" class="abs landmark landmark-{{year}} shadow">
+                <img class="img" src="{{basePath}}images/landmark/{{year}}.jpg">
+                <!--<div class="shadow"></div>-->
             </div>
 
             <div class="body">

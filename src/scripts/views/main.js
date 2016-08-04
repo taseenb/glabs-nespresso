@@ -40,10 +40,12 @@ define(function (require) {
     render: function () {
       this.$el.html(tpl({
         id: App.id,
+        basePath: App.basePath,
       }));
 
       this.loader = new LoaderView({
         el: document.getElementById(App.id + '-loader'),
+        basePath: App.basePath,
         imgPath: App.imgPath,
         imagesToPreload: App.imagesToPreload,
         callback: this.onAssetsLoaded.bind(this),
@@ -53,7 +55,6 @@ define(function (require) {
       console.log(App);
 
       this.setupElements();
-      this.setupEvents();
     },
 
     onAssetsLoaded: function () {
@@ -65,9 +66,11 @@ define(function (require) {
       // Refresh sizes
       this.onResize();
 
+      this.setupEvents();
+
       // this.renderGoogleAnalytics();
 
-      setTimeout(function() {
+      setTimeout(function () {
         this.loader.remove();
       }.bind(this), 200);
     },
@@ -84,6 +87,7 @@ define(function (require) {
           tpl: scenesTpl[s.type],
           $parent: this.$app,
           scenesData: scenesData,
+          basePath: App.basePath,
         });
         scene.render();
 
@@ -107,9 +111,19 @@ define(function (require) {
       App.mediator.subscribe('resize', this.onResize.bind(this));
     },
 
-    onResize: function (e) {
+    onResize: function () {
       this.$el.find('.full-height').height(App.height);
-      this.controller.update();
+
+      this.scenes.forEach(function(s) {
+        if (s.onResize) {
+          console.log(s.id, s.el.id);
+          s.onResize();
+        }
+      });
+
+      setTimeout(function() {
+        this.controller.update(true);
+      }.bind(this), 200);
     },
 
   };

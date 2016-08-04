@@ -1,12 +1,12 @@
 <div id="{{id}}" class="scene {{type}}-scene full-height">
 
-    <img class="abs BiscuitsOnPlate_01 send-to-front" src="images/pngs/BiscuitsOnPlate_01.png">
+    <img class="abs BiscuitsOnPlate_01 send-to-front" src="{{{basePath}}}images/pngs/BiscuitsOnPlate_01.png">
 
-    <img class="abs NespressoCup_01_Left send-to-front" src="images/pngs/NespressoCup_01_Left.png">
+    <img class="abs NespressoCup_01_Left send-to-front" src="{{{basePath}}}images/pngs/NespressoCup_01_Left.png">
 
     <div class="abs right-cup">
-        <img class="rel NespressoCup_01_Right  send-to-front" src="images/pngs/NespressoCup_01_Right.png">
-        <img class="abs Beans01" src="images/pngs/Beans01.png">
+        <img class="rel NespressoCup_01_Right  send-to-front" src="{{{basePath}}}images/pngs/NespressoCup_01_Right.png">
+        <img class="abs Beans01" src="{{{basePath}}}images/pngs/Beans01.png">
     </div>
 
 
@@ -16,9 +16,9 @@
             <div class="tiles">
                 {{#each tiles}}
                     {{#if chapter}}
-                        <div id="tile-{{id}}" class="abs tile tile-{{year}}">
-                            <img class="img" src="images/tiles/{{year}}.jpg">
-                            <!--<img class="shadow" src="">-->
+                        <div id="tile-{{id}}" class="abs tile tile-{{year}} shadow">
+                            <img class="img" src="{{../../basePath}}images/tiles/{{year}}.jpg">
+                            <!--<div class="shadow"></div>-->
                         </div>
                     {{/if}}
                 {{/each}}
@@ -26,15 +26,15 @@
         </div>
 
 
-        <div id="landmark-BC" class="abs landmark landmark-BC">
-            <img class="img" src="images/landmark/BC.jpg">
-            <!--<img class="shadow" src="">-->
+        <div id="landmark-BC" class="abs landmark landmark-BC shadow">
+            <img class="img" src="{{{basePath}}}images/landmark/BC.jpg">
+            <!--<div class="shadow"></div>-->
         </div>
 
 
         <div class="body">
             <div class="intro-block">
-                <img class="logo-app" src="images/logo-app.png">
+                <img class="logo-app" src="{{{basePath}}}images/logo-app.png">
                 <div class="intro-text">
                     <div class="inner-1">{{introCopy1}}</div>
                     <div class="inner-2">{{introCopy2}}</div>

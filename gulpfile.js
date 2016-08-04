@@ -47,11 +47,11 @@ gulp.task('images', function () {
     .pipe(gulp.dest('./' + options.env + '/images'));
 });
 
-gulp.task('json', function () {
-  gulp.src('./src/json/*.json')
-    .pipe(gulp.dest('./' + options.env + '/json'))
-    .pipe(livereload());
-});
+// gulp.task('json', function () {
+//   gulp.src('./src/json/*.json')
+//     .pipe(gulp.dest('./' + options.env + '/json'))
+//     .pipe(livereload());
+// });
 
 gulp.task('html', function () {
   gulp.src('./src/*.html')
@@ -84,13 +84,13 @@ gulp.task('scripts', ['requirejs'], function () {
 
 gulp.task('build', ['clean-build'], function () {
   console.log('Clean up complete. Build ' + options.env);
-  gulp.start(['html', 'images', 'fonts', 'json', 'bootjs', 'sass', 'scripts']);
+  gulp.start(['html', 'images', 'fonts', 'bootjs', 'sass', 'scripts']);
 });
 
 gulp.task('dist', ['clean-dist'], function () {
   options.env = "dist";
   console.log('Clean up complete. Build ' + options.env);
-  gulp.start(['html', 'images', 'fonts', 'json', 'bootjs', 'sass', 'scripts']);
+  gulp.start(['html', 'images', 'fonts', 'bootjs', 'sass', 'scripts']);
 });
 
 gulp.task('watch', function () {

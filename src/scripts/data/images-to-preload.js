@@ -4,6 +4,9 @@ define(function (require) {
 
   return [
     'Background02.jpg',
+    'logo-app.png',
+    'logo-nespresso.png',
+    'scroll-icon.svg',
     'pngs/Beans01.png',
     'pngs/Biscuits_01.png',
     'pngs/Biscuits_02_Single.png',

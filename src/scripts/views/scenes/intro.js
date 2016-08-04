@@ -34,8 +34,11 @@ define(function (require) {
   View.prototype = {
 
     initialize: function () {
+      this.id = this.options.id;
       this.controller = this.options.controller;
       this.duration = App.height * 5;
+
+      return this;
     },
 
     render: function () {
@@ -44,6 +47,8 @@ define(function (require) {
       this.renderScrollMagic();
 
       this.setupEvents();
+
+      return this;
     },
 
     setupElements: function ($el) {
@@ -104,7 +109,6 @@ define(function (require) {
       TweenMax.set($title, {y: 20, opacity: 0});
       TweenMax.set($text, {y: -20, opacity: 0});
       TweenMax.set($landmark, {x: App.width, y: '-50%', opacity: 1});
-      // TweenMax.set($landmark, {x: 0, y: 0, opacity: 1}); //
       TweenMax.set($tiles, {x: 0, y: 0, rotation: 0});
       TweenMax.set($imagesWrapper, {x: '0%', y: '0%'});
       TweenMax.set($imagesWrapper, {x: '-32%', y: '-20%'});
@@ -209,12 +213,11 @@ define(function (require) {
         offset: 0,
         triggerHook: 0,
       })
-        .addIndicators()
+        // .addIndicators()
         .setPin(this.el)
         .setTween(this.tl)
         .addTo(this.controller);
 
-      //
       // this.chapterScene = new ScrollMagic.Scene({
       //   duration: App.height * 1.5,
       //   triggerElement: this.el,
@@ -230,7 +233,6 @@ define(function (require) {
 
     onResize: function () {
       this.scene.destroy(true);
-      // this.chapterScene.destroy(true);
       this.renderScrollMagic();
     },
 

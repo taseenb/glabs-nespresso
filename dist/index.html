@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title></title>
     <style>
         html, body, figure {
@@ -12,11 +12,12 @@
         }
 
         body {
-            padding: 20px;
+            margin: 0;
+            padding: 0;
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0;">
+<body>
 
 <!--<div style="background: black; color: white; padding: 20px;">header content</div>-->
 
@@ -36,12 +37,12 @@
     var localRoot = window.localRoot || "{{local-root}}";
 
     // DOM element
-    var el = document.querySelector( '.interactive' );
+    var el = document.querySelector('.interactive');
 
     // Boot
-    require( ['boot.js'], function ( app ) {
-        app.boot( el );
-    } );
+    require(['boot.js'], function (app) {
+        app.boot(el);
+    });
 
 </script>
 </body>

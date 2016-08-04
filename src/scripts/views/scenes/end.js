@@ -17,7 +17,9 @@ define(function (require) {
   View.prototype = {
 
     initialize: function () {
+      this.id = this.options.id;
 
+      return this;
     },
 
     render: function () {
@@ -25,6 +27,8 @@ define(function (require) {
 
       this.setupElements();
       this.setupEvents();
+
+      return this;
     },
 
     setupElements: function () {
@@ -32,7 +36,7 @@ define(function (require) {
     },
 
     setupEvents: function () {
-      App.mediator.subscribe('resize', this.onResize.bind(this));
+
     },
 
     onResize: function () {

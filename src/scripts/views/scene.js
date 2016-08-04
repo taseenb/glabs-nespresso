@@ -26,8 +26,6 @@ define(function (require) {
       this.scenesData = this.options.scenesData;
       this.controller = this.options.controller;
 
-      this.scrollMagicScene = null;
-
       // Scene data
       this.id = this.data.id;
       this.type = this.data.type;
@@ -41,6 +39,7 @@ define(function (require) {
         year: this.data.year,
         title: this.data.title,
         copy: this.data.copy,
+        basePath: App.basePath,
       };
 
       if (this.type === 'chapter') {
@@ -83,7 +82,7 @@ define(function (require) {
     },
 
     setupEvents: function () {
-      App.mediator.subscribe('resize', this.onResize.bind(this));
+
     },
 
     /**
@@ -95,13 +94,17 @@ define(function (require) {
         controller: this.controller,
         data: this.data,
         el: this.el,
+        id: 'sceneView-' + this.data.id,
+        basePath: App.basePath,
       });
       this.sceneView.render();
-
     },
 
     onResize: function () {
-
+      if (this.sceneView && this.sceneView.onResize) {
+        console.log(this.sceneView.el.id);
+        this.sceneView.onResize();
+      }
     },
 
   };

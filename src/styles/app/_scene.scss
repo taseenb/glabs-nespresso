@@ -28,9 +28,9 @@
     .tile {
       position: absolute;
       width: $tileSize;
+      height: $tileSize;
       left: -$tileSize * 0.5;
       top: -$tileSize * 0.5;
-      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
       z-index: 1;
 
       img {
@@ -41,20 +41,14 @@
         position: relative;
         width: 100%;
       }
-
-      .shadow {
-
-      }
     }
   }
 
   .landmark {
     position: absolute;
-    width: $landmarkSize;
-    max-width: 30%;
+    //width: $landmarkSize;
     left: 50%;
     top: 50%;
-    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.1);
     z-index: 1;
 
     img {
@@ -64,14 +58,44 @@
     .img {
       position: relative;
       width: 100%;
-      //left: -$landmarkSize * 0.5;
-      //top: -$landmarkSize * 0.5;
-    }
-
-    .shadow {
-
     }
   }
+
+
+  .shadow {
+    $shadow-color: rgba(0,0,0,1);
+
+    &:before {
+      z-index: -1;
+      position: absolute;
+      content: "";
+      bottom: 15px;
+      width: 50%;
+      //top: 90%;
+      height: 20px;
+      max-width: 300px;
+      background: $shadow-color;
+      box-shadow: 0 15px 10px $shadow-color;
+      left: 5px;
+      transform: rotate(-4deg);
+    }
+
+    &:after {
+      z-index: -1;
+      position: absolute;
+      content: "";
+      bottom: 15px;
+      width: 50%;
+      //top: 90%;
+      height: 20px;
+      max-width: 300px;
+      background: $shadow-color;
+      box-shadow: 0 15px 10px $shadow-color;
+      right: 5px;
+      transform: rotate(4deg);
+    }
+  }
+
 
   .body {
     position: absolute;
@@ -94,8 +118,8 @@
 
     .text {
       width: 100%;
-      font-size: 15px;
-      line-height: 22px;
+      font-size: 14px;
+      line-height: 20px;
       bottom: -$page-margin-y;
       opacity: 0;
 

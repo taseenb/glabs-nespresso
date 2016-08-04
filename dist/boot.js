@@ -3,7 +3,7 @@ define( [], function () {
   'use strict';
 
   // Get paths for assets (css + js)
-  var rootPath = "http://labs.theguardian.com/2016/month/name-interactive";
+  var rootPath = "https://labs.theguardian.com/2016/nespresso/history-of-coffee/";
 
   function addCSS( url ) {
     var head = document.querySelector( 'head' );
