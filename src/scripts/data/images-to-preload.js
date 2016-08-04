@@ -54,6 +54,7 @@ define(function (require) {
     'landmark/1773.jpg',
     'landmark/1822.jpg',
     'landmark/1938.jpg',
+    'landmark/1986.jpg',
   ];
 
 });

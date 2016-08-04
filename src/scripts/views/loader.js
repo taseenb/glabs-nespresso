@@ -27,6 +27,7 @@ define(function (require) {
 
     render: function () {
       this.$el.html(tpl({
+        basePath: App.basePath,
         imgPath: this.imgPath || 'images/',
         imagesToPreload: this.imagesToPreload || [],
       }));
