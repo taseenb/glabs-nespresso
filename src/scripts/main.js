@@ -7,6 +7,9 @@ define(function (require) {
   var App = require('global');
   var Resize = require('./events/resize');
 
+  // Blast
+  require('blast-text');
+
   // Initialize
   function initialize(el, root) {
     App.el = el;

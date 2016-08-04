@@ -56,9 +56,7 @@ define(function (require) {
       this.setupEvents();
     },
 
-    onAssetsLoaded: function (e) {
-      console.log(e);
-
+    onAssetsLoaded: function () {
       // Scrollmagic
       this.controller = new ScrollMagic.Controller();
 

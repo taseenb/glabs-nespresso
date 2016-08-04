@@ -9,38 +9,43 @@
         <img class="abs Beans01" src="images/pngs/Beans01.png">
     </div>
 
-    <div class="images-wrapper">
-        <div class="tiles">
-            {{#each tiles}}
-                {{#if chapter}}
-                    <div id="tile-{{id}}" class="abs tile tile-{{year}}">
-                        <img class="img" src="images/tiles/{{year}}.jpg">
-                        <!--<img class="shadow" src="">-->
-                    </div>
-                {{/if}}
-            {{/each}}
-        </div>
-    </div>
 
+    <div class="pin">
 
-    <div id="landmark-BC" class="abs landmark landmark-BC">
-        <img class="img" src="images/landmark/BC.jpg">
-        <!--<img class="shadow" src="">-->
-    </div>
-
-
-    <div class="body">
-        <div class="intro-block">
-            <img class="logo-app" src="images/logo-app.png">
-            <div class="intro-text">
-                <div class="inner-1">{{introCopy1}}</div>
-                <div class="inner-2">{{introCopy2}}</div>
+        <div class="images-wrapper">
+            <div class="tiles">
+                {{#each tiles}}
+                    {{#if chapter}}
+                        <div id="tile-{{id}}" class="abs tile tile-{{year}}">
+                            <img class="img" src="images/tiles/{{year}}.jpg">
+                            <!--<img class="shadow" src="">-->
+                        </div>
+                    {{/if}}
+                {{/each}}
             </div>
         </div>
 
-        <div class="title abs">{{{title}}}</div>
-        <div class="text abs">
-            {{{copy}}}
+
+        <div id="landmark-BC" class="abs landmark landmark-BC">
+            <img class="img" src="images/landmark/BC.jpg">
+            <!--<img class="shadow" src="">-->
         </div>
+
+
+        <div class="body">
+            <div class="intro-block">
+                <img class="logo-app" src="images/logo-app.png">
+                <div class="intro-text">
+                    <div class="inner-1">{{introCopy1}}</div>
+                    <div class="inner-2">{{introCopy2}}</div>
+                </div>
+            </div>
+
+            <div class="title abs">{{{title}}}</div>
+            <div class="text abs">
+                {{{copy}}}
+            </div>
+        </div>
+
     </div>
 </div>

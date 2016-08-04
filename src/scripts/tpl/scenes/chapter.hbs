@@ -2,25 +2,27 @@
 
     <div class="inner center abs">
 
+        <div class="pin">
+            <div class="images-wrapper">
+                <div id="tile-{{id}}" class="abs tile tile-{{year}}">
+                    <img class="img" src="images/tiles/{{year}}.jpg">
+                    <!--<img class="shadow" src="">-->
+                </div>
+            </div>
 
-        <div class="images-wrapper">
-            <div id="tile-{{id}}" class="abs tile tile-{{year}}">
-                <img class="img" src="images/tiles/{{year}}.jpg">
+            <div id="landmark-{{year}}" class="abs landmark landmark-BC">
+                <img class="img" src="images/landmark/{{year}}.jpg">
                 <!--<img class="shadow" src="">-->
             </div>
-        </div>
 
-        <div id="landmark-{{year}}" class="abs landmark landmark-BC">
-            <img class="img" src="images/landmark/{{year}}.jpg">
-            <!--<img class="shadow" src="">-->
-        </div>
-
-        <div class="body">
-            <div class="title abs">{{{title}}}</div>
-            <div class="text abs">
-                {{{copy}}}
+            <div class="body">
+                <div class="title abs">{{{title}}}</div>
+                <div class="text abs">
+                    {{{copy}}}
+                </div>
             </div>
         </div>
+
     </div>
 
 </div>
