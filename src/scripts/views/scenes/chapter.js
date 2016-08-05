@@ -138,7 +138,7 @@ define(function (require) {
         ease: Power3.easeOut,
       }, '-=0.2');
 
-      tl.to(this.$tile, 1, {x: 0});
+      tl.to(this.$text, 1, {x: 0});
     },
 
     createScrollMagicScene: function () {

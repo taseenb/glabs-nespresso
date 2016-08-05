@@ -156,6 +156,8 @@ define(function (require) {
         opacity: 1,
         ease: Power3.easeOut,
       }, '-=0.2');
+
+      tl.to(this.$text, 1, {x: 0});
     },
 
     updateTimeline: function () {
@@ -189,8 +191,6 @@ define(function (require) {
         rotation: 0,
         ease: Back.easeOut,
       });
-
-      // tl.staggerTo(this.$otherTiles, 1, {y: 0, x: 0, rotation: 0, opacity: 1}, -0.1);
 
       tl.to(this.$tile1986End, 0.5, {opacity: 1}, '-=0.2');
 
