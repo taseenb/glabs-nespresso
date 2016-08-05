@@ -112,7 +112,7 @@ define(function (require) {
       var landmarkX = this.tileFrom === 'l' ? '-10%' : '-90%';
 
       tl.to(this.$tile, 2, {
-        // scale: 1.2, //
+        // scale: 1.2,
         x: tileX,
         rotation: tileRot,
         ease: Back.easeOut,
@@ -137,6 +137,8 @@ define(function (require) {
         opacity: 1,
         ease: Power3.easeOut,
       }, '-=0.2');
+
+      tl.to(this.$tile, 1, {x: 0});
     },
 
     createScrollMagicScene: function () {
