@@ -1,6 +1,7 @@
 .scene {
   position: relative;
-  height: 50px;
+  height: 100%; // 50px;
+  min-height: 100%;
 
   @import "scenes/intro";
   @import "scenes/chapter";
@@ -17,6 +18,32 @@
     height: 100%;
   }
 
+  .tiles {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $tileSizeSmall;
+    height: $tileSizeSmall;
+
+    @media #{$tablet-and-above} {
+      width: $tileSizeMedium;
+      height: $tileSizeMedium;
+    }
+
+    @media #{$above-tablet} {
+      width: $tileSizeLarge;
+      height: $tileSizeLarge;
+    }
+
+    overflow: visible;
+
+    &.dark-shadows {
+      .tile {
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+
   .images-wrapper {
     position: absolute;
     top: 0;
@@ -27,10 +54,25 @@
 
     .tile {
       position: absolute;
-      width: $tileSize;
-      height: $tileSize;
-      left: -$tileSize * 0.5;
-      top: -$tileSize * 0.5;
+      width: $tileSizeSmall;
+      height: $tileSizeSmall;
+      left: -$tileSizeSmall * 0.5;
+      top: -$tileSizeSmall * 0.5;
+
+      @media #{$tablet-and-above} {
+        width: $tileSizeMedium;
+        height: $tileSizeMedium;
+        left: -$tileSizeMedium * 0.5;
+        top: -$tileSizeMedium * 0.5;
+      }
+
+      @media #{$above-tablet} {
+        width: $tileSizeLarge;
+        height: $tileSizeLarge;
+        left: -$tileSizeLarge * 0.5;
+        top: -$tileSizeLarge * 0.5;
+      }
+
       z-index: 1;
 
       img {
@@ -46,7 +88,7 @@
 
   .landmark {
     position: absolute;
-    //width: $landmarkSize;
+    // size is calculated in javascript, based on the real image size
     left: 50%;
     top: 50%;
     z-index: 1;
@@ -103,25 +145,42 @@
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     text-align: center;
-    height: $tileSize * 2.5;
     width: 40%;
-    max-width: 420px;
+    max-width: 380px;
+
+    @media #{$tablet-and-above} {
+      max-width: 450px;
+    }
+
+    @media #{$above-tablet} {
+      max-width: 520px;
+    }
 
     .title {
       width: 100%;
       font-size: 36px;
       line-height: 40px;
-      top: 0;
+      top: -$page-margin-y;
       font-family: 'angelinaregular', Helvetica, Arial, sans-serif;
       text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
     }
 
     .text {
       width: 100%;
-      font-size: 14px;
-      line-height: 20px;
       bottom: -$page-margin-y;
       opacity: 0;
+      font-size: 13px;
+      line-height: 18px;
+
+      //@media #{$tablet-and-above} {
+      //  font-size: 14px;
+      //  line-height: 20px;
+      //}
+
+      @media #{$above-tablet} {
+        font-size: 14px;
+        line-height: 20px;
+      }
 
       .blast {
         opacity: 0;

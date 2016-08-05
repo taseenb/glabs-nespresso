@@ -50,6 +50,7 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 
   @import 'normalize';
   @import 'helpers';
+  @import 'responsive/devices';
 
   // App
   @import 'app/inner';

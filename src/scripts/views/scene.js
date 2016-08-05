@@ -29,6 +29,7 @@ define(function (require) {
       // Scene data
       this.id = this.data.id;
       this.type = this.data.type;
+      this.year = this.data.year;
       this.contentTpl = this.data.contentTpl;
     },
 
@@ -47,12 +48,12 @@ define(function (require) {
         //   id: 'yoyo-' + this.id,
         //   year: this.data.year,
         // });
-      } else if (this.type === 'intro') {
+      } else {
         var scenesDataClone = _.clone(this.scenesData);
         // Add intro element (BC image)
         scenesDataClone.unshift({
-          id: 'BC',
-          year: 'BC',
+          id: this.year,
+          year: this.year,
           chapter: true,
         });
         tplOptions.tiles = _.shuffle(scenesDataClone);
@@ -85,6 +86,36 @@ define(function (require) {
 
     },
 
+    updateLandmarkSize: function (w, h) {
+      var maxH = App.height * 0.4;
+      var maxW = App.container.width * 0.4;
+      this.landmarkIsPortrait = w < h;
+
+      // console.log(this.el.id, this.landmarkIsPortrait ? 'portrait' : 'landscape');
+
+      if (this.landmarkIsPortrait) {
+        this.landmarkH = maxH;
+        this.landmarkW = w * (maxH / h);
+        if (this.landmarkW > maxW) {
+          this.landmarkW = maxW;
+          this.landmarkH = h * (maxW / w);
+        }
+      } else {
+        this.landmarkW = maxW;
+        this.landmarkH = h * (maxW / w);
+        if (this.landmarkH > maxH) {
+          this.landmarkH = maxH;
+          this.landmarkW = w * (maxH / h);
+        }
+      }
+
+      return {
+        isPortrait: this.landmarkIsPortrait,
+        width: this.landmarkW,
+        height: this.landmarkH,
+      };
+    },
+
     /**
      * Initializes specific scene elements (depending on the scene type)
      * and creates ScrollMagic scenes.
@@ -96,13 +127,13 @@ define(function (require) {
         el: this.el,
         id: 'sceneView-' + this.data.id,
         basePath: App.basePath,
+        parentView: this,
       });
       this.sceneView.render();
     },
 
     onResize: function () {
       if (this.sceneView && this.sceneView.onResize) {
-        console.log(this.sceneView.el.id);
         this.sceneView.onResize();
       }
     },

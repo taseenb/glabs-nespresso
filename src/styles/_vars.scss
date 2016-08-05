@@ -4,10 +4,12 @@
 // Structure
 $header-height: 160px;
 $footer-height: 120px;
-$max-width: 1280px;
+$max-width: 1300px;
 
-$tileSize: 200px;
-$landmarkSize: 380px;
+// Tile sizes
+$tileSizeSmall: 160px;
+$tileSizeMedium: 200px;
+$tileSizeLarge: 240px;
 
 // Paths
 $img-path: '../images/';
@@ -20,7 +22,7 @@ $margin-x: 10%;
 $margin-y: 10%;
 
 // Responsive
-$tabletMinHeight: 420px;
-$tabletMinWidth: 680px;
-$desktopMinWidth: 940px;
+$tabletMinHeight: 740px;
+$tabletMinWidth: 740px;
+$desktopMinWidth: 1060px;
 $iphone4MaxSize: 480px;

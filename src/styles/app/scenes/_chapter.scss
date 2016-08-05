@@ -1,6 +1,7 @@
 &.chapter-scene {
   //border-bottom: 1px dotted white;
   position: relative;
+  height: 150%;
 
   .images-wrapper {
     top: 50%;
@@ -8,7 +9,6 @@
 
     .tile {
       z-index: 10;
-      transform: scale(1.3);
     }
 
     .landmark {

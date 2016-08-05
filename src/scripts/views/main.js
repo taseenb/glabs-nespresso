@@ -61,18 +61,17 @@ define(function (require) {
       // Scrollmagic
       this.controller = new ScrollMagic.Controller();
 
-      this.renderScenes();
-
-      // Refresh sizes
+      // Refresh sizes BEFORE rendering scenes
       this.onResize();
-
-      this.setupEvents();
-
+      this.renderScenes();
       // this.renderGoogleAnalytics();
 
       setTimeout(function () {
+        // Refresh sizes AFTER rendering scenes
+        this.onResize();
+        this.setupEvents();
         this.loader.remove();
-      }.bind(this), 200);
+      }.bind(this), 500);
     },
 
     renderScenes: function () {
@@ -80,7 +79,7 @@ define(function (require) {
 
       console.log(scenesData);
 
-      scenesData.forEach(function (s, i) {
+      scenesData.forEach(function (s) {
         var scene = new SceneView({
           controller: this.controller,
           data: s,
@@ -112,18 +111,26 @@ define(function (require) {
     },
 
     onResize: function () {
-      this.$el.find('.full-height').height(App.height);
+      console.log('resize (main)');
 
-      this.scenes.forEach(function(s) {
-        if (s.onResize) {
-          console.log(s.id, s.el.id);
-          s.onResize();
-        }
-      });
+      App.container = {
+        width: this.$el.width(),
+        height: this.$el.height(),
+      };
 
-      setTimeout(function() {
-        this.controller.update(true);
-      }.bind(this), 200);
+      if (this.scenes) {
+        this.scenes.forEach(function (s) {
+          if (s.onResize) {
+            s.onResize();
+          }
+        });
+      }
+
+      if (this.controller) {
+        setTimeout(function () {
+          this.controller.update(true);
+        }.bind(this), 200);
+      }
     },
 
   };

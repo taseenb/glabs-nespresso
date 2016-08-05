@@ -1,5 +1,6 @@
 &.intro-scene {
   position: relative;
+  height: 500%;
 
   .body {
 
@@ -38,20 +39,31 @@
     opacity: 0;
   }
 
-  .tiles {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: $tileSize;
-    height: $tileSize;
-    overflow: visible;
-
-    &.dark-shadows {
-      .tile {
-        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
-      }
-    }
-  }
+  //.tiles {
+  //  position: absolute;
+  //  top: 50%;
+  //  left: 50%;
+  //  width: $tileSizeSmall;
+  //  height: $tileSizeSmall;
+  //
+  //  @media #{$tablet-and-above} {
+  //    width: $tileSizeMedium;
+  //    height: $tileSizeMedium;
+  //  }
+  //
+  //  @media #{$above-tablet} {
+  //    width: $tileSizeLarge;
+  //    height: $tileSizeLarge;
+  //  }
+  //
+  //  overflow: visible;
+  //
+  //  &.dark-shadows {
+  //    .tile {
+  //      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
+  //    }
+  //  }
+  //}
 
   .right-cup {
     top: 25%;

@@ -19,7 +19,7 @@ define(function (require) {
       year: 1000,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/0'),
-      title: 'Or did it begin in the cradle of mankind?',
+      title: 'Or did it begin in the<br>cradle of mankind?',
       copy: 'Ethiopia is thought to have been the birthplace of coffee, as it was of mankind itself. The beans were supposedly crushed, mixed with animal fat, and made into an energy bar for travellers. There is, however, no hard evidence for coffee use until...',
     },
     {
@@ -29,7 +29,7 @@ define(function (require) {
       year: 1450,
       tileFrom: 'l',
       contentTpl: require('hbs!../tpl/scenes/chapters/1'),
-      title: 'The Sufis used it to pray all night',
+      title: 'The Sufis used it<br>to pray all night',
       copy: 'The Sufis of the Yemen certainly used coffee in the first half of the 15th century (glazed bowls have even been found from that period with traces of the bean). Around 1450, the drink is introduced to Constantinople, where it swiftly becomes so popular that a law is passed permitting women to divorce a husband who fails to supply them with their daily quota of the drink. Further evidence of its popularity follows not far behind...',
     },
     {
@@ -39,7 +39,7 @@ define(function (require) {
       year: 1511,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/2'),
-      title: 'The first attempt to ban it caused rioting',
+      title: 'The first attempt to<br>ban it caused rioting',
       copy: 'The first major coffee controversy: Mecca\'s new young governor, Khair Bey, becomes enraged at the public making fun of him, and finds that the miscreants are gathering at coffee houses to compose their barbs. He engages scholars to declare the drink un-Islamic – a ban which results in riots and is overturned by the Sultan.',
     },
     {
@@ -49,7 +49,7 @@ define(function (require) {
       year: 1600,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/3'),
-      title: 'Coffee is declared wholly holy',
+      title: 'Coffee is declared<br>wholly holy',
       copy: 'According to legend, once coffee had established its first European foothold in Venice in the late 16th century, the Church took notice of the spread of this “devil\'s concoction” associated with “infidels”. Pope Clement VIII is asked to ban it, but is so taken with the aroma that he tries some himself, and finds it so delicious he instead decides to “fool Satan” by baptising it.',
     },
     {
@@ -59,7 +59,7 @@ define(function (require) {
       year: 1632,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/4'),
-      title: 'Even the death penalty doesn\'t deter coffee lovers',
+      title: 'Even the death penalty<br>doesn\'t deter coffee lovers',
       copy: 'And now, conversely, coffee is again declared un-Islamic: Sultan Murad IV bans consumption in Constantinople, along with tobacco and alcohol, personally patrolling the streets and decapitating offenders with his sword. His successor diluted the ban: for a first offence you\'d merely be beaten, although a second sinful sip would get you sewn into a sack and thrown into the Bosphorus. It\'s testament to coffee\'s appeal that people continue to drink it, despite the danger.',
     },
     {
@@ -69,7 +69,7 @@ define(function (require) {
       year: 1652,
       tileFrom: 'l',
       contentTpl: require('hbs!../tpl/scenes/chapters/5'),
-      title: 'Finally! Coffee reaches Britain, fuels Empire',
+      title: 'Finally! Coffee reaches Britain,<br>fuels Empire',
       copy: 'Samuel Pepys records in his diaries that England\'s first coffee house opens in Oxford in 1952. The Grand Café now stands on that site, while the Queen\'s Lane Coffee House opposite it has survived since 1654. Popularly known as “penny universities”, because stimulating discussion could be had there for the price of a coffee, they quickly became an integral part of Oxford and London\'s social scene. The insurance industry and stock exchange were both founded in coffee houses.',
     },
     {
@@ -79,7 +79,7 @@ define(function (require) {
       year: 1674,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/6'),
-      title: 'The backlash begins with an old wives\' tale',
+      title: 'The backlash begins<br>with an old wives\' tale',
       copy: 'British men are by now spending so much time in coffee houses that their wives object. A pamphlet entitled The Womens [sic] Petition Against Coffee complains that “the Excessive use of that Newfangled, Abominable, Heathenish Liquor called COFFEE… has so Eunucht our Husbands that they are become as unfruitful as those Desarts whence that unhappy Berry is said to be brought.” Charles II subsequently tries to ban coffee – out of fear of the political discussions in coffee houses rather than concern for the nation\'s women – but the outcry causes him to relent.',
     },
     {
@@ -89,7 +89,7 @@ define(function (require) {
       year: 1732,
       tileFrom: 'l',
       contentTpl: require('hbs!../tpl/scenes/chapters/7'),
-      title: 'But how can Bach, Beethoven and Balzac be wrong?',
+      title: 'But how can Bach, Beethoven<br>and Balzac be wrong?',
       copy: 'Bach writes The Coffee Cantata, ending with a song celebrating the benefits of the drink. Some of the greatest European thinkers and artists are, by now, coffee-lovers. Voltaire supposedly enjoyed upwards of 40 cups a day, with chocolate. Balzac was similarly smitten, and penned the lighthearted essay, The Pleasure and Pains of Coffee. Beethoven started every day with a cup of coffee – always made from exactly 60 beans.',
     },
     {
@@ -98,7 +98,7 @@ define(function (require) {
       year: 1757,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/8'),
-      title: 'Tea takes over in Britain...',
+      title: 'Tea takes<br>over in Britain...',
       copy: 'The Battle of Plassey gives the East India Trading Company control of Bengal. After this, the company focuses its attention away from trading coffee and towards tea, planting Chinese tea bushes in India and newly occupied Ceylon (Sri Lanka). Henceforth, tea becomes the nation\'s favourite hot drink (although coffee is giving it a run for its money these days).',
     },
     {
@@ -108,7 +108,7 @@ define(function (require) {
       year: 1773,
       tileFrom: 'l',
       contentTpl: require('hbs!../tpl/scenes/chapters/9'),
-      title: '...While in America coffee topples tea',
+      title: '...While in America<br>coffee topples tea',
       copy: 'Conversely, America rejects tea when colonists protest against King George’s taxes by dumping a whole shipment overboard into the Boston harbor. This became known as the Boston Tea Party, from which the right wing of the Republican party derives its name, and was a key moment in the American revolution. Henceforth, coffee, not tea, would be integral to the American way.',
     },
     {
@@ -118,7 +118,7 @@ define(function (require) {
       year: 1822,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/10'),
-      title: 'The black nectar meets the Age of Steam...',
+      title: 'The black nectar meets<br>the Age of Steam...',
       copy: 'Just as steam powered the Industrial Revolution, it also perked up the world’s coffee habits. Frenchman Louis Bernard Rabaut was perhaps the first to develop a machine that would make coffee more quickly by using steam to force hot water through grounds. This is the forerunner of the black nectar we now know as espresso.',
     },
     {
@@ -128,22 +128,17 @@ define(function (require) {
       year: 1938,
       tileFrom: 'r',
       contentTpl: require('hbs!../tpl/scenes/chapters/11'),
-      title: '...And joins the Age of Gadgets with Gaggia',
+      title: '...And joins the Age<br>of Gadgets with Gaggia',
       copy: 'Achille Gaggia applies for a patent for the first modern steamless coffee machine. His revolutionary piston mechanism forced water through the coffee grounds at high pressure, producing the crema that is unique to espresso. It took only 15 seconds to make a single “shot” of espresso.',
     },
     {
-      id: '12',
-      type: 'chapter',
+      id: 'end',
       chapter: true,
+      type: 'end',
       year: 1986,
       tileFrom: 'l',
-      contentTpl: require('hbs!../tpl/scenes/chapters/12'),
-      title: 'The Nespresso capsule collection is born',
+      title: 'The Nespresso capsule<br>collection is born',
       copy: 'Nespresso is founded, offering a revolutionary system of portioned, encapsulated coffee and dedicated machines that interact to deliver perfect coffee. At first there were just four coffee varieties; now there are 24 Grands Crus. The first Nespresso boutique in the UK opened in 2001, while the first Nespresso Café in the UK opened just this June in Cheapside in the City of London.',
-    },
-    {
-      id: 'end',
-      type: 'end',
     },
   ];
 
