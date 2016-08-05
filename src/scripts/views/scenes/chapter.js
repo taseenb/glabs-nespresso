@@ -23,7 +23,7 @@ define(function (require) {
       this.tileFrom = this.data.tileFrom;
       this.controller = this.options.controller;
       this.year = this.data.year;
-      this.duration = '150%';
+      this.duration = '300%';
       this.parentView = this.options.parentView;
 
       this.tileBasicRot = 7;

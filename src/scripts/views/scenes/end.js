@@ -192,9 +192,9 @@ define(function (require) {
 
       // tl.staggerTo(this.$otherTiles, 1, {y: 0, x: 0, rotation: 0, opacity: 1}, -0.1);
 
-      tl.to(this.$tile1986End, 0.5, {opacity: 1});
+      tl.to(this.$tile1986End, 0.5, {opacity: 1}, '-=0.2');
 
-      tl.set(this.$otherTiles, {opacity: 1});
+      tl.set(this.$otherTiles, {opacity: 1}, '-=0.2');
 
       this.$otherTiles.each(function (i, el) {
         tl.fromTo(el, 0.3, {
@@ -207,12 +207,12 @@ define(function (require) {
           y: 0,
           rotation: 0,
           ease: Back.easeOut,
-        }, '-=0.1');
+        }, '-=0.2');
       });
 
       tl.set(this.$otherTiles, {display: 'none'});
 
-      tl.to(this.$tile1986End, 2, {y: 0, x: 0});
+      tl.to(this.$tile1986End, 2, {y: 0, x: 0}, '-=0.2');
     },
 
     createScrollMagicScene: function () {
