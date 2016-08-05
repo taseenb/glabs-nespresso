@@ -38,10 +38,10 @@ define(function (require) {
 
     // Render main view
     var MainView = require('./views/main');
-    var mainView = new MainView({
+    App.mainView = new MainView({
       el: document.getElementById(App.id),
     });
-    mainView.render();
+    App.mainView.render();
   }
 
   return {

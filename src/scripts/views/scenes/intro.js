@@ -218,17 +218,13 @@ define(function (require) {
         .setTween(this.tl)
         .addTo(this.controller);
 
-      // this.chapterScene = new ScrollMagic.Scene({
-      //   duration: App.height * 1.5,
-      //   triggerElement: this.el,
-      //   offset: this.duration,
-      //   tweenChanges: true,
-      //   triggerHook: 0,
-      // })
-      //   .addIndicators()
-      //   .setPin(this.$el.find('.pin')[0])
-      //   .setTween(this.chapterTl)
-      //   .addTo(this.controller);
+      this.scene.on('leave', function() {
+        App.mainView.hideScrollIcon();
+      }.bind(this));
+
+      this.scene.on('enter', function() {
+        App.mainView.showScrollIcon();
+      }.bind(this));
     },
 
     onResize: function () {
