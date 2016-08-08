@@ -25,7 +25,7 @@ define(function (require) {
       this.duration = App.height * 5;
       this.parentView = this.options.parentView;
 
-      this.tileBasicRot = 7;
+      this.tileBasicRot = 2;
 
       return this;
     },
@@ -83,7 +83,7 @@ define(function (require) {
 
     updatePositions: function () {
       var tileDir = this.tileFrom === 'l' ? -1 : 1;
-      var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 6;
+      var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 3;
 
       this.tileSize = this.$tile1986.width();
       var h = this.landmarkH * 1.6;
@@ -126,9 +126,24 @@ define(function (require) {
     updateChapterTimeline: function () {
       this.chapterTl = new TimelineMax();
       var tl = this.chapterTl;
-      var tileX = this.tileFrom === 'l' ? '-50%' : '50%';
+      // var tileX = this.tileFrom === 'l' ? '-50%' : '50%';
       var tileRot = this.tileFrom === 'l' ? -this.tileBasicRot : this.tileBasicRot;
-      var landmarkX = this.tileFrom === 'l' ? '-10%' : '-90%';
+      // var landmarkX = this.tileFrom === 'l' ? '-10%' : '-90%';
+
+      // Landmark X position
+      var landmarkX = 0; //'-50%';
+      if (this.tileFrom === 'l') {
+        landmarkX = -(1 * this.landmarkW / 3);
+      } else {
+        landmarkX = -(2 * this.landmarkW / 3);
+      }
+      // Tile X position
+      var tileX = 0;
+      if (this.tileFrom === 'l') {
+        tileX = -(this.landmarkW / 3) - (this.tileSize * 0.25);
+      } else {
+        tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
+      }
 
       tl.to(this.$tile1986, 0.6, {
         // scale: 1.2,
@@ -138,7 +153,7 @@ define(function (require) {
       });
 
       tl.to(this.$landmark, 0.2, {
-        x: -20,
+        x: landmarkX, // -20,
         y: '-50%',
         rotation: 2,
         ease: Power3.easeOut,

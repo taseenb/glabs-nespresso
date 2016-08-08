@@ -22,6 +22,9 @@ define(function (require) {
       this.duration = '500%'; // App.height * 5;
       this.parentView = this.options.parentView;
 
+      // Put the intro tile on the left
+      this.tileFrom = 'l';
+
       return this;
     },
 
@@ -137,6 +140,14 @@ define(function (require) {
       this.tl = new TimelineMax();
       var tl = this.tl;
 
+      // Tile X position
+      var tileX = 0;
+      if (this.tileFrom === 'l') {
+        tileX = -(this.landmarkW / 3) - (this.tileSize * 0.25);
+      } else {
+        tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
+      }
+
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 1, {y: -App.height});
       tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
       tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
@@ -173,7 +184,7 @@ define(function (require) {
 
       tl.to(this.$introTile, 1, {
         // scale: 1.2,
-        x: '-50%',
+        x: tileX, //'-50%',
         rotation: '-4',
         ease: Back.easeOut,
       }, '-=0.5');
@@ -185,8 +196,16 @@ define(function (require) {
       this.chapterTl = new TimelineMax();
       var tl = this.chapterTl;
 
+      // Landmark X position
+      var landmarkX = 0; //'-50%';
+      if (this.tileFrom === 'l') {
+        landmarkX = -(1 * this.landmarkW / 3);
+      } else {
+        landmarkX = -(2 * this.landmarkW / 3);
+      }
+
       tl.to(this.$landmark, 0.2, {
-        x: -20,
+        x: landmarkX, //-20,
         y: '-50%',
         rotation: 2,
         ease: Power3.easeOut,

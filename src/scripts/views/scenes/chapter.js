@@ -26,7 +26,7 @@ define(function (require) {
       this.duration = '300%';
       this.parentView = this.options.parentView;
 
-      this.tileBasicRot = 7;
+      this.tileBasicRot = 2;
 
       return this;
     },
@@ -59,13 +59,15 @@ define(function (require) {
       this.$landmarkImg = this.$landmark.find('.img');
       this.originalLandmarkW = this.$landmarkImg[0].width;
       this.originalLandmarkH = this.$landmarkImg[0].height;
+
+
     },
 
     setupEvents: function () {
 
     },
 
-    updateLandmark: function() {
+    updateLandmark: function () {
       this.landmarkSize = this.parentView.updateLandmarkSize(this.originalLandmarkW, this.originalLandmarkH);
       this.landmarkW = this.landmarkSize.width;
       this.landmarkH = this.landmarkSize.height;
@@ -74,7 +76,7 @@ define(function (require) {
 
     updatePositions: function () {
       var tileDir = this.tileFrom === 'l' ? -1 : 1;
-      var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 6;
+      var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 4;
 
       this.tileSize = this.$tile.width();
       var h = this.landmarkH * 1.6;
@@ -94,6 +96,12 @@ define(function (require) {
         width: this.landmarkW + 'px',
         height: this.landmarkH + 'px',
       });
+
+      // TweenMax.set(this.$landmarkImg, {
+      //   width: this.landmarkW + 'px',
+      //   height: this.landmarkH + 'px',
+      // });
+
       TweenMax.set(this.$title, {
         y: 20,
         opacity: 0,
@@ -107,9 +115,24 @@ define(function (require) {
     updateTimeline: function () {
       this.tl = new TimelineMax();
       var tl = this.tl;
-      var tileX = this.tileFrom === 'l' ? '-50%' : '50%';
+      // var tileX = this.tileFrom === 'l' ? '-50%' : '50%';
       var tileRot = this.tileFrom === 'l' ? -this.tileBasicRot : this.tileBasicRot;
-      var landmarkX = this.tileFrom === 'l' ? '-10%' : '-90%';
+      // var landmarkX = this.tileFrom === 'l' ? '-10%' : '-90%';
+
+      // Landmark X position
+      var landmarkX = 0; //'-50%';
+      if (this.tileFrom === 'l') {
+        landmarkX = -(1 * this.landmarkW / 3);
+      } else {
+        landmarkX = -(2 * this.landmarkW / 3);
+      }
+      // Tile X position
+      var tileX = 0;
+      if (this.tileFrom === 'l') {
+        tileX = -(this.landmarkW / 3) - (this.tileSize * 0.25);
+      } else {
+        tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
+      }
 
       tl.to(this.$tile, 2, {
         // scale: 1.2,
