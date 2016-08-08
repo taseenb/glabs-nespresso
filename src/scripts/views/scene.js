@@ -41,13 +41,14 @@ define(function (require) {
         title: this.data.title,
         copy: this.data.copy,
         basePath: App.basePath,
+        images: this.data.images,
       };
 
       if (this.type === 'chapter') {
         // tplOptions.content = this.contentTpl({
-        //   id: 'yoyo-' + this.id,
-        //   year: this.data.year,
+        //
         // });
+        // tplOptions.images = this.data.images;
       } else {
         var scenesDataClone = _.clone(this.scenesData);
         // Add intro element (BC image)

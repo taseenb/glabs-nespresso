@@ -19,7 +19,7 @@ define(function (require) {
     initialize: function () {
       this.id = this.options.id;
       this.controller = this.options.controller;
-      this.duration = '500%'; // App.height * 5;
+      this.duration = '600%'; // App.height * 5;
       this.parentView = this.options.parentView;
 
       // Put the intro tile on the left
@@ -42,6 +42,7 @@ define(function (require) {
       this.$NespressoCup_01_Left = this.$el.find('.NespressoCup_01_Left');
       this.$rightCup = this.$el.find('.right-cup');
       this.$BiscuitsOnPlate_01 = this.$el.find('.BiscuitsOnPlate_01');
+      this.$BowlBeans_01 = this.$el.find('.BowlBeans_01');
       this.$imagesWrapper = this.$el.find('.images-wrapper');
       this.$tiles = this.$imagesWrapper.find('.tile');
       this.$introTile = this.$tiles.filter('#tile-BC');
@@ -112,6 +113,7 @@ define(function (require) {
       this.tileSize = this.$introTile.width();
       var h = this.landmarkH * 1.6; //this.landmarkIsPortrait ? this.landmarkH * 1.5 : this.tileSize * 1.5;
 
+      TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
       TweenMax.set(this.$body, {height: h + 'px'});
       TweenMax.set(this.$title, {y: 20, opacity: 0});
       TweenMax.set(this.$text, {y: -20, opacity: 0});
@@ -139,14 +141,6 @@ define(function (require) {
     updateTimeline: function () {
       this.tl = new TimelineMax();
       var tl = this.tl;
-
-      // Tile X position
-      var tileX = 0;
-      if (this.tileFrom === 'l') {
-        tileX = -(this.landmarkW / 3) - (this.tileSize * 0.25);
-      } else {
-        tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
-      }
 
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 1, {y: -App.height});
       tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
@@ -182,14 +176,9 @@ define(function (require) {
 
       tl.set(this.$tiles.not(this.$introTile), {display: 'none'});
 
-      tl.to(this.$introTile, 1, {
-        // scale: 1.2,
-        x: tileX, //'-50%',
-        rotation: '-4',
-        ease: Back.easeOut,
-      }, '-=0.5');
-
       tl.add(this.chapterTl);
+
+      tl.to(this.$BowlBeans_01, 7, {y: -App.height + this.$BowlBeans_01.height() / 2}, '-=3');
     },
 
     updateChapterTimeline: function () {
@@ -203,6 +192,21 @@ define(function (require) {
       } else {
         landmarkX = -(2 * this.landmarkW / 3);
       }
+
+      // Tile X position
+      var tileX = 0;
+      if (this.tileFrom === 'l') {
+        tileX = -(this.landmarkW / 3) - (this.tileSize * 0.25);
+      } else {
+        tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
+      }
+
+      tl.to(this.$introTile, 1, {
+        // scale: 1.2,
+        x: tileX, //'-50%',
+        rotation: '-4',
+        ease: Back.easeOut,
+      }, '-=0.5');
 
       tl.to(this.$landmark, 0.2, {
         x: landmarkX, //-20,

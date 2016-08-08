@@ -23,8 +23,11 @@ define(function (require) {
       this.tileFrom = this.data.tileFrom;
       this.controller = this.options.controller;
       this.year = this.data.year;
-      this.duration = '300%';
+      this.duration = '500%';
       this.parentView = this.options.parentView;
+
+      // Images (scrolling with the background)
+      this.images = this.data.images;
 
       this.tileBasicRot = 2;
 
@@ -54,6 +57,16 @@ define(function (require) {
       this.$landmark = this.$el.find('.landmark');
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
+
+      // Place images
+      if (this.images) {
+        this.$images = [];
+        this.images.forEach(function (img, i) {
+          var $img = this.$el.find('.' + img.src);
+          $img.css(img.css);
+          this.$images.push($img);
+        }.bind(this));
+      }
 
       // Landmark sizes
       this.$landmarkImg = this.$landmark.find('.img');
@@ -96,12 +109,6 @@ define(function (require) {
         width: this.landmarkW + 'px',
         height: this.landmarkH + 'px',
       });
-
-      // TweenMax.set(this.$landmarkImg, {
-      //   width: this.landmarkW + 'px',
-      //   height: this.landmarkH + 'px',
-      // });
-
       TweenMax.set(this.$title, {
         y: 20,
         opacity: 0,
@@ -110,6 +117,15 @@ define(function (require) {
         y: -20,
         opacity: 0,
       });
+
+      if (this.images) {
+        this.images.forEach(function (img, i) {
+          TweenMax.set(this.$images[i], {
+            x: img.x,
+            y: App.height,
+          });
+        }.bind(this))
+      }
     },
 
     updateTimeline: function () {
@@ -141,27 +157,45 @@ define(function (require) {
         ease: Back.easeOut,
       });
 
-      tl.to(this.$landmark, 0.8, {
+      tl.to(this.$landmark, 1, {
         x: landmarkX,
         y: '-50%',
         rotation: -1 * tileRot,
         ease: Power3.easeOut,
       }, '-=0.2');
 
-      tl.to(this.$title, 0.6, {
+
+      // Images TL
+      if (this.images) {
+        var tweens = [];
+        this.images.forEach(function (img, i) {
+          tweens.push(TweenMax.to(this.$images[i], img.duration, {
+            y: img.y ?  img.y * App.height : App.height,
+          }));
+        }.bind(this));
+        var imgTl = new TimelineMax({
+          align: 'start',
+          tweens: tweens,
+        }, '-=0.5');
+        tl.add(imgTl);
+      }
+
+      tl.to(this.$title, 1.2, {
+        delay: 0.6,
         y: -20,
         opacity: 1,
         rotation: -8 + Math.random() * 8,
         ease: Power3.easeOut,
-      }, '-=0.2');
+      });
 
-      tl.to(this.$text, 0.6, {
+      tl.to(this.$text, 1.2, {
         y: 20,
         opacity: 1,
         ease: Power3.easeOut,
-      }, '-=0.2');
+      }, '+=0.6');
 
-      tl.to(this.$text, 1, {x: 0});
+      // tl.to(this.$tile, 3, {});
+
     },
 
     createScrollMagicScene: function () {

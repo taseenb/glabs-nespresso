@@ -2,7 +2,12 @@
 
     <div class="inner center abs">
 
-        <div class="pin">
+        <!--<div class="pin">-->
+
+            {{#each images}}
+                <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+            {{/each}}
+
             <div class="images-wrapper">
                 <div id="tile-{{year}}" class="abs tile tile-{{year}} shadow">
                     <img class="img" src="{{basePath}}images/tiles/{{year}}.jpg">
@@ -20,7 +25,7 @@
                 </div>
             </div>
 
-        </div>
+        <!--</div>-->
 
     </div>
 
