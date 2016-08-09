@@ -1,6 +1,4 @@
 &.intro-scene {
-  position: relative;
-  height: 500%;
 
   .body {
 
@@ -12,8 +10,8 @@
       font-size: 17px;
 
       .logo-app {
-        width: 60%;
-        max-width: 280px;
+        width: 68%;
+        max-width: 320px;
         display: block;
         padding-bottom: 40px;
         margin: 0 auto;
@@ -22,15 +20,15 @@
       .intro-text {
         position: relative;
 
-        .inner-1 {
-
-        }
-        .inner-2 {
-          position: absolute;
-          top: 0;
-          left: 0;
-          opacity: 0;
-        }
+        //.inner-1 {
+        //
+        //}
+        //.inner-2 {
+        //  position: absolute;
+        //  top: 0;
+        //  left: 0;
+        //  opacity: 0;
+        //}
       }
     }
   }
@@ -39,36 +37,18 @@
     opacity: 0;
   }
 
-  //.tiles {
-  //  position: absolute;
-  //  top: 50%;
-  //  left: 50%;
-  //  width: $tileSizeSmall;
-  //  height: $tileSizeSmall;
-  //
-  //  @media #{$tablet-and-above} {
-  //    width: $tileSizeMedium;
-  //    height: $tileSizeMedium;
-  //  }
-  //
-  //  @media #{$above-tablet} {
-  //    width: $tileSizeLarge;
-  //    height: $tileSizeLarge;
-  //  }
-  //
-  //  overflow: visible;
-  //
-  //  &.dark-shadows {
-  //    .tile {
-  //      box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
-  //    }
-  //  }
-  //}
-
   .right-cup {
     top: 25%;
-    right: 8%;
     width: 23%;
+    right: 8%;
+
+    @media #{$tablet-and-above} {
+      right: 4%;
+    }
+
+    @media #{$above-tablet} {
+      right: 0;
+    }
 
     .NespressoCup_01_Right {
       width: 100%;
@@ -87,19 +67,21 @@
     &.BiscuitsOnPlate_01 {
       top: 0;
       left: 50%;
-      width: 24%;
+      width: 27%;
     }
 
     &.NespressoCup_01_Left {
       width: 23%;
-      top: 50%;
+      top: 14%;
       left: 8%;
-    }
 
-    &.BowlBeans_01 {
-      top: 0;
-      left: 0;
-      width: 42%;
+      @media #{$tablet-and-above} {
+        left: 4%;
+      }
+
+      @media #{$above-tablet} {
+        left: 2%;
+      }
     }
 
   }

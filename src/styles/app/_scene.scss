@@ -1,10 +1,10 @@
 .scene {
-  position: relative;
-  width: 100%;
-  height: 100%; // 50px;
-  min-height: 100%;
-  top: 0;
-  left: 0;
+  //position: relative;
+  //width: 100%;
+  height: 100% !important; // 50px;
+  //min-height: 100%;
+  //top: 0;
+  //left: 0;
 
   @import "scenes/intro";
   @import "scenes/chapter";
@@ -15,13 +15,13 @@
     height: 100%;
   }
 
-  .pin {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  }
+  //.pin {
+  //  position: relative;
+  //  width: 100%;
+  //  height: 100%;
+  //  top: 0;
+  //  left: 0;
+  //}
 
   .tiles {
     position: absolute;
@@ -42,11 +42,11 @@
 
     overflow: visible;
 
-    &.dark-shadows {
-      .tile {
-        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
-      }
-    }
+    //&.dark-shadows {
+    //  .tile {
+    //    box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.4);
+    //  }
+    //}
   }
 
   .images-wrapper {
@@ -151,41 +151,51 @@
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
     text-align: center;
-    width: 40%;
-    max-width: 380px;
+    width: 44%;
+    max-width: 420px;
 
     @media #{$tablet-and-above} {
-      max-width: 450px;
+      max-width: 480px;
     }
 
     @media #{$above-tablet} {
-      max-width: 520px;
+      max-width: 580px;
     }
 
     .title {
       width: 100%;
-      font-size: 36px;
-      line-height: 40px;
-      top: -$page-margin-y;
+      font-size: 33px;
+      line-height: 38px;
+      top: 0; // -$page-margin-y;
       font-family: 'angelinaregular', Helvetica, Arial, sans-serif;
       text-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+
+      @media #{$tablet-and-above} {
+        font-size: 36px;
+        line-height: 40px;
+      }
+
+      @media #{$above-tablet} {
+        font-size: 42px;
+        line-height: 46px;
+      }
     }
 
     .text {
       width: 100%;
-      bottom: -$page-margin-y;
+      bottom: -$page-margin-y * 2;
       opacity: 0;
       font-size: 13px;
-      line-height: 18px;
+      line-height: 17px;
 
-      //@media #{$tablet-and-above} {
-      //  font-size: 14px;
-      //  line-height: 20px;
-      //}
+      @media #{$tablet-and-above} {
+        font-size: 14px;
+        line-height: 19px;
+      }
 
       @media #{$above-tablet} {
-        font-size: 14px;
-        line-height: 20px;
+        font-size: 18px;
+        line-height: 25px;
       }
 
       .blast {

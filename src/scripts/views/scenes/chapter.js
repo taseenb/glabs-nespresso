@@ -58,7 +58,7 @@ define(function (require) {
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
 
-      // Place images
+      // Select fixed images
       if (this.images) {
         this.$images = [];
         this.images.forEach(function (img, i) {
@@ -92,7 +92,7 @@ define(function (require) {
       var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 4;
 
       this.tileSize = this.$tile.width();
-      var h = this.landmarkH * 1.6;
+      var h = this.landmarkH * 1.1;
       // var h = this.landmarkIsPortrait ? this.landmarkH * 1.5 : this.tileSize * 1.5;
 
       TweenMax.set(this.$body, {
@@ -111,10 +111,12 @@ define(function (require) {
       });
       TweenMax.set(this.$title, {
         y: 20,
+        top: -this.$title.height(),
         opacity: 0,
       });
       TweenMax.set(this.$text, {
         y: -20,
+        bottom: -this.$text.height(),
         opacity: 0,
       });
 
@@ -184,7 +186,7 @@ define(function (require) {
         delay: 0.6,
         y: -20,
         opacity: 1,
-        rotation: -8 + Math.random() * 8,
+        rotation: -4 + Math.random() * 4,
         ease: Power3.easeOut,
       });
 

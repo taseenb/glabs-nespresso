@@ -9,8 +9,11 @@
         <img class="abs Beans01" src="{{{basePath}}}images/pngs/Beans01.png">
     </div>
 
-    <img class="abs BowlBeans_01 send-to-front" src="{{{basePath}}}images/pngs/BowlBeans_01.png">
+    <!--<img class="abs BowlBeans_01 send-to-front" src="{{{basePath}}}images/pngs/BowlBeans_01.png">-->
 
+    {{#each images}}
+        <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+    {{/each}}
 
     <div class="pin">
 
@@ -36,8 +39,11 @@
             <div class="intro-block">
                 <img class="logo-app" src="{{{basePath}}}images/logo-app.png">
                 <div class="intro-text">
-                    <div class="inner-1">{{introCopy1}}</div>
-                    <div class="inner-2">{{introCopy2}}</div>
+                    {{introCopy1}}
+                    {{introCopy2}}
+
+                    <!--<div class="inner-1">{{introCopy1}}</div>-->
+                    <!--<div class="inner-2">{{introCopy2}}</div>-->
                 </div>
             </div>
 

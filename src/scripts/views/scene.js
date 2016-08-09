@@ -25,6 +25,7 @@ define(function (require) {
       this.$parent = this.options.$parent;
       this.scenesData = this.options.scenesData;
       this.controller = this.options.controller;
+      this.mainView = this.options.mainView;
 
       // Scene data
       this.id = this.data.id;

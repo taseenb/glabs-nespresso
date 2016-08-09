@@ -14,6 +14,19 @@ define(function (require) {
       introCopy2: 'Beloved of popes and poets, celebrated in song by Bach, the noble coffee bean has a stranger history than you may know...',
       title: 'Did coffee\'s Odyssey<br>start with Homer?',
       copy: 'Was coffee mentioned by Homer in The Iliad? People are so keen to give the drink a long and noble lineage that you\'ll find this claim repeated again and again. But nepenthe, the drug Homer said was added to wine to calm anger and banish painful memories, sounds much more like an opiate.',
+      images: [
+        {
+          src: 'BowlBeans_01',
+          css: {
+            top: 0,
+            left: 0,
+            width: '38%',
+          },
+          x: '-15%',
+          y: -0.1,
+          duration: normalDuration,
+        },
+      ],
     },
     {
       id: '0',
@@ -64,10 +77,10 @@ define(function (require) {
           css: {
             top: 0,
             left: 0,
-            width: '35%',
+            width: '32%',
           },
           x:'-35%',
-          y: 0.1,
+          y: 0.02,
           duration: normalDuration,
           position: '-=2',
         },
@@ -136,7 +149,7 @@ define(function (require) {
             width: '23%',
           },
           x: '-30%',
-          y: -0.1,
+          y: -0.02,
           duration: normalDuration,
         }
       ],
@@ -226,8 +239,8 @@ define(function (require) {
             left: 0,
             width: '27%',
           },
-          x: '0%',
-          y: 0.7,
+          x: '10%',
+          y: 0.55,
           duration: normalDuration,
         },
       ]
@@ -275,6 +288,30 @@ define(function (require) {
       contentTpl: require('hbs!../tpl/scenes/chapters/8'),
       title: 'Tea takes<br>over in Britain...',
       copy: 'The Battle of Plassey gives the East India Trading Company control of Bengal. After this, the company focuses its attention away from trading coffee and towards tea, planting Chinese tea bushes in India and newly occupied Ceylon (Sri Lanka). Henceforth, tea becomes the nation\'s favourite hot drink (although coffee is giving it a run for its money these days).',
+      images: [
+        {
+          src: 'TeaPot_01',
+          css: {
+            top: 0,
+            left: 0,
+            width: '28%',
+          },
+          x: '5%',
+          y: 0.55,
+          duration: normalDuration,
+        },
+        {
+          src: 'Milk_01b',
+          css: {
+            top: 0,
+            right: 0,
+            width: '15%',
+          },
+          x: '-15%',
+          y: 0.65,
+          duration: normalDuration,
+        },
+      ],
     },
     {
       id: '9',
@@ -285,6 +322,19 @@ define(function (require) {
       contentTpl: require('hbs!../tpl/scenes/chapters/9'),
       title: '...While in America<br>coffee topples tea',
       copy: 'Conversely, America rejects tea when colonists protest against King George’s taxes by dumping a whole shipment overboard into the Boston harbor. This became known as the Boston Tea Party, from which the right wing of the Republican party derives its name, and was a key moment in the American revolution. Henceforth, coffee, not tea, would be integral to the American way.',
+      images: [
+        {
+          src: 'Grinder02',
+          css: {
+            top: 0,
+            right: '10%',
+            width: '28%',
+          },
+          x: '0%',
+          y: 0.1,
+          duration: normalDuration,
+        },
+      ],
     },
     {
       id: '10',
@@ -295,6 +345,19 @@ define(function (require) {
       contentTpl: require('hbs!../tpl/scenes/chapters/10'),
       title: 'The black nectar meets<br>the Age of Steam...',
       copy: 'Just as steam powered the Industrial Revolution, it also perked up the world’s coffee habits. Frenchman Louis Bernard Rabaut was perhaps the first to develop a machine that would make coffee more quickly by using steam to force hot water through grounds. This is the forerunner of the black nectar we now know as espresso.',
+      images: [
+        {
+          src: 'Cafeterie_02',
+          css: {
+            top: 0,
+            left: '5%',
+            width: '28%',
+          },
+          x: '0%',
+          y: 0.3,
+          duration: normalDuration,
+        },
+      ],
     },
     {
       id: '11',
@@ -305,6 +368,19 @@ define(function (require) {
       contentTpl: require('hbs!../tpl/scenes/chapters/11'),
       title: '...And joins the Age<br>of Gadgets with Gaggia',
       copy: 'Achille Gaggia applies for a patent for the first modern steamless coffee machine. His revolutionary piston mechanism forced water through the coffee grounds at high pressure, producing the crema that is unique to espresso. It took only 15 seconds to make a single “shot” of espresso.',
+      images: [
+        {
+          src: 'Machine_02',
+          css: {
+            top: 0,
+            left: '-5%',
+            width: '40%',
+          },
+          x: '-15%',
+          y: 0.45,
+          duration: normalDuration,
+        },
+      ],
     },
     {
       id: 'end',
@@ -314,6 +390,19 @@ define(function (require) {
       tileFrom: 'l',
       title: 'The Nespresso capsule<br>collection is born',
       copy: 'Nespresso is founded, offering a revolutionary system of portioned, encapsulated coffee and dedicated machines that interact to deliver perfect coffee. At first there were just four coffee varieties; now there are 24 Grands Crus. The first Nespresso boutique in the UK opened in 2001, while the first Nespresso Café in the UK opened just this June in Cheapside in the City of London.',
+      images: [
+        {
+          src: 'Pods_01',
+          css: {
+            top: 0,
+            right: '10%',
+            width: '25%',
+          },
+          x: '0%',
+          y: -0.1,
+          duration: normalDuration,
+        },
+      ],
     },
   ];
 

@@ -27,6 +27,9 @@ define(function (require) {
 
       this.tileBasicRot = 2;
 
+      // Images (scrolling with the background)
+      this.images = this.data.images;
+
       return this;
     },
 
@@ -60,6 +63,16 @@ define(function (require) {
       this.$landmarkImg = this.$landmark.find('.img');
       this.originalLandmarkW = this.$landmarkImg[0].width;
       this.originalLandmarkH = this.$landmarkImg[0].height;
+
+      // Select fixed images
+      if (this.images) {
+        this.$images = [];
+        this.images.forEach(function (img, i) {
+          var $img = this.$el.find('.' + img.src);
+          $img.css(img.css);
+          this.$images.push($img);
+        }.bind(this));
+      }
     },
 
     setupEvents: function () {
@@ -86,7 +99,7 @@ define(function (require) {
       var tileRot = (this.tileFrom === 'l' ? this.tileBasicRot : -this.tileBasicRot) * 3;
 
       this.tileSize = this.$tile1986.width();
-      var h = this.landmarkH * 1.6;
+      var h = this.landmarkH * 1.1;
       // var h = this.landmarkIsPortrait ? this.landmarkH * 1.5 : this.tileSize * 1.5;
 
       TweenMax.set(this.$tiles, {
@@ -115,12 +128,23 @@ define(function (require) {
       });
       TweenMax.set(this.$title, {
         y: 20,
+        top: -this.$title.height(),
         opacity: 0,
       });
       TweenMax.set(this.$text, {
         y: -20,
+        bottom: -this.$text.height(),
         opacity: 0,
       });
+
+      if (this.images) {
+        this.images.forEach(function (img, i) {
+          TweenMax.set(this.$images[i], {
+            x: img.x,
+            y: App.height,
+          });
+        }.bind(this))
+      }
     },
 
     updateChapterTimeline: function () {
@@ -159,10 +183,25 @@ define(function (require) {
         ease: Power3.easeOut,
       }, '-=0.2');
 
+      // Images TL
+      if (this.images) {
+        var tweens = [];
+        this.images.forEach(function (img, i) {
+          tweens.push(TweenMax.to(this.$images[i], img.duration, {
+            y: img.y ?  img.y * App.height : App.height,
+          }));
+        }.bind(this));
+        var imgTl = new TimelineMax({
+          align: 'start',
+          tweens: tweens,
+        }, '-=0.5');
+        tl.add(imgTl);
+      }
+
       tl.to(this.$title, 0.6, {
         y: -20,
         opacity: 1,
-        rotation: -8 + Math.random() * 8,
+        rotation: -4 + Math.random() * 4,
         ease: Power3.easeOut,
       }, '-=0.2');
 

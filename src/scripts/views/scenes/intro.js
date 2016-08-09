@@ -25,6 +25,9 @@ define(function (require) {
       // Put the intro tile on the left
       this.tileFrom = 'l';
 
+      // Images (scrolling with the background)
+      this.images = this.options.data.images;
+
       return this;
     },
 
@@ -42,7 +45,7 @@ define(function (require) {
       this.$NespressoCup_01_Left = this.$el.find('.NespressoCup_01_Left');
       this.$rightCup = this.$el.find('.right-cup');
       this.$BiscuitsOnPlate_01 = this.$el.find('.BiscuitsOnPlate_01');
-      this.$BowlBeans_01 = this.$el.find('.BowlBeans_01');
+      // this.$BowlBeans_01 = this.$el.find('.BowlBeans_01');
       this.$imagesWrapper = this.$el.find('.images-wrapper');
       this.$tiles = this.$imagesWrapper.find('.tile');
       this.$introTile = this.$tiles.filter('#tile-BC');
@@ -54,6 +57,16 @@ define(function (require) {
       this.$landmark = this.$el.find('.landmark');
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
+
+      // Select fixed images
+      if (this.images) {
+        this.$images = [];
+        this.images.forEach(function (img, i) {
+          var $img = this.$el.find('.' + img.src);
+          $img.css(img.css);
+          this.$images.push($img);
+        }.bind(this));
+      }
 
       // Get 2 random tiles (except the intro tile)
       this.tilesCount = Math.floor(this.$tiles.length / 2);
@@ -111,16 +124,26 @@ define(function (require) {
         height: this.landmarkH + 'px',
       });
       this.tileSize = this.$introTile.width();
-      var h = this.landmarkH * 1.6; //this.landmarkIsPortrait ? this.landmarkH * 1.5 : this.tileSize * 1.5;
+      var h = this.landmarkH * 1.1;
 
-      TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
+      // TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
       TweenMax.set(this.$body, {height: h + 'px'});
-      TweenMax.set(this.$title, {y: 20, opacity: 0});
-      TweenMax.set(this.$text, {y: -20, opacity: 0});
+      TweenMax.set(this.$title, {y: 20, opacity: 0, top: -this.$title.height(),});
+      TweenMax.set(this.$text, {y: -20, opacity: 0, bottom: -this.$text.height()});
       TweenMax.set(this.$landmark, {x: App.width, y: '-50%', opacity: 1});
       TweenMax.set(this.$tiles, {x: 0, y: 0, rotation: 0});
       TweenMax.set(this.$imagesWrapper, {x: '0%', y: '0%'});
-      TweenMax.set(this.$imagesWrapper, {x: '-32%', y: '-20%'});
+      TweenMax.set(this.$imagesWrapper, {x: '-36%', y: '10%'});
+
+      // Place fixed images
+      if (this.images) {
+        this.images.forEach(function (img, i) {
+          TweenMax.set(this.$images[i], {
+            x: img.x,
+            y: App.height,
+          });
+        }.bind(this));
+      }
 
       // Animate 2 random tiles
       TweenMax.to(this.$randomTile1, 0.66, {
@@ -143,11 +166,14 @@ define(function (require) {
       var tl = this.tl;
 
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 1, {y: -App.height});
-      tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
-      tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
-      tl.to(this.$introText2, 1, {y: -20, opacity: 0}, '+=0.5');
+      tl.to(this.$introText, 1, {y: -20, opacity: 0}, '-=1');
+      // tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
+      // tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
+      // tl.to(this.$introText2, 1, {y: -20, opacity: 0}, '+=0.5');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
       tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
+
+      tl.to(App.mainView.$scrollIcon, 1, {opacity: 0});
 
       this.$tiles.each(function (i, tile) {
         var obj;
@@ -178,7 +204,7 @@ define(function (require) {
 
       tl.add(this.chapterTl);
 
-      tl.to(this.$BowlBeans_01, 7, {y: -App.height + this.$BowlBeans_01.height() / 2}, '-=3');
+      // tl.to(this.$BowlBeans_01, 7, {y: -App.height + this.$BowlBeans_01.height() / 2}, '-=3');
     },
 
     updateChapterTimeline: function () {
@@ -201,32 +227,48 @@ define(function (require) {
         tileX = (this.landmarkW / 3) + (this.tileSize * 0.25);
       }
 
-      tl.to(this.$introTile, 1, {
+      tl.to(this.$introTile, 2, {
         // scale: 1.2,
         x: tileX, //'-50%',
         rotation: '-4',
         ease: Back.easeOut,
       }, '-=0.5');
 
-      tl.to(this.$landmark, 0.2, {
+      tl.to(this.$landmark, 1, {
         x: landmarkX, //-20,
         y: '-50%',
         rotation: 2,
         ease: Power3.easeOut,
       }, '-=0.2');
 
-      tl.to(this.$title, 0.6, {
+
+      // Animate fixed images
+      if (this.images) {
+        var tweens = [];
+        this.images.forEach(function (img, i) {
+          tweens.push(TweenMax.to(this.$images[i], img.duration, {
+            y: img.y ?  img.y * App.height : App.height,
+          }));
+        }.bind(this));
+        var imgTl = new TimelineMax({
+          align: 'start',
+          tweens: tweens,
+        }, '-=0.5');
+        tl.add(imgTl);
+      }
+
+      tl.to(this.$title, 1.2, {
         y: -20,
         opacity: 1,
-        rotation: -8 + Math.random() * 8,
+        rotation: -4 + Math.random() * 4,
         ease: Power3.easeOut,
-      }, '-=0.2');
+      });
 
-      tl.to(this.$text, 0.6, {
+      tl.to(this.$text, 1.2, {
         y: 20,
         opacity: 1,
         ease: Power3.easeOut,
-      }, '-=0.2');
+      }, '-=0.6');
     },
 
     createScrollMagicScenes: function () {
@@ -241,13 +283,13 @@ define(function (require) {
         .setTween(this.tl)
         .addTo(this.controller);
 
-      this.scene.on('leave', function() {
-        App.mainView.hideScrollIcon();
-      }.bind(this));
-
-      this.scene.on('enter', function() {
-        App.mainView.showScrollIcon();
-      }.bind(this));
+      // this.scene.on('leave', function() {
+      //   App.mainView.hideScrollIcon();
+      // }.bind(this));
+      //
+      // this.scene.on('enter', function() {
+      //   App.mainView.showScrollIcon();
+      // }.bind(this));
     },
 
     onResize: function () {

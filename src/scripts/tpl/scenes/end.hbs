@@ -2,39 +2,45 @@
 
     <div class="inner center abs">
 
-        <div class="pin">
+        <!--<div class="pin">-->
 
-            <div class="images-wrapper">
-                <div class="tiles">
+        {{#each images}}
+            <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+        {{/each}}
 
-                    <div id="tile-{{year}}end" class="abs tile tile-{{year}}end shadow">
-                        <img class="img" src="{{basePath}}images/tiles/{{year}}end.jpg">
-                    </div>
+        <div class="images-wrapper">
+            <div class="tiles">
 
-                    {{#each tiles}}
-                        {{#if chapter}}
-                            <div id="tile-{{id}}" class="abs tile tile-{{year}} shadow">
-                                <img class="img" src="{{../../basePath}}images/tiles/{{year}}.jpg">
-                            </div>
-                        {{/if}}
-                    {{/each}}
+                <div id="tile-{{year}}end" class="abs tile tile-{{year}}end shadow">
+                    <img class="img" src="{{basePath}}images/tiles/{{year}}end.jpg">
                 </div>
+
+                {{#each tiles}}
+                    {{#if chapter}}
+                        <div id="tile-{{id}}" class="abs tile tile-{{year}} shadow">
+                            <img class="img" src="{{../../basePath}}images/tiles/{{year}}.jpg">
+                        </div>
+                    {{/if}}
+                {{/each}}
             </div>
-
-
-            <div id="landmark-1986" class="abs landmark landmark-1986 shadow">
-                <img class="img" src="{{{basePath}}}images/landmark/1986.jpg">
-            </div>
-
-
-            <div class="body">
-                <div class="title abs">{{{title}}}</div>
-                <div class="text abs">
-                    {{{copy}}}
-                </div>
-            </div>
-
         </div>
+
+
+        <div id="landmark-1986" class="abs landmark landmark-1986 shadow">
+            <img class="img" src="{{{basePath}}}images/landmark/1986.jpg">
+        </div>
+
+
+        <div class="body">
+            <div class="title abs">{{{title}}}</div>
+            <div class="text abs">
+                {{{copy}}}
+            </div>
+        </div>
+
+        <div class="link">Link</div>
+
+        <!--</div>-->
 
     </div>
 
