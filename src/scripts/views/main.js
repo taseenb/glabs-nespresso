@@ -14,6 +14,7 @@ define(function (require) {
   // Views
   var SceneView = require('./scene');
   var LoaderView = require('./loader');
+  var MenuView = require('./menu');
   var GAView = require('./google-analytics');
 
   // Templates
@@ -64,6 +65,7 @@ define(function (require) {
       // Refresh sizes BEFORE rendering scenes
       this.onResize();
       this.renderScenes();
+      this.renderMenu();
       // this.renderGoogleAnalytics();
 
       setTimeout(function () {
@@ -74,12 +76,22 @@ define(function (require) {
       }.bind(this), 500);
     },
 
+    renderMenu: function() {
+      this.menu = new MenuView({
+        el: document.getElementById(App.id + '-menu'),
+        parentView: this,
+      });
+      this.menu.render();
+    },
+
     renderScenes: function () {
       this.scenes = [];
 
       console.log(scenesData);
 
       scenesData.forEach(function (s) {
+
+        // Scene
         var scene = new SceneView({
           controller: this.controller,
           data: s,
@@ -91,6 +103,7 @@ define(function (require) {
         scene.render();
 
         this.scenes.push(scene);
+
       }.bind(this));
     },
 

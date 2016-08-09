@@ -22,7 +22,7 @@ define(function (require) {
       this.tileFrom = this.data.tileFrom;
       this.controller = this.options.controller;
       this.year = this.data.year;
-      this.duration = App.height * 5;
+      this.duration = App.height * 8;
       this.parentView = this.options.parentView;
 
       this.tileBasicRot = 2;
@@ -54,6 +54,17 @@ define(function (require) {
       this.$landmark = this.$el.find('.landmark');
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
+      this.$link = this.$el.find('.link');
+
+
+      // Composition images
+      this.$composition = this.$el.find('.composition');
+      this.$compositionImgs = this.$composition.find('img');
+      // this.$cupLeft = this.$composition.find('.NespressoCup_01_Left');
+      // this.$cupRight = this.$composition.find('.NespressoCup_01_Right');
+      // this.$cookies = this.$composition.find('.Biscuits_01');
+      // this.$singleCookie = this.$composition.find('.Biscuits_02_Single');
+      // console.log(this.$compositionImgs);
 
       // console.log(this.$imagesWrapper, this.$tile, this.$body, this.$landmark, this.$title, this.$text);
       console.log(this.$tiles.length, this.$otherTiles.length);
@@ -137,6 +148,17 @@ define(function (require) {
         opacity: 0,
       });
 
+      TweenMax.set(this.$compositionImgs, {
+        y: App.height,
+        opacity: 0,
+      });
+
+      TweenMax.set(this.$link, {
+        opacity: 0,
+        y: this.tileSize * 0.6,
+        x: '-50%', //
+      });
+
       if (this.images) {
         this.images.forEach(function (img, i) {
           TweenMax.set(this.$images[i], {
@@ -183,7 +205,7 @@ define(function (require) {
         ease: Power3.easeOut,
       }, '-=0.2');
 
-      // Images TL
+      // Move fixed images in
       if (this.images) {
         var tweens = [];
         this.images.forEach(function (img, i) {
@@ -220,6 +242,8 @@ define(function (require) {
 
       tl.add(this.chapterTl);
 
+      tl.set(this.$compositionImgs, {opacity: 1});
+
       tl.to(this.$text, 0.6, {
         y: 0,
         opacity: 0,
@@ -233,12 +257,16 @@ define(function (require) {
         ease: Power3.easeOut,
       }, '-=0.2');
 
-      tl.to(this.$landmark, 0.2, {
-        x: App.width,
-        y: '-50%',
+      tl.to(this.$landmark.add(this.$images[0]), 1, {
+        // x: App.width,
+        // y: '-50%',
+        y: -App.height,
         rotation: 0,
         ease: Power3.easeOut,
       }, '-=0.2');
+
+      // Move fixed images out
+      // tl.to(this.$images[0], 1, {y: -App.height}, '-=1');
 
       tl.to(this.$tile1986, 0.6, {
         x: '0%',
@@ -248,7 +276,7 @@ define(function (require) {
 
       tl.to(this.$tile1986End, 0.5, {opacity: 1}, '-=0.2');
 
-      tl.set(this.$otherTiles, {opacity: 1}, '-=0.2');
+      tl.set(this.$otherTiles, {opacity: 1});
 
       this.$otherTiles.each(function (i, el) {
         tl.fromTo(el, 0.3, {
@@ -265,6 +293,10 @@ define(function (require) {
       });
 
       tl.set(this.$otherTiles, {display: 'none'});
+
+      tl.to(this.$compositionImgs, 2, {y: 0}, '-=1');
+
+      tl.to(this.$link, 0.6, {opacity: 1, y: '+=20'}, '-=0.3');
 
       tl.to(this.$tile1986End, 2, {y: 0, x: 0}, '-=0.2');
     },

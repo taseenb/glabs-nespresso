@@ -171,9 +171,10 @@ define(function (require) {
       // tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
       // tl.to(this.$introText2, 1, {y: -20, opacity: 0}, '+=0.5');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
-      tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
 
       tl.to(App.mainView.$scrollIcon, 1, {opacity: 0});
+
+      tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
 
       this.$tiles.each(function (i, tile) {
         var obj;

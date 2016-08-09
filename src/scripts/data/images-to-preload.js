@@ -33,6 +33,7 @@ define(function (require) {
     'pngs/Pods_01.png',
     'pngs/RawBeans01.png',
     'pngs/SugarBowl_01.png',
+    'pngs/TeaPot_01.png',
     'tiles/BC.jpg',
     'tiles/1000.jpg',
     'tiles/1450.jpg',

@@ -13,7 +13,8 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 @import '../vendor/guss-webfonts/src/_webfonts.scss';
 @import '../vendor/guss-typography/_typography.scss';
 
-@include guss-webfonts('Guardian Agate Sans 1 Web');
+@include guss-webfonts('Guardian Text Sans Web');
+@include guss-webfonts('Guardian Text Egyptian Web');
 @include guss-typography-defaults;
 
 .js-on.is-modern .content--interactive .element-interactive {
@@ -23,7 +24,8 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 #nespresso-interactive {
   * {
     // user-select: none;
-    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
 
@@ -31,7 +33,7 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
   position: relative;
   height: 100%;
   width: 100%;
-  font-family: 'Guardian Agate Sans 1 Web', sans-serif;
+  font-family: 'Guardian Text Sans Web', sans-serif;
   color: white;
   background-image: url('#{$img-path}Background02.jpg');
 
@@ -58,6 +60,7 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
   @import 'app/scene';
   @import 'app/header';
   @import 'app/footer';
+  @import 'app/menu';
 
   //@media #{$landscape-phone} {
 

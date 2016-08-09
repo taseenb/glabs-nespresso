@@ -1,0 +1,59 @@
+.menu {
+
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  overflow: visible;
+
+  .inner {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+
+    .item {
+      width: 80px;
+      position: relative;
+      color: white;
+      white-space: nowrap;
+      transition-duration: .33s;
+      transition-property: transform;
+      cursor: pointer;
+      transform: translateX(80%);
+      padding: 4px 0 4px 20%;
+      margin-bottom: 8px;
+
+      @media #{$tablet-and-above} {
+        padding: 6px 0 6px 20%;
+      }
+
+      @media #{$above-tablet} {
+        padding: 8px 0 8px 20%;
+      }
+
+      .year {
+        display: block;
+        font-family: "Guardian Text Egyptian Web", Georgia, serif;
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 13px;
+
+        @media #{$tablet-and-above} {
+          font-size: 14px;
+          line-height: 14px;
+        }
+
+        @media #{$above-tablet} {
+          font-size: 15px;
+          line-height: 15px;
+        }
+      }
+
+      &:hover {
+        transform: translateX(0);
+      }
+    }
+  }
+
+}

@@ -72,8 +72,6 @@ define(function (require) {
       this.$landmarkImg = this.$landmark.find('.img');
       this.originalLandmarkW = this.$landmarkImg[0].width;
       this.originalLandmarkH = this.$landmarkImg[0].height;
-
-
     },
 
     setupEvents: function () {

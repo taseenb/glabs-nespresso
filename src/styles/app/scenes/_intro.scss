@@ -1,17 +1,38 @@
 &.intro-scene {
 
   .body {
+    width: 40%;
+    max-width: 380px;
+
+    @media #{$tablet-and-above} {
+      max-width: 420px;
+    }
+
+    @media #{$above-tablet} {
+      max-width: 480px;
+    }
 
     .intro-block {
       position: absolute;
       width: 100%;
       top: 50%;
       transform: translate3d(0, -50%, 0);
-      font-size: 17px;
+      font-size: 13px;
+      line-height: 17px;
+
+      @media #{$tablet-and-above} {
+        font-size: 14px;
+        line-height: 19px;
+      }
+
+      @media #{$above-tablet} {
+        font-size: 18px;
+        line-height: 25px;
+      }
 
       .logo-app {
-        width: 68%;
-        max-width: 320px;
+        width: 75%;
+        max-width: 350px;
         display: block;
         padding-bottom: 40px;
         margin: 0 auto;

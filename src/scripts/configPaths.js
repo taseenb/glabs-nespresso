@@ -10,6 +10,7 @@ require.config({
     "TimelineMax": "../../node_modules/gsap/src/uncompressed/TimelineMax",
     "TweenLite": "../../node_modules/gsap/src/uncompressed/TweenLite",
     "TimelineLite": "../../node_modules/gsap/src/uncompressed/TimelineLite",
+    "ScrollToPlugin": "../../node_modules/gsap/src/uncompressed/plugins/ScrollToPlugin",
     "ScrollMagic": "../../node_modules/scrollmagic/scrollmagic/uncompressed/ScrollMagic",
     "ScrollMagicAnimation": '../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/animation.gsap',
     "ScrollMagicIndicators": '../../node_modules/scrollmagic/scrollmagic/uncompressed/plugins/debug.addIndicators',
