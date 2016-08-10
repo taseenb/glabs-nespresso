@@ -41,9 +41,9 @@ gulp.task('fonts', function () {
 
 gulp.task('images', function () {
   return gulp.src('./src/images/**')
-    .pipe($.imagemin({
-      progressive: true
-    }))
+    // .pipe($.imagemin({
+    //   progressive: true
+    // }))
     .pipe(gulp.dest('./' + options.env + '/images'));
 });
 

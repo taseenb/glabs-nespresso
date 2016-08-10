@@ -12,7 +12,7 @@
     <!--<img class="abs BowlBeans_01 send-to-front" src="{{{basePath}}}images/pngs/BowlBeans_01.png">-->
 
     {{#each images}}
-        <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+        <img src="{{{../basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
     {{/each}}
 
     <div class="pin">
@@ -21,8 +21,10 @@
             <div class="tiles">
                 {{#each tiles}}
                     {{#if chapter}}
-                        <div id="tile-{{id}}" class="abs tile tile-{{year}} shadow">
+                        <div id="tile-{{id}}" class="abs tile tile-{{year}}">
                             <img class="img" src="{{../../basePath}}images/tiles/{{year}}.jpg">
+                            <div class="shadow-right"></div>
+                            <div class="shadow-bottom"></div>
                         </div>
                     {{/if}}
                 {{/each}}
@@ -30,8 +32,10 @@
         </div>
 
 
-        <div id="landmark-BC" class="abs landmark landmark-BC shadow">
+        <div id="landmark-BC" class="abs landmark landmark-BC">
             <img class="img" src="{{{basePath}}}images/landmark/BC.jpg">
+            <div class="shadow-right"></div>
+            <div class="shadow-bottom"></div>
         </div>
 
 

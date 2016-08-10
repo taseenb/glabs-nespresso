@@ -1,4 +1,4 @@
-<div id="{{id}}" class="scene {{type}}-scene full-height">
+<div id="{{id}}" class="scene {{type}}-scene full-height dark">
 
     <div class="inner center abs">
 
@@ -12,20 +12,24 @@
         </div>
 
         {{#each images}}
-            <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+            <img src="{{{../basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
         {{/each}}
 
         <div class="images-wrapper">
             <div class="tiles">
 
-                <div id="tile-{{year}}end" class="abs tile tile-{{year}}end shadow">
+                <div id="tile-{{year}}end" class="abs tile tile-{{year}}end">
                     <img class="img" src="{{basePath}}images/tiles/{{year}}end.jpg">
+                    <div class="shadow-right"></div>
+                    <div class="shadow-bottom"></div>
                 </div>
 
                 {{#each tiles}}
                     {{#if chapter}}
-                        <div id="tile-{{id}}" class="abs tile tile-{{year}} shadow">
+                        <div id="tile-{{id}}" class="abs tile tile-{{year}}">
                             <img class="img" src="{{../../basePath}}images/tiles/{{year}}.jpg">
+                            <div class="shadow-right"></div>
+                            <div class="shadow-bottom"></div>
                         </div>
                     {{/if}}
                 {{/each}}
@@ -33,8 +37,10 @@
         </div>
 
 
-        <div id="landmark-1986" class="abs landmark landmark-1986 shadow">
+        <div id="landmark-1986" class="abs landmark landmark-1986">
             <img class="img" src="{{{basePath}}}images/landmark/1986.jpg">
+            <div class="shadow-right"></div>
+            <div class="shadow-bottom"></div>
         </div>
 
 

@@ -1,21 +1,25 @@
-<div id="{{id}}" class="scene {{type}}-scene full-height">
+<div id="{{id}}" class="scene {{type}}-scene full-height dark">
 
     <div class="inner center abs">
 
         <!--<div class="pin">-->
 
             {{#each images}}
-                <img src="{{{basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
+                <img src="{{{../basePath}}}images/pngs/{{src}}.png" class="abs {{src}} send-to-front">
             {{/each}}
 
             <div class="images-wrapper">
-                <div id="tile-{{year}}" class="abs tile tile-{{year}} shadow">
+                <div id="tile-{{year}}" class="abs tile tile-{{year}}">
                     <img class="img" src="{{basePath}}images/tiles/{{year}}.jpg">
+                    <div class="shadow-right"></div>
+                    <div class="shadow-bottom"></div>
                 </div>
             </div>
 
-            <div id="landmark-{{year}}" class="abs landmark landmark-{{year}} shadow">
+            <div id="landmark-{{year}}" class="abs landmark landmark-{{year}}">
                 <img class="img" src="{{basePath}}images/landmark/{{year}}.jpg">
+                <div class="shadow-right"></div>
+                <div class="shadow-bottom"></div>
             </div>
 
             <div class="body">

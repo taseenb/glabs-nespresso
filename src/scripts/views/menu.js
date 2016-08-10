@@ -55,6 +55,14 @@ define(function (require) {
       return this;
     },
 
+    /**
+     * Only call the autoupdater when all the application is ready.
+     */
+    initMenuAutoUpdater: function() {
+      this.onResize();
+      setTimeout(this.checkPositionRecursive.bind(this), 1000);
+    },
+
     setupElements: function () {
       this.$items = this.$el.find('.item');
       this.itemsCount = this.$items.length;
@@ -62,7 +70,7 @@ define(function (require) {
 
     setupEvents: function () {
       this.$items.on(App.click, this.onClick.bind(this));
-      // App.mediator.subscribe('resize', this.onResize.bind(this));
+      App.mediator.subscribe('resize', this.onResize.bind(this));
     },
 
     onClick: function (e) {
@@ -74,6 +82,8 @@ define(function (require) {
         // this.$items.removeClass('active');
         this.$items.removeClass('active').eq(idx).addClass('active');
       }
+
+      this.scrolling = true;
 
       var scrollHeight = $(App.el).height();
       var sceneContainer = App.mainView.scenes[idx];
@@ -89,38 +99,30 @@ define(function (require) {
 
       App.mainView.controller.scrollTo(scrollY, {
         duration: duration,
-        onComplete: this.onScrollComplete.bind(this)
+        onComplete: this.onScrollComplete.bind(this),
       });
 
       this.currentIdx = idx;
     },
 
-    getCurrentSceneIdx: function(y) {
+    getCurrentSceneIdx: function (y) {
       var idx = 0;
-      var offsets = [];
-      var scenes = App.mainView.scenes;
-      scenes.forEach(function(sceneContainer) {
-        var scrollMagicScene = sceneContainer.sceneView.scene;
-        offsets.push(scrollMagicScene.scrollOffset());
-      });
 
-      offsets.forEach(function(offset, i) {
+      this.offsets.forEach(function (offset, i) {
         if (offset < y) {
           idx = i;
         }
       });
 
-      // console.log(idx, offsets);
-
       return idx;
     },
 
-    updateActiveItem: function(scrollPosition) {
+    updateActiveItem: function (scrollPosition) {
       var idx = this.getCurrentSceneIdx(scrollPosition);
       this.$items.removeClass('active').eq(idx).addClass('active');
     },
 
-    getScrollY: function(scrollMagicScene, idx) {
+    getScrollY: function (scrollMagicScene, idx) {
       var scrollOffset = scrollMagicScene.scrollOffset();
       var sceneDuration = scrollMagicScene.duration() - 20;
 
@@ -134,13 +136,30 @@ define(function (require) {
     },
 
     onScrollComplete: function () {
+      this.scrolling = false;
       // console.log(App.mainView.controller.info());
       // var scrollPosition = App.mainView.controller.scrollPos();
       // this.updateActiveItem(scrollPosition);
     },
 
-    onResize: function() {
+    checkPositionRecursive: function () {
+      if (!this.scrolling) {
+        var scrollPos = App.mainView.controller.scrollPos();
+        this.updateActiveItem(scrollPos);
+      }
+
+      setTimeout(this.checkPositionRecursive.bind(this), 500);
+    },
+
+    onResize: function () {
       // this.scrollHeight = $(App.el).outerHeight();
+
+      this.offsets = [];
+      var scenes = App.mainView.scenes;
+      scenes.forEach(function (sceneContainer) {
+        var scrollMagicScene = sceneContainer.sceneView.scene;
+        this.offsets.push(scrollMagicScene.scrollOffset());
+      }.bind(this));
     },
 
   };

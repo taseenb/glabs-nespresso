@@ -178,6 +178,8 @@ define(function (require) {
 
       tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
 
+      tl.to(this.el, 0, {css: {className: '+=dark'}});
+
       this.$tiles.each(function (i, tile) {
         var obj;
 

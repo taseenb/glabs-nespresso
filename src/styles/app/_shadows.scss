@@ -1,0 +1,92 @@
+$shadow-color: rgba(0, 0, 0, 0.18);
+$dark-shadow-color: rgba(0, 0, 0, 0.7);
+
+.shadow-right,
+.shadow-bottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+&.dark .shadow-right {
+  &:before {
+    box-shadow: 15px 0 10px $dark-shadow-color;
+  }
+
+  &:after {
+    box-shadow: 15px 0 10px $dark-shadow-color;
+  }
+}
+
+&.dark .shadow-bottom {
+  &:before {
+    box-shadow: 0 15px 10px $dark-shadow-color;
+  }
+
+  &:after {
+    box-shadow: 0 15px 10px $dark-shadow-color;
+  }
+}
+
+.shadow-bottom {
+  &:before {
+    z-index: -1;
+    position: absolute;
+    content: " ";
+    bottom: 15px;
+    width: 50%;
+    height: 20px;
+    max-width: 300px;
+    background: $shadow-color;
+    box-shadow: 0 15px 10px $shadow-color;
+    left: 5px;
+    transform: rotate(-4deg);
+  }
+
+  &:after {
+    z-index: -1;
+    position: absolute;
+    content: " ";
+    bottom: 15px;
+    width: 50%;
+    height: 20px;
+    max-width: 300px;
+    background: $shadow-color;
+    box-shadow: 0 15px 10px $shadow-color;
+    right: 5px;
+    transform: rotate(4deg);
+  }
+}
+
+.shadow-right {
+  &:before {
+    z-index: -1;
+    position: absolute;
+    content: " ";
+    right: 12px;
+    height: 50%;
+    width: 20px;
+    max-height: 300px;
+    background: $shadow-color;
+    box-shadow: 15px 0 10px $shadow-color;
+    top: 5px;
+    transform: rotate(4deg);
+  }
+
+  &:after {
+    z-index: -1;
+    position: absolute;
+    content: " ";
+    right: 12px;
+    height: 50%;
+    width: 20px;
+    max-height: 300px;
+    background: $shadow-color;
+    box-shadow: 15px 0 10px $shadow-color;
+    bottom: 5px;
+    transform: rotate(-4deg);
+  }
+}
