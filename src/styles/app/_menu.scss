@@ -13,45 +13,45 @@
     transform: translateY(-50%);
 
     .item {
-      width: 80px;
       position: relative;
       color: white;
       white-space: nowrap;
       transition-duration: .33s;
       transition-property: transform;
       cursor: pointer;
-      transform: translateX(80%);
-      padding: 4px 0 4px 20%;
+      transform: translateX(70%);
+      padding: 3px 0 3px 30%;
       margin-bottom: 8px;
+      font-size: 13px;
+      line-height: 13px;
+      width: 50px;
+      box-sizing: border-box;
 
       @media #{$tablet-and-above} {
-        padding: 6px 0 6px 20%;
+        transform: translateX(80%);
+        padding: 5px 0 5px 20%;
+        font-size: 14px;
+        line-height: 14px;
+        width: 60px;
       }
 
       @media #{$above-tablet} {
-        padding: 8px 0 8px 20%;
+        transform: translateX(80%);
+        padding: 7px 0 7px 20%;
+        font-size: 15px;
+        line-height: 15px;
+        width: 70px;
       }
 
       .year {
         display: block;
         font-family: "Guardian Text Egyptian Web", Georgia, serif;
         font-weight: 500;
-        font-size: 13px;
-        line-height: 13px;
-
-        @media #{$tablet-and-above} {
-          font-size: 14px;
-          line-height: 14px;
-        }
-
-        @media #{$above-tablet} {
-          font-size: 15px;
-          line-height: 15px;
-        }
       }
 
+      &.active,
       &:hover {
-        transform: translateX(0);
+        transform: translateX(0%);
       }
     }
   }

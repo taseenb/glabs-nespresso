@@ -117,15 +117,6 @@ define(function (require) {
 
     setupElements: function () {
       this.$app = this.$el.find('.app');
-      this.$scrollIcon = this.$el.find('.scroll-icon');
-    },
-
-    showScrollIcon: function() {
-      TweenMax.to(this.$scrollIcon, 0.5, {opacity: 1});
-    },
-
-    hideScrollIcon: function() {
-      TweenMax.to(this.$scrollIcon, 0.5, {opacity: 0});
     },
 
     setupEvents: function () {
@@ -133,7 +124,7 @@ define(function (require) {
     },
 
     onResize: function () {
-      console.log('resize (main)');
+      // console.log('resize (main)');
 
       App.container = {
         width: this.$el.width(),

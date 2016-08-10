@@ -52,11 +52,12 @@ define(function (require) {
       this.$body = this.$el.find('.body');
       this.$introText = this.$body.find('.intro-text');
       this.$logoApp = this.$body.find('.logo-app');
-      this.$introText1 = this.$introText.find('.inner-1');
-      this.$introText2 = this.$introText.find('.inner-2');
+      // this.$introText1 = this.$introText.find('.inner-1');
+      // this.$introText2 = this.$introText.find('.inner-2');
       this.$landmark = this.$el.find('.landmark');
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
+      this.$scrollIcon = this.$el.find('.scroll-icon');
 
       // Select fixed images
       if (this.images) {
@@ -166,13 +167,14 @@ define(function (require) {
       var tl = this.tl;
 
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 1, {y: -App.height});
+
+      tl.to(this.$scrollIcon, 1, {opacity: 0});
+
       tl.to(this.$introText, 1, {y: -20, opacity: 0}, '-=1');
       // tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
       // tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
       // tl.to(this.$introText2, 1, {y: -20, opacity: 0}, '+=0.5');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
-
-      tl.to(App.mainView.$scrollIcon, 1, {opacity: 0});
 
       tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
 

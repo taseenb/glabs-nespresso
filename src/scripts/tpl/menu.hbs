@@ -1,7 +1,12 @@
 <div class="inner">
     {{#each scene}}
-            <div class="item" data-idx="{{@index}}" data-href="scene-{{{id}}}" data-year="{{{year}}}" style="background-color: {{colour}}">
+        <div class="item" data-idx="{{@index}}" data-href="scene-{{{id}}}" data-year="{{{year}}}"
+             style="background-color: {{colour}}">
+            {{#if yearCopy}}
+                <div class="year">{{{yearCopy}}}</div>
+            {{else}}
                 <div class="year">{{{year}}}</div>
-            </div>
+            {{/if}}
+        </div>
     {{/each}}
 </div>

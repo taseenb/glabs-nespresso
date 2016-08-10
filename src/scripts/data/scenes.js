@@ -10,6 +10,7 @@ define(function (require) {
       id: 'intro',
       type: 'intro',
       year: 'BC',
+      yearCopy: 'B.C.',
       colour: '#da3949',
       introCopy1: 'Nespresso has been bringing barista-quality coffee into homes for the last 30 years, but its expertise is also built on centuries of experimentation.',
       introCopy2: 'Beloved of popes and poets, celebrated in song by Bach, the noble coffee bean has a stranger history than you may know...',

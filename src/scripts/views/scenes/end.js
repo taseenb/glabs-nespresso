@@ -67,7 +67,7 @@ define(function (require) {
       // console.log(this.$compositionImgs);
 
       // console.log(this.$imagesWrapper, this.$tile, this.$body, this.$landmark, this.$title, this.$text);
-      console.log(this.$tiles.length, this.$otherTiles.length);
+      // console.log(this.$tiles.length, this.$otherTiles.length);
       this.tilesCount = Math.floor(this.$tiles.length / 2);
 
       // Landmark sizes

@@ -31,6 +31,7 @@
       }
 
       .logo-app {
+        position: relative;
         width: 75%;
         max-width: 350px;
         display: block;
@@ -40,16 +41,18 @@
 
       .intro-text {
         position: relative;
+      }
 
-        //.inner-1 {
-        //
-        //}
-        //.inner-2 {
-        //  position: absolute;
-        //  top: 0;
-        //  left: 0;
-        //  opacity: 0;
-        //}
+      .scroll-icon {
+        position: relative;
+        display: block;
+        margin-top: $page-margin-y;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 20px;
+        cursor: pointer;
+        padding: $page-margin-y;
       }
     }
   }
