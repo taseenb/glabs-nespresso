@@ -19,12 +19,13 @@ define(function (require) {
       images: [
         {
           src: 'BowlBeans_01',
+          ext: 'jpg',
           css: {
             top: 0,
             left: 0,
             width: '38%',
           },
-          x: '-15%',
+          x: '-60%',
           y: -0.1,
           duration: normalDuration,
         },
@@ -184,6 +185,7 @@ define(function (require) {
         },
         {
           src: 'RawBeans01',
+          ext: 'jpg',
           css: {
             top: 0,
             right: 0,
@@ -243,12 +245,13 @@ define(function (require) {
       images: [
         {
           src: 'BiscuitsBowl_01',
+          ext: 'jpg',
           css: {
             top: 0,
             left: 0,
             width: '27%',
           },
-          x: '10%',
+          x: '-20%',
           y: 0.55,
           duration: normalDuration,
         },
@@ -337,12 +340,13 @@ define(function (require) {
       images: [
         {
           src: 'Grinder02',
+          ext: 'jpg',
           css: {
             top: 0,
-            right: '10%',
+            right: 0,
             width: '28%',
           },
-          x: '0%',
+          x: '15%',
           y: 0.1,
           duration: normalDuration,
         },

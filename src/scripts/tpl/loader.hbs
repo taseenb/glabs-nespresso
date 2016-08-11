@@ -1,11 +1,13 @@
+<div class="spinner-wrapper center">
+    <img class="spinner" src="{{basePath}}{{imgPath}}loader.svg">
+</div>
+
 <div class="progress-wrapper">
     <div class="progress"></div>
 </div>
 
 <div class="hidden-images">
-
     {{#each imagesToPreload}}
         <img src="{{../basePath}}{{../imgPath}}{{this}}">
     {{/each}}
-
 </div>

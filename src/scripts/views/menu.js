@@ -58,7 +58,7 @@ define(function (require) {
     /**
      * Only call the autoupdater when all the application is ready.
      */
-    initMenuAutoUpdater: function() {
+    initMenuAutoUpdater: function () {
       this.onResize();
       setTimeout(this.checkPositionRecursive.bind(this), 1000);
     },
@@ -75,34 +75,45 @@ define(function (require) {
 
     onClick: function (e) {
       var idx = $(e.currentTarget).data('idx');
+      var isIntro = parseInt(idx, 10) === -1;
+
+      console.log(isIntro);
 
       if (idx === this.currentIdx) {
         return;
       } else {
         // this.$items.removeClass('active');
-        this.$items.removeClass('active').eq(idx).addClass('active');
+        var itemIdx = isIntro ? 0 : idx + 1;
+        this.$items.removeClass('active').eq(itemIdx).addClass('active');
       }
 
       this.scrolling = true;
 
+      var scrollY = 0;
+
+      if (!isIntro) {
+        var sceneContainer = App.mainView.scenes[idx];
+        var scrollMagicScene = sceneContainer.sceneView.scene;
+        scrollY = this.getScrollY(scrollMagicScene, idx);
+      }
+
       var scrollHeight = $(App.el).height();
-      var sceneContainer = App.mainView.scenes[idx];
-      var scrollMagicScene = sceneContainer.sceneView.scene;
-      var scrollY = this.getScrollY(scrollMagicScene, idx);
       var maxDuration = 6;
       var minDuration = 0.8;
-      var currentScrollY = App.mainView.controller.info('scrollPos');
+      var currentScrollY = App.mainView.controller.scrollPos();
       var distance = Math.abs(currentScrollY - scrollY);
       var normalizedDistance = distance / scrollHeight;
       var duration = maxDuration * normalizedDistance;
       duration = duration < minDuration ? minDuration : duration;
+
+      console.log(duration);
 
       App.mainView.controller.scrollTo(scrollY, {
         duration: duration,
         onComplete: this.onScrollComplete.bind(this),
       });
 
-      this.currentIdx = idx;
+      this.currentIdx = isIntro ? -1 : idx;
     },
 
     getCurrentSceneIdx: function (y) {
@@ -119,7 +130,19 @@ define(function (require) {
 
     updateActiveItem: function (scrollPosition) {
       var idx = this.getCurrentSceneIdx(scrollPosition);
-      this.$items.removeClass('active').eq(idx).addClass('active');
+      var itemIdx = idx + 1;
+
+      if (idx === 0) {
+        var sceneContainer = App.mainView.scenes[0];
+        var introScene = sceneContainer.sceneView.scene;
+
+        if (scrollPosition < introScene.duration() * 0.45) {
+          itemIdx = 0;
+        }
+
+      }
+
+      this.$items.removeClass('active').eq(itemIdx).addClass('active');
     },
 
     getScrollY: function (scrollMagicScene, idx) {
@@ -128,7 +151,7 @@ define(function (require) {
 
       // If it's the last scene, don't go to the end
       // Get the position of the landmark composition
-      if (idx === this.itemsCount - 1) {
+      if (idx + 1 === this.itemsCount - 1) {
         sceneDuration = scrollMagicScene.duration() * 0.29;
       }
 

@@ -66,7 +66,6 @@ define(function (require) {
       this.onResize();
       this.renderScenes();
       // this.renderGoogleAnalytics();
-      // this.renderFacebook();
 
       setTimeout(function () {
         this.renderMenu();
@@ -120,26 +119,6 @@ define(function (require) {
       ga.render();
     },
 
-    // renderFacebook: function() {
-    //   // Facebook SDK
-    //   (function(d, s, id){
-    //     var js, fjs = d.getElementsByTagName(s)[0];
-    //     if (d.getElementById(id)) {return;}
-    //     js = d.createElement(s); js.id = id;
-    //     js.src = "//connect.facebook.net/en_US/sdk.js";
-    //     fjs.parentNode.insertBefore(js, fjs);
-    //   }(document, 'script', 'facebook-jssdk'));
-    //
-    //   // Init
-    //   window.fbAsyncInit = function() {
-    //     FB.init({
-    //       appId      : '741666719251986',
-    //       xfbml      : true,
-    //       version    : 'v2.7'
-    //     });
-    //   };
-    // },
-
     setupElements: function () {
       this.$app = this.$el.find('.app');
       this.$fbIcon = this.$el.find('.fb-icon');
@@ -163,8 +142,6 @@ define(function (require) {
       var w = 520;
       var h = 350;
 
-      console.log(image);
-
       this.openFbPopup(appId, pageUrl, title, descr, image, w, h);
     },
 
@@ -175,15 +152,15 @@ define(function (require) {
     openFbPopup: function (appId, url, title, descr, image, winWidth, winHeight) {
       var winTop = (screen.height / 2) - (winHeight / 2);
       var winLeft = (screen.width / 2) - (winWidth / 2);
-      console.log(winLeft, winTop);
+      // console.log(winLeft, winTop);
+      // console.log(image);
       var fbLink = 'https://www.facebook.com/dialog/share';
-      // appId = encodeURIComponent(appId);
       title = encodeURIComponent(title);
       descr = encodeURIComponent(descr);
-      url = encodeURIComponent(url);
       image = encodeURIComponent(image);
-      var args = '?app_id=' + appId + '&display=popup&title=' + title + '&description=' + descr + '&href=' + url + '&image=' + image;
-      console.log(fbLink + args);
+      // url = encodeURIComponent(url);
+      var args = '?app_id=' + appId + '&display=popup&title=' + title + '&description=' + descr + '&picture=' + image + '&href=' + url;
+      // console.log(fbLink + args);
       window.open(fbLink + args, '', 'top=' + winTop + ',left=' + winLeft + ',toolbar=0,status=0,width=' + winWidth + ',height=' + winHeight);
     },
 
