@@ -7,6 +7,7 @@ define(function (require) {
 
   var mobileData = [
     {
+      intro: true,
       mobileImg: '_0000_01.jpg',
     },
     {
@@ -48,10 +49,17 @@ define(function (require) {
     {
       mobileImg: '_0013_14.jpg',
     },
+    {
+      mobileImg: '_0014_15.jpg',
+    },
   ];
 
-  originalData.forEach(function(data, i) {
-    mobileData[i] = _.extend(data, mobileData[i]);
+  mobileData.forEach(function(data, i) {
+    var idx = i - 1;
+    if (idx < 0) {
+      idx = 0;
+    }
+    mobileData[i] = _.extend(data, originalData[idx]);
   });
 
   console.log(mobileData);

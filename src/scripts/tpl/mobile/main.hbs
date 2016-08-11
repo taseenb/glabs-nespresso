@@ -13,14 +13,24 @@
             {{#each scenes}}
                 <div class="swiper-slide">
                     <div class="img-wrapper">
-                        <img data-src="{{{../basePath}}}images/mobile/{{{mobileImg}}}" class="swiper-lazy img">
-                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+
+                        {{#if intro}}
+                            <img class="logo-app" src="{{{basePath}}}images/logo-app.png">
+                        {{/if}}
+
+                        <img src="{{{../basePath}}}images/mobile/{{{mobileImg}}}" class="swiper-lazy img">
+                        <!--<div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>-->
                     </div>
 
                     <div class="body">
 
                         <div class="copy">
-                            {{copy}}
+                            {{#if intro}}
+                                {{introCopy1}}
+                                {{introCopy2}}
+                            {{else}}
+                                {{copy}}
+                            {{/if}}
                         </div>
 
                     </div>
@@ -33,13 +43,11 @@
 
 
     <div class="footer">
-        footer
+        <img class="img portrait-only" src="{{{../basePath}}}images/mobile/footer.jpg">
+        <img class="img landscape-only" src="{{{../basePath}}}images/mobile/footer-landscape.jpg">
     </div>
 
 </div>
-
-
-
 
 
 <div id="{{id}}-ga" class="ga"></div>

@@ -1,8 +1,48 @@
 .img-wrapper {
+  position: relative;
+  overflow: visible;
+  width: 100%;
 
   .img {
-    display: block;
-    width: 100%;
+    position: relative;
+    //width: 150%;
+    //left: -25%;
+    //right: -25%;
+    z-index: 100;
+
+    @media all and (orientation: portrait) {
+      width: 150%;
+      left: -25%;
+      right: -25%;
+    }
+
+    @media all and (orientation: landscape) {
+      width: 80%;
+      left: 10%;
+      right: 10%;
+    }
+
+  }
+
+  .logo-app {
+    position: absolute;
+
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 101;
+
+    @media all and (orientation: portrait) {
+      width: 75%;
+      max-width: 320px;
+      top: 10%;
+    }
+
+    @media all and (orientation: landscape) {
+      width: 50%;
+      max-width: 320px;
+      top: 5%;
+    }
+
   }
 
 }

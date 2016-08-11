@@ -2,6 +2,9 @@
   box-sizing: border-box;
   padding: $page-margin-x;
 
+  max-width: 420px;
+  margin: 0 auto;
+
   .copy {
     font-size: 14px;
   }

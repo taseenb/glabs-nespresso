@@ -23,7 +23,7 @@ define(function (require) {
   View.prototype = {
 
     initialize: function () {
-
+      this.slideMargin = 0.25 * 2;
     },
 
     render: function () {
@@ -36,16 +36,17 @@ define(function (require) {
       this.setupElements();
       this.setupEvents();
 
-      // this.renderMenu();
-      // this.renderScenes();
+      this.onResize();
 
       this.swiper = new Swiper(this.$swiperContainer, {
         pagination: '.swiper-pagination',
         paginationClickable: true,
         // Disable preloading of all images
-        preloadImages: false,
+        // preloadImages: false,
         // Enable lazy loading
-        lazyLoading: true,
+        // lazyLoading: true,
+        spaceBetween: App.width * this.slideMargin,
+        centeredSlides: true,
       });
     },
 
@@ -81,6 +82,8 @@ define(function (require) {
       this.$app = this.$el.find('.app');
       this.$fbIcon = this.$el.find('.fb-icon');
       this.$twIcon = this.$el.find('.tw-icon');
+
+      this.$footer = this.$el.find('.footer');
 
       this.$swiperContainer = this.$app.find('.swiper-container');
     },
@@ -125,7 +128,7 @@ define(function (require) {
       this.openPopup('https://twitter.com/intent/tweet' + args, w, h);
     },
 
-    openPopup: function(content, w, h) {
+    openPopup: function (content, w, h) {
       var top = (screen.height / 2) - (h / 2);
       var left = (screen.width / 2) - (w / 2);
       window.open(content, '', 'top=' + top + ',left=' + left + ',toolbar=0,status=0,width=' + w + ',height=' + h);
@@ -136,6 +139,20 @@ define(function (require) {
         width: this.$el.width(),
         height: this.$el.height(),
       };
+
+      // Add a margin for the fixed footer
+      var $footerImg = this.$footer.find('.img:visible');
+      var footerHeight = ~~$footerImg.height() || 20;
+      this.$app.css({
+        marginBottom: 2 * footerHeight + 'px',
+      });
+
+      // spaceBetween
+      if (this.swiper) {
+        this.swiper.params.spaceBetween = App.width * this.slideMargin;
+        this.swiper.update();
+        this.swiper.slideTo(this.swiper.activeIndex, 0);
+      }
     },
 
   };

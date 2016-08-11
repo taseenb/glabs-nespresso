@@ -1,5 +1,27 @@
 .footer {
-  position: relative;
-  height: 30px;
-  background-color: #0000FF;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  overflow: visible;
+  z-index: 1000;
+
+  .img {
+    position: relative;
+    display: none;
+    width: 100%;
+
+    @media all and (orientation: portrait) {
+      &.portrait-only {
+        display: block;
+      }
+    }
+
+    @media all and (orientation: landscape) {
+      &.landscape-only {
+        display: block;
+      }
+    }
+
+  }
 }
