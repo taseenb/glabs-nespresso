@@ -7,6 +7,15 @@
   z-index: 9999;
   background-image: url('#{$img-path}Background02.jpg');
 
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
   .spinner-wrapper {
     width: 60px;
     height: 60px;
@@ -16,6 +25,7 @@
       display: block;
       width: 100%;
       height: 100%;
+      animation: rotate 2s infinite linear;
     }
   }
 
