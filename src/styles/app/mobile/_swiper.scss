@@ -1,0 +1,23 @@
+.swiper-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  .swiper-wrapper {
+    width: 100%;
+
+    .swiper-slide {
+      width: 100%;
+      text-align: center;
+      font-size: 18px;
+
+      .swiper-lazy-preloader {
+        position: relative;
+        height: 200px;
+      }
+
+    }
+
+  }
+
+}

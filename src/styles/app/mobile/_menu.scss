@@ -1,0 +1,12 @@
+.menu {
+  position:relative;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 30px;
+  background-color: red;
+
+  .swiper-pagination {
+    bottom: auto;
+  }
+}

@@ -77,7 +77,7 @@ define(function (require) {
       var idx = $(e.currentTarget).data('idx');
       var isIntro = parseInt(idx, 10) === -1;
 
-      console.log(isIntro);
+      // console.log(isIntro);
 
       if (idx === this.currentIdx) {
         return;
@@ -106,7 +106,7 @@ define(function (require) {
       var duration = maxDuration * normalizedDistance;
       duration = duration < minDuration ? minDuration : duration;
 
-      console.log(duration);
+      // console.log(duration);
 
       App.mainView.controller.scrollTo(scrollY, {
         duration: duration,

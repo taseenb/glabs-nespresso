@@ -54,16 +54,22 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
   @import 'helpers';
   @import 'responsive/devices';
 
+
   // App
-  @import 'app/inner';
-  @import 'app/loader';
-  @import 'app/scene';
-  @import 'app/header';
-  @import 'app/footer';
-  @import 'app/menu';
 
-  //@media #{$landscape-phone} {
+  &.desktop-version {
+    @import 'app/inner';
+    @import 'app/loader';
+    @import 'app/scene';
+    @import 'app/header';
+    @import 'app/footer';
+    @import 'app/menu';
+  }
 
-  //}
+  &.mobile-version {
+    @import 'vendor/swiper';
+    @import 'app/mobile/app';
+  }
+
 }
 

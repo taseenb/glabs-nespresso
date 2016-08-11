@@ -3,6 +3,8 @@ define(function (require) {
   'use strict';
 
   return [
+    'loader.svg',
+
     // JPEGS
     'pngs/BowlBeans_01.jpg',
     'pngs/Grinder02.jpg',

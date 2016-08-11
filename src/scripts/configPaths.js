@@ -4,6 +4,7 @@ require.config({
     'global': './global',
 
     'jquery': '../../node_modules/jquery/dist/jquery',
+    "swiper": '../../node_modules/swiper/dist/js/swiper.jquery',
     "underscore": "../../node_modules/underscore/underscore",
     "mediator-js": "../../node_modules/mediator-js/lib/mediator",
     "TweenMax": "../../node_modules/gsap/src/uncompressed/TweenMax",

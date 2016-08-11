@@ -1,0 +1,45 @@
+<div id="{{id}}-app" class="app">
+
+    <div id="{{id}}-menu" class="menu">
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper-container">
+
+        <div class="swiper-wrapper">
+
+            {{#each scenes}}
+                <div class="swiper-slide">
+                    <div class="img-wrapper">
+                        <img data-src="{{{../basePath}}}images/mobile/{{{mobileImg}}}" class="swiper-lazy img">
+                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                    </div>
+
+                    <div class="body">
+
+                        <div class="copy">
+                            {{copy}}
+                        </div>
+
+                    </div>
+
+                </div>
+            {{/each}}
+
+        </div>
+    </div>
+
+
+    <div class="footer">
+        footer
+    </div>
+
+</div>
+
+
+
+
+
+<div id="{{id}}-ga" class="ga"></div>

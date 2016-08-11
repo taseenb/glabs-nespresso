@@ -3,27 +3,15 @@ define(function (require) {
   var $ = require('jquery');
   var App = require('global');
 
-  // Scrollmagic
-  var ScrollMagic = require('ScrollMagic');
-  require('ScrollMagicAnimation');
-  require('ScrollMagicIndicators');
-
   // Data
-  var scenesData = require('../data/scenes');
-
-  // Views
-  var SceneView = require('./scene');
-  var LoaderView = require('./loader');
-  var MenuView = require('./menu');
-  var GAView = require('./google-analytics');
+  var scenesData = require('../data/mobile-scenes');
 
   // Templates
-  var tpl = require('hbs!../tpl/main');
-  var scenesTpl = {
-    intro: require('hbs!../tpl/scenes/intro'),
-    chapter: require('hbs!../tpl/scenes/chapter'),
-    end: require('hbs!../tpl/scenes/end'),
-  };
+  var tpl = require('hbs!../tpl/mobile/main');
+
+  // Vendor
+  var Swiper = require('swiper');
+
 
   function View(options) {
     this.options = options;
@@ -42,71 +30,41 @@ define(function (require) {
       this.$el.html(tpl({
         id: App.id,
         basePath: App.basePath,
+        scenes: scenesData,
       }));
 
-      this.loader = new LoaderView({
-        el: document.getElementById(App.id + '-loader'),
-        basePath: App.basePath,
-        imgPath: App.imgPath,
-        imagesToPreload: App.imagesToPreload,
-        callback: this.onAssetsLoaded.bind(this),
-      });
-      this.loader.render().load();
-
-      // console.log(App);
-
       this.setupElements();
-    },
+      this.setupEvents();
 
-    onAssetsLoaded: function () {
-      // Scrollmagic
-      this.controller = new ScrollMagic.Controller();
+      // this.renderMenu();
+      // this.renderScenes();
 
-      // Refresh sizes BEFORE rendering scenes
-      this.onResize();
-      this.renderScenes();
-      // this.renderGoogleAnalytics();
-
-      setTimeout(function () {
-        this.renderMenu();
-        // Refresh sizes AFTER rendering scenes
-        this.onResize();
-        this.setupEvents();
-        this.loader.remove();
-      }.bind(this), 500);
-    },
-
-    renderMenu: function () {
-      this.menu = new MenuView({
-        el: document.getElementById(App.id + '-menu'),
-        parentView: this,
+      this.swiper = new Swiper(this.$swiperContainer, {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        // Disable preloading of all images
+        preloadImages: false,
+        // Enable lazy loading
+        lazyLoading: true,
       });
-      this.menu.render();
-
-      setTimeout(function () {
-        this.menu.initMenuAutoUpdater();
-      }.bind(this), 500);
     },
+
+    // renderMenu: function () {
+    //   this.menu = new MenuView({
+    //     el: document.getElementById(App.id + '-menu'),
+    //     parentView: this,
+    //   });
+    //   this.menu.render();
+    //
+    //   setTimeout(function () {
+    //     this.menu.initMenuAutoUpdater();
+    //   }.bind(this), 500);
+    // },
 
     renderScenes: function () {
       this.scenes = [];
 
-      // console.log(scenesData);
-
       scenesData.forEach(function (s) {
-
-        // Scene
-        var scene = new SceneView({
-          controller: this.controller,
-          data: s,
-          tpl: scenesTpl[s.type],
-          $parent: this.$app,
-          scenesData: scenesData,
-          basePath: App.basePath,
-        });
-        scene.render();
-
-        this.scenes.push(scene);
 
       }.bind(this));
     },
@@ -123,6 +81,8 @@ define(function (require) {
       this.$app = this.$el.find('.app');
       this.$fbIcon = this.$el.find('.fb-icon');
       this.$twIcon = this.$el.find('.tw-icon');
+
+      this.$swiperContainer = this.$app.find('.swiper-container');
     },
 
     setupEvents: function () {
@@ -176,20 +136,6 @@ define(function (require) {
         width: this.$el.width(),
         height: this.$el.height(),
       };
-
-      if (this.scenes) {
-        this.scenes.forEach(function (s) {
-          if (s.onResize) {
-            s.onResize();
-          }
-        });
-      }
-
-      if (this.controller) {
-        setTimeout(function () {
-          this.controller.update(true);
-        }.bind(this), 200);
-      }
     },
 
   };

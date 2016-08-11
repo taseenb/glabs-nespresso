@@ -43,8 +43,6 @@ define(function (require) {
       var loader = imagesLoaded(el, this.onLoaded.bind(this));
       loader.on('progress', this.onProgress.bind(this));
 
-      this.$spin.hide();
-
       return this;
     },
 
@@ -72,16 +70,15 @@ define(function (require) {
     remove: function() {
       var that = this;
 
-      TweenMax.to(this.$el, 0.2, {
+      TweenMax.to(this.$el, 1, {
         opacity: 0,
         onComplete: function() {
-          that.$el.hide(); //
+          that.$el.hide();
         },
       });
     },
 
     setupElements: function () {
-      this.$spin = this.$el.find('.spin');
       this.$progress = this.$el.find('.progress');
     },
 

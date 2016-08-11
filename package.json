@@ -33,6 +33,7 @@
     "scrollmagic": "2.0.5",
     "blast-text": "2.0.0",
     "imagesloaded": "4.1.0",
-    "gsap": "1.19.0"
+    "gsap": "1.19.0",
+    "swiper": "3.3.1 "
   }
 }

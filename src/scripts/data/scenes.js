@@ -38,7 +38,6 @@ define(function (require) {
       year: 1000,
       colour: '#e2c8a7',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/0'),
       title: 'Or did it begin in the<br>cradle of mankind?',
       copy: 'Ethiopia is thought to have been the birthplace of coffee, as it was of mankind itself. The beans were supposedly crushed, mixed with animal fat, and made into an energy bar for travellers. There is, however, no hard evidence for coffee use until...',
       images: [
@@ -73,7 +72,6 @@ define(function (require) {
       year: 1450,
       colour: '#af8030',
       tileFrom: 'l',
-      contentTpl: require('hbs!../tpl/scenes/chapters/1'),
       title: 'The Sufis used it<br>to pray all night',
       copy: 'The Sufis of the Yemen certainly used coffee in the first half of the 15th century (glazed bowls have even been found from that period with traces of the bean). Around 1450, the drink is introduced to Constantinople, where it swiftly becomes so popular that a law is passed permitting women to divorce a husband who fails to supply them with their daily quota of the drink. Further evidence of its popularity follows not far behind...',
       images: [
@@ -98,7 +96,6 @@ define(function (require) {
       year: 1511,
       colour: '#72906e',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/2'),
       title: 'The first attempt to<br>ban it caused rioting',
       copy: 'The first major coffee controversy: Mecca\'s new young governor, Khair Bey, becomes enraged at the public making fun of him, and finds that the miscreants are gathering at coffee houses to compose their barbs. He engages scholars to declare the drink un-Islamic – a ban which results in riots and is overturned by the Sultan.',
       images: [
@@ -144,7 +141,6 @@ define(function (require) {
       year: 1600,
       colour: '#ad9094',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/3'),
       title: 'Coffee is declared<br>wholly holy',
       copy: 'According to legend, once coffee had established its first European foothold in Venice in the late 16th century, the Church took notice of the spread of this “devil\'s concoction” associated with “infidels”. Pope Clement VIII is asked to ban it, but is so taken with the aroma that he tries some himself, and finds it so delicious he instead decides to “fool Satan” by baptising it.',
       images: [
@@ -168,7 +164,6 @@ define(function (require) {
       year: 1632,
       colour: '#edc44e',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/4'),
       title: 'Even the death penalty<br>doesn\'t deter coffee lovers',
       copy: 'And now, conversely, coffee is again declared un-Islamic: Sultan Murad IV bans consumption in Constantinople, along with tobacco and alcohol, personally patrolling the streets and decapitating offenders with his sword. His successor diluted the ban: for a first offence you\'d merely be beaten, although a second sinful sip would get you sewn into a sack and thrown into the Bosphorus. It\'s testament to coffee\'s appeal that people continue to drink it, despite the danger.',
       images: [
@@ -204,7 +199,6 @@ define(function (require) {
       year: 1652,
       colour: '#8c62b6',
       tileFrom: 'l',
-      contentTpl: require('hbs!../tpl/scenes/chapters/5'),
       title: 'Finally! Coffee reaches Britain,<br>fuels Empire',
       copy: 'Samuel Pepys records in his diaries that England\'s first coffee house opens in Oxford in 1952. The Grand Café now stands on that site, while the Queen\'s Lane Coffee House opposite it has survived since 1654. Popularly known as “penny universities”, because stimulating discussion could be had there for the price of a coffee, they quickly became an integral part of Oxford and London\'s social scene. The insurance industry and stock exchange were both founded in coffee houses.',
       images: [
@@ -239,7 +233,6 @@ define(function (require) {
       year: 1674,
       colour: '#6282bf',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/6'),
       title: 'The backlash begins<br>with an old wives\' tale',
       copy: 'British men are by now spending so much time in coffee houses that their wives object. A pamphlet entitled The Womens [sic] Petition Against Coffee complains that “the Excessive use of that Newfangled, Abominable, Heathenish Liquor called COFFEE… has so Eunucht our Husbands that they are become as unfruitful as those Desarts whence that unhappy Berry is said to be brought.” Charles II subsequently tries to ban coffee – out of fear of the political discussions in coffee houses rather than concern for the nation\'s women – but the outcry causes him to relent.',
       images: [
@@ -264,7 +257,6 @@ define(function (require) {
       year: 1732,
       colour: '#1d978c',
       tileFrom: 'l',
-      contentTpl: require('hbs!../tpl/scenes/chapters/7'),
       title: 'But how can Bach, Beethoven<br>and Balzac be wrong?',
       copy: 'Bach writes The Coffee Cantata, ending with a song celebrating the benefits of the drink. Some of the greatest European thinkers and artists are, by now, coffee-lovers. Voltaire supposedly enjoyed upwards of 40 cups a day, with chocolate. Balzac was similarly smitten, and penned the lighthearted essay, The Pleasure and Pains of Coffee. Beethoven started every day with a cup of coffee – always made from exactly 60 beans.',
       images: [
@@ -299,7 +291,6 @@ define(function (require) {
       year: 1757,
       colour: '#ef8031',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/8'),
       title: 'Tea takes<br>over in Britain...',
       copy: 'The Battle of Plassey gives the East India Trading Company control of Bengal. After this, the company focuses its attention away from trading coffee and towards tea, planting Chinese tea bushes in India and newly occupied Ceylon (Sri Lanka). Henceforth, tea becomes the nation\'s favourite hot drink (although coffee is giving it a run for its money these days).',
       images: [
