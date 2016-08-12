@@ -93,8 +93,6 @@ define(function (require) {
       var maxW = App.container.width * 0.4;
       this.landmarkIsPortrait = w < h;
 
-      // console.log(this.el.id, this.landmarkIsPortrait ? 'portrait' : 'landscape');
-
       if (this.landmarkIsPortrait) {
         this.landmarkH = maxH;
         this.landmarkW = w * (maxH / h);
@@ -110,6 +108,8 @@ define(function (require) {
           this.landmarkW = w * (maxH / h);
         }
       }
+
+      // console.log(this.landmarkW,this.landmarkH);
 
       return {
         isPortrait: this.landmarkIsPortrait,

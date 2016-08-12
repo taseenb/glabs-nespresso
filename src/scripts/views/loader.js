@@ -29,7 +29,7 @@ define(function (require) {
       this.$el.html(tpl({
         basePath: App.root,
         imgPath: this.imgPath || 'images/',
-        imagesToPreload: this.imagesToPreload || [],
+        imagesToPreload: this.getImagesToPreload() || [],
       }));
 
       this.setupElements();
@@ -39,8 +39,7 @@ define(function (require) {
     },
 
     load: function () {
-      var el = this.$el.find('.hidden-images');
-      var loader = imagesLoaded(el, this.onLoaded.bind(this));
+      var loader = imagesLoaded(this.$hiddenImages, this.onLoaded.bind(this));
       loader.on('progress', this.onProgress.bind(this));
 
       return this;
@@ -79,11 +78,32 @@ define(function (require) {
     },
 
     setupElements: function () {
+      this.$hiddenImages = this.$el.find('.hidden-images');
       this.$progress = this.$el.find('.progress');
     },
 
     setupEvents: function () {
 
+    },
+
+    getImagesToPreload: function() {
+      var list = [];
+      this.imagesToPreload.forEach(function(img, i) {
+        list[i] = {
+          filename: img,
+          classname: this.cleanClassname(img)
+        };
+      }.bind(this));
+
+      return list;
+    },
+
+    cleanClassname: function(string) {
+      var s;
+      s = string.replace('.', ' ');
+      s = s.replace('/', ' ');
+
+      return s;
     },
 
   };

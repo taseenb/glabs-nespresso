@@ -21,6 +21,7 @@ define(function (require) {
       this.controller = this.options.controller;
       this.duration = '600%'; // App.height * 5;
       this.parentView = this.options.parentView;
+      this.data = this.options.data;
 
       // Put the intro tile on the left
       this.tileFrom = 'l';
@@ -33,9 +34,7 @@ define(function (require) {
 
     render: function () {
       this.setupElements();
-
       this.renderScrollMagic();
-
       this.setupEvents();
 
       return this;
@@ -78,10 +77,9 @@ define(function (require) {
 
       // Landmark sizes
       this.$landmarkImg = this.$landmark.find('.img');
-      this.originalLandmarkW = this.$landmarkImg[0].width;
-      this.originalLandmarkH = this.$landmarkImg[0].height;
-
-      // console.log($tiles, tilesCount, rndIdx1, rndIdx1, $randomTile1, $randomTile2);
+      this.$hiddenLandmarkImg = App.loader.$hiddenImages.find('.landmark').filter('.' + this.data.year);
+      this.originalLandmarkW = this.$hiddenLandmarkImg[0].width;
+      this.originalLandmarkH = this.$hiddenLandmarkImg[0].height;
     },
 
     setupEvents: function () {
@@ -96,8 +94,11 @@ define(function (require) {
       this.createScrollMagicScenes();
     },
 
-    updateLandmark: function() {
-      this.landmarkSize = this.parentView.updateLandmarkSize(this.originalLandmarkW, this.originalLandmarkH);
+    updateLandmark: function () {
+      var origW = this.originalLandmarkW;
+      var origH = this.originalLandmarkH;
+
+      this.landmarkSize = this.parentView.updateLandmarkSize(origW, origH);
       this.landmarkW = this.landmarkSize.width;
       this.landmarkH = this.landmarkSize.height;
       this.landmarkIsPortrait = this.landmarkSize.isPortrait;
@@ -252,7 +253,7 @@ define(function (require) {
         var tweens = [];
         this.images.forEach(function (img, i) {
           tweens.push(TweenMax.to(this.$images[i], img.duration, {
-            y: img.y ?  img.y * App.height : App.height,
+            y: img.y ? img.y * App.height : App.height,
           }));
         }.bind(this));
         var imgTl = new TimelineMax({
@@ -283,7 +284,7 @@ define(function (require) {
         offset: 0,
         triggerHook: 0,
       })
-        // .addIndicators()
+      // .addIndicators()
         .setPin(this.el)
         .setTween(this.tl)
         .addTo(this.controller);

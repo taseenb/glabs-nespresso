@@ -1,8 +1,28 @@
 <div id="{{id}}-app" class="app">
 
     <div id="{{id}}-menu" class="menu">
-        <!-- Add Pagination -->
-        <div class="swiper-pagination"></div>
+        <div class="inner">
+
+            <div class="item active" style="background-color: white; color: #333;" data-idx="0">
+                Home
+                <div class="underline" style="background-color: white;"></div>
+            </div>
+
+            {{#each scenes}}
+                {{#unless intro}}
+                    <div class="item" style="background-color: {{colour}}" data-idx="{{@index}}"
+                         data-href="scene-{{{id}}}" data-year="{{{year}}}">
+                        {{#if yearCopy}}
+                            {{{yearCopy}}}
+                        {{else}}
+                            {{{year}}}
+                        {{/if}}
+                        <div class="underline" style="background-color: {{colour}};"></div>
+                    </div>
+                {{/unless}}
+            {{/each}}
+
+        </div>
     </div>
 
     <!-- Swiper -->

@@ -44,14 +44,14 @@ define(function (require) {
         basePath: App.basePath,
       }));
 
-      this.loader = new LoaderView({
+      App.loader = new LoaderView({
         el: document.getElementById(App.id + '-loader'),
         basePath: App.basePath,
         imgPath: App.imgPath,
         imagesToPreload: App.imagesToPreload,
         callback: this.onAssetsLoaded.bind(this),
       });
-      this.loader.render().load();
+      App.loader.render().load();
 
       // console.log(App);
 
@@ -72,7 +72,7 @@ define(function (require) {
         // Refresh sizes AFTER rendering scenes
         this.onResize();
         this.setupEvents();
-        this.loader.remove();
+        App.loader.remove();
       }.bind(this), 500);
     },
 

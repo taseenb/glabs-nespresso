@@ -1,12 +1,60 @@
 .menu {
+  $mobile-menu-height: 35px;
+
   position:relative;
   width: 100%;
+  height: $mobile-menu-height + 8;
   top: 0;
   left: 0;
-  height: 30px;
-  background-color: red;
+  overflow: hidden;
+  font-size: 0;
+  z-index: 100;
 
-  .swiper-pagination {
-    bottom: auto;
+  .inner {
+    position:relative;
+    width: 100%;
+    height: $mobile-menu-height + 18px;
+    white-space: nowrap;
+    font-family: "Guardian Text Egyptian Web", Georgia, serif;
+    font-weight: 500;
+
+    overflow-y: hidden;
+    overflow-x: scroll; /* has to be scroll, not auto */
+    -webkit-overflow-scrolling: touch;
+
+    .item {
+      top: 0;
+      text-align: center;
+      position: relative;
+      height: $mobile-menu-height;
+      line-height: $mobile-menu-height + 4px;
+      display: inline-block;
+      font-size: 13px;
+      min-width: 60px;
+      padding: 0 18px;
+      cursor: pointer;
+
+      .underline {
+        opacity: 0;
+        font-size: 0;
+        content: ' ';
+        height: 2px;
+        width: 100%;
+        padding: 0 18px;
+        position: relative;
+        left: -18px;
+        display: block;
+        transition-duration: .66s;
+        transition-property: opacity;
+      }
+
+
+      &.active {
+        .underline {
+          opacity: 1;
+        }
+      }
+    }
   }
+
 }

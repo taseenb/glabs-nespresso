@@ -19,7 +19,9 @@ define(function (require) {
     App.info = require('./data/info');
 
     // Images path and images to preload
-    App.basePath = App.root;
+    // Make sure the base path uses the same protocol of the user's browser
+    App.basePath = App.root.replace('http:', window.location.protocol);
+    App.basePath.replace('https:', window.location.protocol);
     App.imgPath = 'images/';
     App.imagesToPreload = require('./data/images-to-preload');
 

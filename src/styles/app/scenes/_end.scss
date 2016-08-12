@@ -38,14 +38,14 @@
     }
 
     > img {
-      width: 29px;
+      width: 32px;
 
       @media #{$tablet-and-above} {
-        width: 32px;
+        width: 35px;
       }
 
       @media #{$above-tablet} {
-        width: 35px;
+        width: 39px;
       }
     }
   }

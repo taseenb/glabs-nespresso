@@ -39,8 +39,8 @@ define(function (require) {
       this.onResize();
 
       this.swiper = new Swiper(this.$swiperContainer, {
-        pagination: '.swiper-pagination',
-        paginationClickable: true,
+        // pagination: '.swiper-pagination',
+        // paginationClickable: true,
         // Disable preloading of all images
         // preloadImages: false,
         // Enable lazy loading
@@ -48,19 +48,30 @@ define(function (require) {
         spaceBetween: App.width * this.slideMargin,
         centeredSlides: true,
       });
+
+      this.swiper.on('slideChangeStart', this.onSlideChange.bind(this));
     },
 
-    // renderMenu: function () {
-    //   this.menu = new MenuView({
-    //     el: document.getElementById(App.id + '-menu'),
-    //     parentView: this,
-    //   });
-    //   this.menu.render();
-    //
-    //   setTimeout(function () {
-    //     this.menu.initMenuAutoUpdater();
-    //   }.bind(this), 500);
-    // },
+    onSlideChange: function(swiper) {
+      var idx = swiper.activeIndex;
+      this.$menuItems.removeClass('active').eq(idx).addClass('active');
+
+      this.scrollMenu(idx);
+    },
+
+    scrollMenu: function(idx) {
+      var $item = this.$menuItems.eq(idx);
+      var offset = $item[0].offsetLeft;
+      var itemWidth = $item.outerWidth();
+
+      var x = offset - App.width / 2 + itemWidth / 2;
+
+      // console.log(offset, x);
+
+      TweenMax.to(this.$menuInner, 0.5, {
+        scrollLeft: x,
+      });
+    },
 
     renderScenes: function () {
       this.scenes = [];
@@ -86,6 +97,10 @@ define(function (require) {
       this.$footer = this.$el.find('.footer');
 
       this.$swiperContainer = this.$app.find('.swiper-container');
+
+      this.$menu = this.$app.find('.menu');
+      this.$menuInner = this.$menu.find('.inner');
+      this.$menuItems = this.$menu.find('.item');
     },
 
     setupEvents: function () {
@@ -93,6 +108,27 @@ define(function (require) {
 
       this.$fbIcon.on(App.click, this.openFacebookPopup.bind(this));
       this.$twIcon.on(App.click, this.openTwitterPopup.bind(this));
+
+      this.$menuItems.on('click', this.onMenuClick.bind(this));
+    },
+
+    onMenuClick: function(e) {
+      var $item = $(e.currentTarget);
+      var idx = $item.data('idx');
+
+      if (this.swiper.activeIndex === idx) {
+        return;
+      }
+
+      // Active menu item
+      this.$menuItems.removeClass('active');
+      $item.addClass('active');
+
+      // Move to the right slide
+      this.swiper.slideTo(idx);
+
+      // Scroll menu to make the item visible
+      this.scrollMenu(idx);
     },
 
     openFacebookPopup: function () {
@@ -115,7 +151,6 @@ define(function (require) {
     },
 
     openTwitterPopup: function () {
-      // https://twitter.com/intent/tweet
       var text = App.info.twitterText;
       var pageUrl = App.info.pageUrl;
       var w = 520;

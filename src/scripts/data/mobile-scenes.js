@@ -62,7 +62,7 @@ define(function (require) {
     mobileData[i] = _.extend(data, originalData[idx]);
   });
 
-  console.log(mobileData);
+  // console.log(mobileData);
 
   return mobileData;
 

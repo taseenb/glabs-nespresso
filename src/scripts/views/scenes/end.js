@@ -34,11 +34,8 @@ define(function (require) {
     },
 
     render: function () {
-
       this.setupElements();
-
       this.renderScrollMagic();
-
       this.setupEvents();
 
       return this;
@@ -70,11 +67,6 @@ define(function (require) {
       // console.log(this.$tiles.length, this.$otherTiles.length);
       this.tilesCount = Math.floor(this.$tiles.length / 2);
 
-      // Landmark sizes
-      this.$landmarkImg = this.$landmark.find('.img');
-      this.originalLandmarkW = this.$landmarkImg[0].width;
-      this.originalLandmarkH = this.$landmarkImg[0].height;
-
       // Select fixed images
       if (this.images) {
         this.$images = [];
@@ -84,6 +76,12 @@ define(function (require) {
           this.$images.push($img);
         }.bind(this));
       }
+
+      // Landmark sizes
+      this.$landmarkImg = this.$landmark.find('.img');
+      this.$hiddenLandmarkImg = App.loader.$hiddenImages.find('.landmark').filter('.' + this.data.year);
+      this.originalLandmarkW = this.$hiddenLandmarkImg[0].width;
+      this.originalLandmarkH = this.$hiddenLandmarkImg[0].height;
     },
 
     setupEvents: function () {

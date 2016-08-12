@@ -90,8 +90,18 @@
 
     &.BiscuitsOnPlate_01 {
       top: 0;
-      left: 50%;
-      width: 27%;
+      left: 60%;
+      width: 20%;
+
+      @media #{$tablet-and-above} {
+        left: 55%;
+        width: 20%;
+      }
+
+      @media #{$above-tablet} {
+        left: 50%;
+        width: 27%;
+      }
     }
 
     &.NespressoCup_01_Left {

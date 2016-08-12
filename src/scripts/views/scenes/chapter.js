@@ -36,9 +36,7 @@ define(function (require) {
 
     render: function () {
       this.setupElements();
-
       this.renderScrollMagic();
-
       this.setupEvents();
 
       return this;
@@ -70,8 +68,9 @@ define(function (require) {
 
       // Landmark sizes
       this.$landmarkImg = this.$landmark.find('.img');
-      this.originalLandmarkW = this.$landmarkImg[0].width;
-      this.originalLandmarkH = this.$landmarkImg[0].height;
+      this.$hiddenLandmarkImg = App.loader.$hiddenImages.find('.landmark').filter('.' + this.data.year);
+      this.originalLandmarkW = this.$hiddenLandmarkImg[0].width;
+      this.originalLandmarkH = this.$hiddenLandmarkImg[0].height;
     },
 
     setupEvents: function () {
@@ -79,7 +78,10 @@ define(function (require) {
     },
 
     updateLandmark: function () {
-      this.landmarkSize = this.parentView.updateLandmarkSize(this.originalLandmarkW, this.originalLandmarkH);
+      var origW = this.originalLandmarkW;
+      var origH = this.originalLandmarkH;
+
+      this.landmarkSize = this.parentView.updateLandmarkSize(origW, origH);
       this.landmarkW = this.landmarkSize.width;
       this.landmarkH = this.landmarkSize.height;
       this.landmarkIsPortrait = this.landmarkSize.isPortrait;
@@ -170,7 +172,7 @@ define(function (require) {
         var tweens = [];
         this.images.forEach(function (img, i) {
           tweens.push(TweenMax.to(this.$images[i], img.duration, {
-            y: img.y ?  img.y * App.height : App.height,
+            y: img.y ? img.y * App.height : App.height,
           }));
         }.bind(this));
         var imgTl = new TimelineMax({

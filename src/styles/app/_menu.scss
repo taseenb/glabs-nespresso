@@ -1,10 +1,10 @@
 .menu {
-
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
   overflow: visible;
+  z-index: 1001;
 
   .inner {
     position: absolute;
@@ -21,10 +21,10 @@
       transition-property: transform;
       cursor: pointer;
       transform: translateX(70%);
-      padding: 3px 0 3px 30%;
-      margin-bottom: 8px;
-      font-size: 13px;
-      line-height: 13px;
+      padding: 2px 0 2px 30%;
+      margin-bottom: 6px;
+      font-size: 12px;
+      line-height: 12px;
       width: 50px;
       box-sizing: border-box;
 
@@ -34,6 +34,7 @@
         font-size: 14px;
         line-height: 14px;
         width: 60px;
+        margin-bottom: 7px;
       }
 
       @media #{$above-tablet} {
@@ -42,6 +43,7 @@
         font-size: 15px;
         line-height: 15px;
         width: 70px;
+        margin-bottom: 8px;
       }
 
       .year {

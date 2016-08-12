@@ -36,6 +36,7 @@ define(function (require) {
       type: 'chapter',
       chapter: true,
       year: 1000,
+      // yearCopy: 'pre 1000 ad',
       colour: '#e2c8a7',
       tileFrom: 'r',
       title: 'Or did it begin in the<br>cradle of mankind?',
@@ -49,7 +50,7 @@ define(function (require) {
             width: '25%',
           },
           x: 0,
-          y: 0.4,
+          y: 0.3,
           duration: longDuration,
         },
         {

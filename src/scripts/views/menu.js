@@ -175,14 +175,28 @@ define(function (require) {
     },
 
     onResize: function () {
-      // this.scrollHeight = $(App.el).outerHeight();
+      this.scrolling = true;
 
-      this.offsets = [];
-      var scenes = App.mainView.scenes;
-      scenes.forEach(function (sceneContainer) {
-        var scrollMagicScene = sceneContainer.sceneView.scene;
-        this.offsets.push(scrollMagicScene.scrollOffset());
-      }.bind(this));
+      setTimeout(function () {
+        this.offsets = [];
+        var scenes = App.mainView.scenes;
+        scenes.forEach(function (sceneContainer) {
+          var scrollMagicScene = sceneContainer.sceneView.scene;
+          this.offsets.push(scrollMagicScene.scrollOffset());
+        }.bind(this));
+
+        // this.$items.eq(this.currentIdx).trigger('click');
+
+        // Scroll to top
+        this.currentIdx = -1;
+        App.mainView.controller.scrollTo(0, {
+          duration: 0,
+          onComplete: function() {
+            this.scrolling = false;
+          }.bind(this)
+        });
+
+      }.bind(this), 250);
     },
 
   };

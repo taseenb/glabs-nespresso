@@ -25,7 +25,7 @@ gulp.task('clean-dist', del.bind(null, ['dist']));
 gulp.task('sass', function () {
   gulp.src('./src/styles/main.scss')
     .pipe($.sass().on('error', $.sass.logError))
-    .pipe($.autoprefixer({browsers: ['last 2 versions', 'ie >= 9']}))
+    .pipe($.autoprefixer({browsers: ['last 10 versions', 'ie >= 9']}))
     .pipe($.replace("url(\"//", "url(\"http://"))
     .pipe($.replace("url(../", "url(" + settings.root[options.env]))
     .pipe($.minifyCss())
