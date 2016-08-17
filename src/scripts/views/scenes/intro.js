@@ -19,7 +19,7 @@ define(function (require) {
     initialize: function () {
       this.id = this.options.id;
       this.controller = this.options.controller;
-      this.duration = '600%'; // App.height * 5;
+      this.duration = '800%'; // App.height * 5;
       this.parentView = this.options.parentView;
       this.data = this.options.data;
 
@@ -190,6 +190,8 @@ define(function (require) {
 
       tl.to(this.el, 0, {css: {className: '+=dark'}});
 
+      var tilesX = [];
+
       this.$tiles.each(function (i, tile) {
         var obj;
 
@@ -203,17 +205,50 @@ define(function (require) {
         } else {
           var screenW = App.width - this.tileSize * 1.5;
           var screenH = App.height - this.tileSize * 1.5;
+          var tileX = -(screenW / 2) + Math.random() * screenW;
           obj = {
-            x: -(screenW / 2) + Math.random() * screenW,
+            x: tileX,
             y: Math.random() * screenH,
             rotation: (Math.random() > 0.5 ? -1 : 1) * Math.random() * 4,
             ease: Back.easeOut,
           };
+
+          tilesX.push(tileX);
         }
+
         tl.to(tile, 1, obj, '-=0.96');
       }.bind(this));
 
-      tl.staggerTo(this.$tiles.not(this.$introTile), 2, {y: App.height * 1.5, rotation: 0}, -0.3);
+      // Move tiles off screen in all direction (except top)
+      this.$tiles.not(this.$introTile).each(function (i, tile) {
+        var s = this.tileSize * Math.random();
+        var x = App.width + Math.random() * this.tileSize / 2;
+        var y = -s / 2 + this.tileSize;
+        var duration = 2.5;
+        var pos = i > 0 ? '-=2' : null;
+
+        // console.log(tilesX[i]);
+
+        if (tilesX[i] < -this.tileSize * 0.5) {
+          x = -x;
+        } else if (tilesX[i] > this.tileSize * 0.5) {
+          // x = x;
+        } else {
+          x = -s + this.tileSize;
+          y = App.height;
+        }
+
+        var obj = {
+          x: '+=' + x,
+          y: '+=' + y,
+          rotation: 0,
+          ease: Back.easeIn,
+        };
+
+        tl.to(tile, duration, obj, pos);
+      }.bind(this));
+
+      // tl.staggerTo(this.$tiles.not(this.$introTile), 2, {y: App.height * 1.5, rotation: 0}, -0.3);
 
       tl.set(this.$tiles.not(this.$introTile), {display: 'none'});
 
