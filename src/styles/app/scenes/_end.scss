@@ -39,13 +39,16 @@
 
     > img {
       width: 32px;
+      height: 32px;
 
       @media #{$tablet-and-above} {
         width: 35px;
+        height: 35px;
       }
 
       @media #{$above-tablet} {
         width: 39px;
+        height: 39px;
       }
     }
   }
