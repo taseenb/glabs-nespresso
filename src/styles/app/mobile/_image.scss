@@ -1,14 +1,12 @@
 .img-wrapper {
   position: relative;
   top: -8px;
+  left: 0;
   overflow: visible;
   width: 100%;
 
   .img {
     position: relative;
-    //width: 150%;
-    //left: -25%;
-    //right: -25%;
     z-index: 100;
 
     @media all and (orientation: portrait) {
@@ -17,10 +15,22 @@
       right: -25%;
     }
 
+    @media #{$tablet} and (orientation: portrait) {
+      width: 86%;
+      left: 0;
+      right: 0;
+    }
+
     @media all and (orientation: landscape) {
       width: 80%;
       left: 10%;
       right: 10%;
+    }
+
+    @media #{$tablet} and (orientation: landscape) {
+      width: 50%;
+      left: 0;
+      right: 0;
     }
 
   }
@@ -38,10 +48,20 @@
       top: 10%;
     }
 
+    @media #{$tablet} and (orientation: portrait) {
+      width: 66%;
+      max-width: 320px;
+      top: 10%;
+    }
+
     @media all and (orientation: landscape) {
       width: 50%;
       max-width: 320px;
       top: 5%;
+    }
+
+    @media #{$tablet} and (orientation: landscape) {
+
     }
 
   }

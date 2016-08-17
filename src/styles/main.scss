@@ -17,6 +17,11 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 @include guss-webfonts('Guardian Text Egyptian Web');
 @include guss-typography-defaults;
 
+.element-interactive {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 .js-on.is-modern .content--interactive .element-interactive {
   background: none;
 }
@@ -35,7 +40,7 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
   width: 100%;
   font-family: 'Guardian Text Sans Web', sans-serif;
   color: white;
-  background-image: url('#{$img-path}Background02.jpg');
+  background-attachment: fixed;
 
   a,
   a:active,

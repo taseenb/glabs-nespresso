@@ -97,6 +97,8 @@ define(function (require) {
 
       TweenMax.set(this.$body, {
         height: h + 'px',
+        y: '-50%',
+        x: '-50%',
       });
       TweenMax.set(this.$tile, {
         x: tileDir * App.width,

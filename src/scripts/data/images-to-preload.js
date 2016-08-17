@@ -6,24 +6,24 @@ define(function (require) {
     'loader.svg',
 
     // JPEGS
-    'pngs/BowlBeans_01.jpg',
-    'pngs/Grinder02.jpg',
-    'pngs/BiscuitsBowl_01.jpg',
-    'pngs/RawBeans01.jpg',
+    // 'pngs/BowlBeans_01.jpg',
+    // 'pngs/Grinder02.jpg',
+    // 'pngs/BiscuitsBowl_01.jpg',
+    // 'pngs/RawBeans01.jpg',
 
     // PNGS
     'pngs/Beans01.png',
     'pngs/Beans02.png',
     'pngs/Biscuits_01.png',
     'pngs/Biscuits_02_Single.png',
-    // 'pngs/BiscuitsBowl_01.png', // too heavy
+    'pngs/BiscuitsBowl_01.png', // too heavy
     'pngs/BiscuitsOnPlate_01.png',
-    // 'pngs/BowlBeans_01.png', // too heavy
+    'pngs/BowlBeans_01.png', // too heavy
     'pngs/BowlBeans02.png',
     'pngs/BowlBeans03.png',
     'pngs/Cafeterie_02.png',
     'pngs/Choclate_01.png',
-    // 'pngs/Grinder02.png', // too heavy
+    'pngs/Grinder02.png', // too heavy
     'pngs/GroundCoffee01.png',
     'pngs/GroundCoffee02.png',
     'pngs/Machine_02.png',
@@ -33,7 +33,7 @@ define(function (require) {
     'pngs/NespressoCup_01_Left.png',
     'pngs/NespressoCup_01_Right.png',
     'pngs/Pods_01.png',
-    // 'pngs/RawBeans01.png', // too heavy
+    'pngs/RawBeans01.png', // too heavy
     'pngs/SugarBowl_01.png',
     'pngs/TeaPot_01.png',
 

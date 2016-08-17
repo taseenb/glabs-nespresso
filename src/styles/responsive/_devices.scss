@@ -1,7 +1,6 @@
 //$below-tablet: 'only screen and (max-width : #{$tabletMinWidth}-1px), only screen and (max-height : #{$tabletMinHeight}-1px)';
 $tablet-and-above: 'only screen and (min-width : #{$tabletMinWidth}) and (min-height : #{$tabletMinHeight})';
 $above-tablet: 'only screen and (min-width : #{$desktopMinWidth}) and (min-height : #{$tabletMinHeight})';
-
 $landscape-phone: 'only screen and (max-height : #{$tabletMinHeight - 1}) and (orientation: landscape)';
 $iphone4: 'only screen and (max-width : #{$iphone4MaxSize}) and (max-height : #{$iphone4MaxSize})';
 

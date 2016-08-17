@@ -12,6 +12,8 @@ define(function (require) {
   // Vendor
   var Swiper = require('swiper');
 
+  var GAView = require('../views/google-analytics');
+
 
   function View(options) {
     this.options = options;
@@ -27,11 +29,17 @@ define(function (require) {
     },
 
     render: function () {
-      this.$el.html(tpl({
-        id: App.id,
-        basePath: App.basePath,
-        scenes: scenesData,
-      }));
+      this.$el
+        .html(tpl({
+          id: App.id,
+          basePath: App.basePath,
+          scenes: scenesData,
+        }))
+        .css({
+          backgroundImage: 'url(' + App.basePath + App.imgPath + 'Background02.jpg)',
+        });
+
+      this.renderGoogleAnalytics();
 
       this.setupElements();
       this.setupEvents();
@@ -42,7 +50,7 @@ define(function (require) {
         // pagination: '.swiper-pagination',
         // paginationClickable: true,
         // Disable preloading of all images
-        // preloadImages: false,
+        preloadImages: false,
         // Enable lazy loading
         // lazyLoading: true,
         spaceBetween: App.width * this.slideMargin,
@@ -52,14 +60,32 @@ define(function (require) {
       this.swiper.on('slideChangeStart', this.onSlideChange.bind(this));
     },
 
-    onSlideChange: function(swiper) {
-      var idx = swiper.activeIndex;
-      this.$menuItems.removeClass('active').eq(idx).addClass('active');
-
-      this.scrollMenu(idx);
+    renderGoogleAnalytics: function () {
+      this.ga = new GAView({
+        el: document.getElementById(App.id + '-ga'),
+        id: App.info.googleAnalyticsId,
+      });
+      this.ga.render();
     },
 
-    scrollMenu: function(idx) {
+    onSlideChange: function (swiper) {
+      var idx = swiper.activeIndex;
+      this.$menuItems.removeClass('active');
+      var $item = this.$menuItems.eq(idx);
+      $item.addClass('active');
+
+      this.scrollMenu(idx);
+
+      // Google analytics event
+      window.ga('send', {
+        'hitType': 'event',          // Required.
+        'eventCategory': 'mobile-slides',   // Required.
+        'eventAction': 'swipe',      // Required.
+        'eventLabel': $item.data('year'),
+      });
+    },
+
+    scrollMenu: function (idx) {
       var $item = this.$menuItems.eq(idx);
       var offset = $item[0].offsetLeft;
       var itemWidth = $item.outerWidth();
@@ -71,14 +97,6 @@ define(function (require) {
       TweenMax.to(this.$menuInner, 0.5, {
         scrollLeft: x,
       });
-    },
-
-    renderScenes: function () {
-      this.scenes = [];
-
-      scenesData.forEach(function (s) {
-
-      }.bind(this));
     },
 
     renderGoogleAnalytics: function () {
@@ -106,13 +124,13 @@ define(function (require) {
     setupEvents: function () {
       App.mediator.subscribe('resize', this.onResize.bind(this));
 
-      this.$fbIcon.on(App.click, this.openFacebookPopup.bind(this));
-      this.$twIcon.on(App.click, this.openTwitterPopup.bind(this));
+      this.$fbIcon.on('click', this.openFacebookPopup.bind(this));
+      this.$twIcon.on('click', this.openTwitterPopup.bind(this));
 
       this.$menuItems.on('click', this.onMenuClick.bind(this));
     },
 
-    onMenuClick: function(e) {
+    onMenuClick: function (e) {
       var $item = $(e.currentTarget);
       var idx = $item.data('idx');
 
@@ -129,6 +147,14 @@ define(function (require) {
 
       // Scroll menu to make the item visible
       this.scrollMenu(idx);
+
+      // Google analytics event
+      window.ga('send', {
+        'hitType': 'event',          // Required.
+        'eventCategory': 'menu',   // Required.
+        'eventAction': 'click',      // Required.
+        'eventLabel': $item.data('year'),
+      });
     },
 
     openFacebookPopup: function () {

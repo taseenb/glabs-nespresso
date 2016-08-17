@@ -22,6 +22,8 @@ define(function (require) {
       this.callback = this.options.callback;
       this.imagesToPreload = this.options.imagesToPreload;
 
+      // this.$html = $('html');
+
       this.$body = $('body');
     },
 
@@ -32,13 +34,26 @@ define(function (require) {
         imagesToPreload: this.getImagesToPreload() || [],
       }));
 
+      this.onResize();
+
       this.setupElements();
       this.setupEvents();
 
       return this;
     },
 
+    setupElements: function () {
+      this.$hiddenImages = this.$el.find('.hidden-images');
+      this.$progress = this.$el.find('.progress');
+    },
+
+    setupEvents: function () {
+      App.mediator.subscribe('resize', this.onResize.bind(this));
+    },
+
     load: function () {
+      // this.$html.css('overflow', 'hidden');
+
       var loader = imagesLoaded(this.$hiddenImages, this.onLoaded.bind(this));
       loader.on('progress', this.onProgress.bind(this));
 
@@ -49,16 +64,19 @@ define(function (require) {
       var percent = (e.progressedCount / e.images.length) * 100;
 
       TweenMax.set(this.$progress, {
-        x: -(100 - percent) + '%',
+        // x: -(100 - percent) + '%',
+        width: ~~percent + '%'
       });
     },
 
     onLoaded: function(e) {
       TweenMax.to(this.$progress, 0.2, {
-        x: 0,
+        // x: 0,
+        width: '100%',
         onComplete: function() {
           if (_.isFunction(this.callback)) {
             this.callback();
+            // this.$html.css('overflow', '');
           }
         }.bind(this),
       });
@@ -75,15 +93,6 @@ define(function (require) {
           that.$el.hide();
         },
       });
-    },
-
-    setupElements: function () {
-      this.$hiddenImages = this.$el.find('.hidden-images');
-      this.$progress = this.$el.find('.progress');
-    },
-
-    setupEvents: function () {
-
     },
 
     getImagesToPreload: function() {
@@ -104,6 +113,12 @@ define(function (require) {
       s = s.replace('/', ' ');
 
       return s;
+    },
+
+    onResize: function() {
+      this.$el.height(App.height - App.guardianHeader);
+
+      // console.log(App.height - App.guardianHeader);
     },
 
   };

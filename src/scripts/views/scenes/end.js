@@ -85,7 +85,16 @@ define(function (require) {
     },
 
     setupEvents: function () {
+      this.$link.on('click', function() {
+        console.log('click');
 
+        window.ga('send', {
+          'hitType': 'event',          // Required.
+          'eventCategory': 'link',   // Required.
+          'eventAction': 'click',      // Required.
+          //'eventLabel': $target.data('year'),
+        });
+      });
     },
 
     renderScrollMagic: function () {
@@ -127,6 +136,8 @@ define(function (require) {
       });
       TweenMax.set(this.$body, {
         height: h + 'px',
+        y: '-50%',
+        x: '-50%',
       });
       TweenMax.set(this.$landmark, {
         x: -1 * tileDir * App.width,

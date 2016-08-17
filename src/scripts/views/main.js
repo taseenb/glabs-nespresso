@@ -39,10 +39,18 @@ define(function (require) {
     },
 
     render: function () {
-      this.$el.html(tpl({
-        id: App.id,
-        basePath: App.basePath,
-      }));
+
+      App.guardianHeader = this.$el.offset().top;
+
+      this.$el
+        .html(tpl({
+          id: App.id,
+          basePath: App.basePath,
+        }))
+        .css({
+          backgroundImage: 'url(' + App.basePath + App.imgPath + 'Background02.jpg)',
+          height: App.height - App.guardianHeader,
+        });
 
       App.loader = new LoaderView({
         el: document.getElementById(App.id + '-loader'),
@@ -51,9 +59,11 @@ define(function (require) {
         imagesToPreload: App.imagesToPreload,
         callback: this.onAssetsLoaded.bind(this),
       });
-      App.loader.render().load();
+      App.loader.render();
 
-      // console.log(App);
+      setTimeout(function () {
+        App.loader.load();
+      }.bind(this), 250);
 
       this.setupElements();
     },
@@ -65,7 +75,7 @@ define(function (require) {
       // Refresh sizes BEFORE rendering scenes
       this.onResize();
       this.renderScenes();
-      // this.renderGoogleAnalytics();
+      this.renderGoogleAnalytics();
 
       setTimeout(function () {
         this.renderMenu();
@@ -73,6 +83,8 @@ define(function (require) {
         this.onResize();
         this.setupEvents();
         App.loader.remove();
+
+        this.$el.css('height', '');
       }.bind(this), 500);
     },
 
@@ -112,17 +124,19 @@ define(function (require) {
     },
 
     renderGoogleAnalytics: function () {
-      var ga = new GAView({
+      this.ga = new GAView({
         el: document.getElementById(App.id + '-ga'),
         id: App.info.googleAnalyticsId,
       });
-      ga.render();
+      this.ga.render();
     },
 
     setupElements: function () {
       this.$app = this.$el.find('.app');
       this.$fbIcon = this.$el.find('.fb-icon');
       this.$twIcon = this.$el.find('.tw-icon');
+
+      this.$nespressoLogo = this.$el.find('.nespresso-logo');
     },
 
     setupEvents: function () {
@@ -165,7 +179,7 @@ define(function (require) {
       this.openPopup('https://twitter.com/intent/tweet' + args, w, h);
     },
 
-    openPopup: function(content, w, h) {
+    openPopup: function (content, w, h) {
       var top = (screen.height / 2) - (h / 2);
       var left = (screen.width / 2) - (w / 2);
       window.open(content, '', 'top=' + top + ',left=' + left + ',toolbar=0,status=0,width=' + w + ',height=' + h);
@@ -173,9 +187,13 @@ define(function (require) {
 
     onResize: function () {
       App.container = {
-        width: this.$el.width(),
-        height: this.$el.height(),
+        width: this.$app.width(),
+        height: this.$app.height(),
       };
+
+      App.guardianHeader = this.$el.offset().top;
+
+      // console.log(App.container.width, App.width, App.height); //
 
       if (this.scenes) {
         this.scenes.forEach(function (s) {

@@ -4,7 +4,7 @@
         <div class="inner">
 
             <div class="item active" style="background-color: white; color: #333;" data-idx="0">
-                Home
+                Begin
                 <div class="underline" style="background-color: white;"></div>
             </div>
 
@@ -35,7 +35,7 @@
                     <div class="img-wrapper">
 
                         {{#if intro}}
-                            <img class="logo-app" src="{{{basePath}}}images/logo-app.png">
+                            <img class="logo-app" src="{{{../../basePath}}}images/logo-app.png">
                         {{/if}}
 
                         <img src="{{{../basePath}}}images/mobile/{{{mobileImg}}}" class="swiper-lazy img">
@@ -51,6 +51,20 @@
                             {{else}}
                                 {{copy}}
                             {{/if}}
+
+                            <div class="social">
+                                <img class="fb-icon" src="{{{../basePath}}}images/facebook-icon.svg">
+                                <img class="tw-icon" src="{{{../basePath}}}images/twitter-icon.svg">
+                            </div>
+
+                            {{#if end}}
+                                <a class="link" href="https://www.theguardian.com/discover-nespresso">
+                                    Become a<br>
+                                    coffee connoisseur<br>
+                                    <img src="{{{basePath}}}images/link-icon.svg">
+                                </a>
+                            {{/if}}
+
                         </div>
 
                     </div>
@@ -63,8 +77,8 @@
 
 
     <div class="footer">
-        <img class="img portrait-only" src="{{{../basePath}}}images/mobile/footer.jpg">
-        <img class="img landscape-only" src="{{{../basePath}}}images/mobile/footer-landscape.jpg">
+        <img class="img portrait-only" src="{{{basePath}}}images/mobile/footer.jpg">
+        <img class="img landscape-only" src="{{{basePath}}}images/mobile/footer-landscape.jpg">
     </div>
 
 </div>

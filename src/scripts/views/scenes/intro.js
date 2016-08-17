@@ -127,15 +127,27 @@ define(function (require) {
       });
       this.tileSize = this.$introTile.width();
       var h = this.landmarkH * 1.1;
+      this.tilesY = App.height * 0.5 - this.tileSize * 0.5;
+
+      // console.log(this.tileSize);
 
       // TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
-      TweenMax.set(this.$body, {height: h + 'px'});
+      TweenMax.set(this.$body, {
+        height: h + 'px',
+        x: '-50%',
+        y: App.height * 0.5 - h / 2,
+      });
       TweenMax.set(this.$title, {y: 20, opacity: 0, top: -this.$title.height(),});
       TweenMax.set(this.$text, {y: -20, opacity: 0, bottom: -this.$text.height()});
       TweenMax.set(this.$landmark, {x: App.width, y: '-50%', opacity: 1});
-      TweenMax.set(this.$tiles, {x: 0, y: 0, rotation: 0});
       TweenMax.set(this.$imagesWrapper, {x: '0%', y: '0%'});
-      TweenMax.set(this.$imagesWrapper, {x: '-36%', y: '10%'});
+      TweenMax.set(this.$imagesWrapper, {x: '-36%', y: '0%'});
+
+      TweenMax.set(this.$tiles, {x: 0, y: this.tilesY, rotation: 0});
+      TweenMax.set(this.$NespressoCup_01_Left, {y: App.height * 0.14});
+      TweenMax.set(this.$rightCup, {y: App.height * 0.25});
+      TweenMax.set(this.$BiscuitsOnPlate_01, {y: 0});
+
 
       // Place fixed images
       if (this.images) {
@@ -151,14 +163,14 @@ define(function (require) {
       TweenMax.to(this.$randomTile1, 0.66, {
         rotation: -5 + Math.random() * -5,
         x: Math.random() * -10,
-        y: Math.random() * 10,
+        y: this.tilesY + Math.random() * 10,
         ease: Back.easeOut,
       });
       TweenMax.to(this.$randomTile2, 0.66, {
         delay: 0.1,
         rotation: 5 + Math.random() * 5,
         x: Math.random() * 10,
-        y: Math.random() * -10,
+        y: this.tilesY + Math.random() * -10,
         ease: Back.easeOut,
       });
     },
@@ -167,14 +179,11 @@ define(function (require) {
       this.tl = new TimelineMax();
       var tl = this.tl;
 
-      tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 1, {y: -App.height});
+      tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 3, {y: -App.height});
 
-      tl.to(this.$scrollIcon, 1, {opacity: 0});
+      tl.to(this.$scrollIcon, 1, {opacity: 0}, '-=1');
 
       tl.to(this.$introText, 1, {y: -20, opacity: 0}, '-=1');
-      // tl.to(this.$introText1, 1, {y: -20, opacity: 0}, '-=1');
-      // tl.to(this.$introText2, 1, {y: 0, opacity: 1}, '-=0.3');
-      // tl.to(this.$introText2, 1, {y: -20, opacity: 0}, '+=0.5');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
 
       tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
@@ -187,7 +196,7 @@ define(function (require) {
         if (tile.id === 'tile-BC') {
           obj = {
             x: 0,
-            y: 0,
+            y: this.tilesY, // App.height * 0.5,
             zIndex: 50,
             ease: Back.easeOut,
           };
@@ -196,7 +205,7 @@ define(function (require) {
           var screenH = App.height - this.tileSize * 1.5;
           obj = {
             x: -(screenW / 2) + Math.random() * screenW,
-            y: -(screenH / 2) + Math.random() * screenH,
+            y: Math.random() * screenH,
             rotation: (Math.random() > 0.5 ? -1 : 1) * Math.random() * 4,
             ease: Back.easeOut,
           };
@@ -204,7 +213,7 @@ define(function (require) {
         tl.to(tile, 1, obj, '-=0.96');
       }.bind(this));
 
-      tl.staggerTo(this.$tiles.not(this.$introTile), 2, {y: App.height, rotation: 0}, -0.3);
+      tl.staggerTo(this.$tiles.not(this.$introTile), 2, {y: App.height * 1.5, rotation: 0}, -0.3);
 
       tl.set(this.$tiles.not(this.$introTile), {display: 'none'});
 
@@ -278,6 +287,8 @@ define(function (require) {
     },
 
     createScrollMagicScenes: function () {
+      // var guardianHeaderHeight = App.guardianHeader;
+
       this.scene = new ScrollMagic.Scene({
         triggerElement: this.el,
         duration: this.duration,
@@ -288,17 +299,13 @@ define(function (require) {
         .setPin(this.el)
         .setTween(this.tl)
         .addTo(this.controller);
-
-      // this.scene.on('leave', function() {
-      //   App.mainView.hideScrollIcon();
-      // }.bind(this));
-      //
-      // this.scene.on('enter', function() {
-      //   App.mainView.showScrollIcon();
-      // }.bind(this));
     },
 
     onResize: function () {
+      // console.log(this.$el.offset().top);
+
+      this.$el.height(App.height);
+
       this.scene.destroy(true);
       this.renderScrollMagic();
     },

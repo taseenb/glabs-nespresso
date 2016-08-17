@@ -19,7 +19,6 @@ define(function (require) {
       images: [
         {
           src: 'BowlBeans_01',
-          ext: 'jpg',
           css: {
             top: 0,
             left: 0,
@@ -181,7 +180,7 @@ define(function (require) {
         },
         {
           src: 'RawBeans01',
-          ext: 'jpg',
+          // ext: 'jpg',
           css: {
             top: 0,
             right: 0,
@@ -239,7 +238,7 @@ define(function (require) {
       images: [
         {
           src: 'BiscuitsBowl_01',
-          ext: 'jpg',
+          // ext: 'jpg',
           css: {
             top: 0,
             left: 0,
@@ -326,13 +325,12 @@ define(function (require) {
       year: 1773,
       colour: '#d3605b',
       tileFrom: 'l',
-      contentTpl: require('hbs!../tpl/scenes/chapters/9'),
       title: '...While in America<br>coffee topples tea',
       copy: 'Conversely, America rejects tea when colonists protest against King George’s taxes by dumping a whole shipment overboard into the Boston harbor. This became known as the Boston Tea Party, from which the right wing of the Republican party derives its name, and was a key moment in the American revolution. Henceforth, coffee, not tea, would be integral to the American way.',
       images: [
         {
           src: 'Grinder02',
-          ext: 'jpg',
+          // ext: 'jpg',
           css: {
             top: 0,
             right: 0,
@@ -351,7 +349,6 @@ define(function (require) {
       year: 1822,
       colour: '#e3cc6f',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/10'),
       title: 'The black nectar meets<br>the Age of Steam...',
       copy: 'Just as steam powered the Industrial Revolution, it also perked up the world’s coffee habits. Frenchman Louis Bernard Rabaut was perhaps the first to develop a machine that would make coffee more quickly by using steam to force hot water through grounds. This is the forerunner of the black nectar we now know as espresso.',
       images: [
@@ -375,7 +372,6 @@ define(function (require) {
       year: 1938,
       colour: '#1c9689',
       tileFrom: 'r',
-      contentTpl: require('hbs!../tpl/scenes/chapters/11'),
       title: '...And joins the Age<br>of Gadgets with Gaggia',
       copy: 'Achille Gaggia applies for a patent for the first modern steamless coffee machine. His revolutionary piston mechanism forced water through the coffee grounds at high pressure, producing the crema that is unique to espresso. It took only 15 seconds to make a single “shot” of espresso.',
       images: [
@@ -406,12 +402,12 @@ define(function (require) {
           src: 'Pods_01',
           css: {
             top: 0,
-            right: '10%',
+            right: '5%',
             width: 'auto',
             height: '55%',
           },
           x: '0%',
-          y: -0.1,
+          y: 0.2,
           duration: normalDuration,
         },
       ],

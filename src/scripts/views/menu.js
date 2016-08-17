@@ -3,7 +3,9 @@ define(function (require) {
   var $ = require('jquery');
   var _ = require('underscore');
   var App = require('global');
+  var TimelineMax = require('TimelineMax');
   var TweenMax = require('TweenMax');
+  var ScrollMagic = require('ScrollMagic');
 
   // Data
   var scenesData = require('../data/scenes');
@@ -40,6 +42,8 @@ define(function (require) {
         });
       });
 
+      // this.visible = false;
+
       // console.log(App.mainView.controller);
     },
 
@@ -52,7 +56,25 @@ define(function (require) {
       this.setupElements();
       this.setupEvents();
 
+      this.createScrollMagicScene();
+
       return this;
+    },
+
+    createScrollMagicScene: function () {
+      var tl = new TimelineMax();
+      tl.to(this.el, 0.2, {opacity: 1});
+      tl.to(App.mainView.$nespressoLogo, 0.2, {opacity: 1}, '-=0.2');
+
+      this.scene = new ScrollMagic.Scene({
+        triggerElement: App.mainView.el,
+        offset: 0,
+        triggerHook: 0,
+      })
+        // .addIndicators()
+        // .setPin(this.el)
+        .setTween(tl)
+        .addTo(App.mainView.controller);
     },
 
     /**
@@ -74,18 +96,22 @@ define(function (require) {
     },
 
     onClick: function (e) {
-      var idx = $(e.currentTarget).data('idx');
+      var $target = $(e.currentTarget);
+      var idx = $target.data('idx');
       var isIntro = parseInt(idx, 10) === -1;
 
       // console.log(isIntro);
 
-      if (idx === this.currentIdx) {
-        return;
-      } else {
-        // this.$items.removeClass('active');
-        var itemIdx = isIntro ? 0 : idx + 1;
-        this.$items.removeClass('active').eq(itemIdx).addClass('active');
-      }
+      // if (idx === this.currentIdx) {
+      //   return;
+      // } else {
+      //   // this.$items.removeClass('active');
+      //   var itemIdx = isIntro ? 0 : idx + 1;
+      //   this.$items.removeClass('active').eq(itemIdx).addClass('active');
+      // }
+
+      var itemIdx = isIntro ? 0 : idx + 1;
+      this.$items.removeClass('active').eq(itemIdx).addClass('active');
 
       this.scrolling = true;
 
@@ -95,6 +121,8 @@ define(function (require) {
         var sceneContainer = App.mainView.scenes[idx];
         var scrollMagicScene = sceneContainer.sceneView.scene;
         scrollY = this.getScrollY(scrollMagicScene, idx);
+      } else {
+        scrollY = App.guardianHeader;
       }
 
       var scrollHeight = $(App.el).height();
@@ -103,17 +131,30 @@ define(function (require) {
       var currentScrollY = App.mainView.controller.scrollPos();
       var distance = Math.abs(currentScrollY - scrollY);
       var normalizedDistance = distance / scrollHeight;
-      var duration = maxDuration * normalizedDistance;
-      duration = duration < minDuration ? minDuration : duration;
+      // var duration = maxDuration * normalizedDistance;
+      // duration = duration < minDuration ? minDuration : duration;
 
       // console.log(duration);
 
       App.mainView.controller.scrollTo(scrollY, {
-        duration: duration,
+        duration: 0, //duration,
         onComplete: this.onScrollComplete.bind(this),
       });
 
-      this.currentIdx = isIntro ? -1 : idx;
+      // Update Google Analytics (send)
+      if (idx !== this.currentIdx) {
+        console.log($target.data('year'));
+
+        window.ga('send', {
+          'hitType': 'event',          // Required.
+          'eventCategory': 'menu',   // Required.
+          'eventAction': 'click',      // Required.
+          'eventLabel': $target.data('year'),
+        });
+      }
+
+      // Update currentIdx
+      this.currentIdx = parseInt(idx, 10); // isIntro ? -1 : idx;
     },
 
     getCurrentSceneIdx: function (y) {
@@ -139,23 +180,42 @@ define(function (require) {
         if (scrollPosition < introScene.duration() * 0.45) {
           itemIdx = 0;
         }
-
       }
 
-      this.$items.removeClass('active').eq(itemIdx).addClass('active');
+      this.$items.removeClass('active');
+      var $target = this.$items.eq(itemIdx);
+      $target.addClass('active');
+
+      // Update Google Analytics (send)
+      if (idx !== this.currentIdx) {
+        console.log($target.data('year'));
+
+        window.ga('send', {
+          'hitType': 'event',          // Required.
+          'eventCategory': 'page',   // Required.
+          'eventAction': 'scroll',      // Required.
+          'eventLabel': $target.data('year'),
+        });
+      }
+
+      // Update currentIdx
+      this.currentIdx = parseInt(idx, 10);
     },
 
     getScrollY: function (scrollMagicScene, idx) {
+      var scrollY;
       var scrollOffset = scrollMagicScene.scrollOffset();
       var sceneDuration = scrollMagicScene.duration() - 20;
 
-      // If it's the last scene, don't go to the end
-      // Get the position of the landmark composition
       if (idx + 1 === this.itemsCount - 1) {
+        // If it's the last scene, don't go to the end
+        // Get the position of the landmark composition
         sceneDuration = scrollMagicScene.duration() * 0.29;
       }
 
-      return scrollOffset + sceneDuration;
+      scrollY = scrollOffset + sceneDuration;
+
+      return scrollY;
     },
 
     onScrollComplete: function () {

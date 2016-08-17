@@ -1,5 +1,6 @@
 .menu {
   $mobile-menu-height: 35px;
+  $tablet-menu-height: 45px;
 
   position:relative;
   width: 100%;
@@ -10,13 +11,21 @@
   font-size: 0;
   z-index: 100;
 
+  @media #{$tablet} {
+    height: $tablet-menu-height + 8;
+  }
+
   .inner {
     position:relative;
     width: 100%;
-    height: $mobile-menu-height + 18px;
     white-space: nowrap;
     font-family: "Guardian Text Egyptian Web", Georgia, serif;
     font-weight: 500;
+    height: $mobile-menu-height + 18px;
+
+    @media #{$tablet} {
+      height: $tablet-menu-height + 18px;
+    }
 
     overflow-y: hidden;
     overflow-x: scroll; /* has to be scroll, not auto */
@@ -33,6 +42,12 @@
       min-width: 60px;
       padding: 0 18px;
       cursor: pointer;
+
+      @media #{$tablet} {
+        height: $tablet-menu-height;
+        line-height: $tablet-menu-height + 4px;
+        font-size: 15px;
+      }
 
       .underline {
         opacity: 0;

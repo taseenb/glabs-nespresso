@@ -22,6 +22,8 @@ define(function (require) {
       this.$el.html(tpl({
         id: this.id,
       }));
+
+      return this;
     },
 
   };

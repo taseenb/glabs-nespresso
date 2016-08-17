@@ -12,6 +12,8 @@
     top: 0;
     right: 0;
     padding: 10px $page-margin-x;
+    opacity: 0;
+    pointer-events: none;
 
     .copy {
       color: white;

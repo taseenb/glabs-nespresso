@@ -8,7 +8,7 @@ define(function (require) {
   var Resize = require('./events/resize');
 
   // Blast
-  require('blast-text');
+  // require('blast-text');
 
   // Initialize
   function initialize(el, root) {
@@ -33,9 +33,11 @@ define(function (require) {
     resize.onResize();
 
     // Support - Device
-    App.isTouch = 'ontouchstart' in window;
-    App.isPhone = App.isTouch && (App.width < 740 || App.height < 740);
+    App.isTouch = ('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch;
+    App.isPhone = App.isTouch && (App.width <= 1024 && App.height <= 1024);
     App.click = App.isTouch ? 'touchstart' : 'click';
+
+    // console.log(App.isTouch);
 
     // App ID - Set an unique name here
     App.id = 'nespresso-interactive';

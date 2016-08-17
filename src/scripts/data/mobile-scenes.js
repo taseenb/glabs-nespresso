@@ -50,6 +50,7 @@ define(function (require) {
       mobileImg: '_0013_14.jpg',
     },
     {
+      end: true,
       mobileImg: '_0014_15.jpg',
     },
   ];
