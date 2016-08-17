@@ -97,16 +97,20 @@ define(function (require) {
 
       TweenMax.set(this.$body, {
         height: h + 'px',
-        y: '-50%',
+        top: 0,
+        y: App.height / 2 - h / 2, // '-50%',
         x: '-50%',
       });
       TweenMax.set(this.$tile, {
+        top: '-50%',
+        y: App.height / 2 - this.tileSize / 2,
         x: tileDir * App.width,
         rotation: tileRot
       });
       TweenMax.set(this.$landmark, {
         x: -1 * tileDir * App.width,
-        y: '-50%',
+        y: App.height / 2 - this.landmarkH / 2, // '-50%',
+        top: 0,
         opacity: 1,
         width: this.landmarkW + 'px',
         height: this.landmarkH + 'px',
@@ -163,7 +167,7 @@ define(function (require) {
 
       tl.to(this.$landmark, 1, {
         x: landmarkX,
-        y: '-50%',
+        // y: '-50%',
         rotation: -1 * tileRot,
         ease: Power3.easeOut,
       }, '-=0.2');

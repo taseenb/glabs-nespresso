@@ -143,7 +143,7 @@ define(function (require) {
 
       // Update Google Analytics (send)
       if (idx !== this.currentIdx) {
-        console.log($target.data('year'));
+        // console.log($target.data('year'));
 
         window.ga('send', {
           'hitType': 'event',          // Required.
@@ -188,7 +188,7 @@ define(function (require) {
 
       // Update Google Analytics (send)
       if (idx !== this.currentIdx) {
-        console.log($target.data('year'));
+        // console.log($target.data('year'));
 
         window.ga('send', {
           'hitType': 'event',          // Required.

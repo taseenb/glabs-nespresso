@@ -133,13 +133,19 @@ define(function (require) {
 
       // TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
       TweenMax.set(this.$body, {
+        top: 0,
         height: h + 'px',
         x: '-50%',
         y: App.height * 0.5 - h / 2,
       });
       TweenMax.set(this.$title, {y: 20, opacity: 0, top: -this.$title.height(),});
       TweenMax.set(this.$text, {y: -20, opacity: 0, bottom: -this.$text.height()});
-      TweenMax.set(this.$landmark, {x: App.width, y: '-50%', opacity: 1});
+      TweenMax.set(this.$landmark, {
+        x: App.width,
+        top: 0,
+        y: App.height / 2 - this.landmarkH / 2,
+        opacity: 1,
+      });
       TweenMax.set(this.$imagesWrapper, {x: '0%', y: '0%'});
       TweenMax.set(this.$imagesWrapper, {x: '-36%', y: '0%'});
 
@@ -286,7 +292,7 @@ define(function (require) {
 
       tl.to(this.$landmark, 1, {
         x: landmarkX, //-20,
-        y: '-50%',
+        // y: '-50%',
         rotation: 2,
         ease: Power3.easeOut,
       }, '-=0.2');
