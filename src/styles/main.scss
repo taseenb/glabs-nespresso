@@ -69,12 +69,15 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
     @import 'app/header';
     @import 'app/footer';
     @import 'app/menu';
+    @import 'app/bg';
   }
 
   &.mobile-version {
     @import 'vendor/swiper';
     @import 'app/mobile/app';
   }
+
+
 
 }
 
