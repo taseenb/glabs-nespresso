@@ -57,6 +57,7 @@ define(function (require) {
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
       this.$scrollIcon = this.$el.find('.scroll-icon');
+      this.$scrollDown = this.$el.find('.scroll-down');
 
       // Select fixed images
       if (this.images) {
@@ -187,7 +188,7 @@ define(function (require) {
 
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 3, {y: -App.height});
 
-      tl.to(this.$scrollIcon, 1, {opacity: 0}, '-=1');
+      tl.to([this.$scrollIcon, this.$scrollDown], 1, {opacity: 0}, '-=1');
 
       tl.to(this.$introText, 1, {y: -20, opacity: 0}, '-=1');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');

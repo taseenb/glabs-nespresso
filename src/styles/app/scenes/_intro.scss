@@ -40,6 +40,7 @@
         line-height: 25px;
       }
 
+
       .logo-app {
         position: relative;
         width: 75%;
@@ -64,6 +65,13 @@
         cursor: pointer;
         padding: $page-margin-y;
       }
+
+      .scroll-down {
+        text-align: center;
+        font-size: 11px;
+        line-height: 14px;
+      }
+
     }
   }
 
