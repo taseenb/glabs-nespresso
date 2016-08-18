@@ -88,7 +88,7 @@ define(function (require) {
       this.$link.on('click', function() {
         console.log('click');
 
-        window.ga('send', {
+        window.ga('labsTracker.send', {
           'hitType': 'event',          // Required.
           'eventCategory': 'link',   // Required.
           'eventAction': 'click',      // Required.

@@ -5,6 +5,6 @@ module.exports = {
 	},
 	"root": {
 		"build": "http://localhost:5000/",
-		"dist": "https://labs.theguardian.com/2016/nespresso/history-of-coffee/v2/"
+		"dist": "https://labs.theguardian.com/2016/nespresso/history-of-coffee/v3/"
 	}
 };
