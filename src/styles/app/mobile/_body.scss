@@ -73,7 +73,7 @@
     }
 
     > img {
-      margin-top: 10px;
+      margin: 10px auto 0;
       width: 32px;
 
       @media #{$tablet-and-above} {

@@ -48,7 +48,7 @@ define(function (require) {
           basePath: App.basePath,
         }))
         .css({
-          // backgroundImage: 'url(' + App.basePath + App.imgPath + 'Background02.jpg)',
+          backgroundImage: 'url(' + App.basePath + App.imgPath + 'Background02.jpg)',
           height: App.height - App.guardianHeader,
         });
 

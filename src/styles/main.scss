@@ -18,8 +18,10 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 @include guss-typography-defaults;
 
 .element-interactive {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
+  //margin-top: 0 !importantant;
+  //margin-bottom: 0 !important;
+
+  margin: 0 !important;
 }
 
 .js-on.is-modern .content--interactive .element-interactive {
