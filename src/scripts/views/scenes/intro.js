@@ -19,7 +19,7 @@ define(function (require) {
     initialize: function () {
       this.id = this.options.id;
       this.controller = this.options.controller;
-      this.duration = '600%'; // App.height * 5;
+      this.duration = '800%'; // App.height * 5;
       this.parentView = this.options.parentView;
       this.data = this.options.data;
 
@@ -46,6 +46,7 @@ define(function (require) {
       this.$BiscuitsOnPlate_01 = this.$el.find('.BiscuitsOnPlate_01');
       // this.$BowlBeans_01 = this.$el.find('.BowlBeans_01');
       this.$imagesWrapper = this.$el.find('.images-wrapper');
+      this.$tilesWrapper = this.$imagesWrapper.find('.tiles');
       this.$tiles = this.$imagesWrapper.find('.tile');
       this.$introTile = this.$tiles.filter('#tile-BC');
       this.$body = this.$el.find('.body');
@@ -57,6 +58,7 @@ define(function (require) {
       this.$title = this.$body.find('.title');
       this.$text = this.$body.find('.text');
       this.$scrollIcon = this.$el.find('.scroll-icon');
+      this.$scrollDown = this.$el.find('.scroll-down');
 
       // Select fixed images
       if (this.images) {
@@ -133,13 +135,19 @@ define(function (require) {
 
       // TweenMax.set(this.$BowlBeans_01, {x:'-40%', y: App.height});
       TweenMax.set(this.$body, {
+        top: 0,
         height: h + 'px',
         x: '-50%',
         y: App.height * 0.5 - h / 2,
       });
       TweenMax.set(this.$title, {y: 20, opacity: 0, top: -this.$title.height(),});
       TweenMax.set(this.$text, {y: -20, opacity: 0, bottom: -this.$text.height()});
-      TweenMax.set(this.$landmark, {x: App.width, y: '-50%', opacity: 1});
+      TweenMax.set(this.$landmark, {
+        x: App.width,
+        top: 0,
+        y: App.height / 2 - this.landmarkH / 2,
+        opacity: 1,
+      });
       TweenMax.set(this.$imagesWrapper, {x: '0%', y: '0%'});
       TweenMax.set(this.$imagesWrapper, {x: '-36%', y: '0%'});
 
@@ -178,48 +186,71 @@ define(function (require) {
     updateTimeline: function () {
       this.tl = new TimelineMax();
       var tl = this.tl;
+      var wrapperWidth = this.$imagesWrapper.width();
+      var wrapperDisplacement = wrapperWidth * 0.36;
 
       tl.to([this.$NespressoCup_01_Left, this.$rightCup, this.$BiscuitsOnPlate_01], 3, {y: -App.height});
-
-      tl.to(this.$scrollIcon, 1, {opacity: 0}, '-=1');
-
+      tl.to([this.$scrollIcon, this.$scrollDown], 1, {opacity: 0}, '-=1');
       tl.to(this.$introText, 1, {y: -20, opacity: 0}, '-=1');
       tl.to(this.$logoApp, 1, {y: -100, opacity: 0}, '-=0.5');
-
-      tl.to(this.$imagesWrapper, 1, {x: '0%', y: '0%'}, '-=0.5');
-
-      tl.to(this.el, 0, {css: {className: '+=dark'}});
+      tl.to(this.$imagesWrapper, 1, {x: '+=' + wrapperDisplacement}, '-=0.5');
+      tl.to(this.$tiles.not([this.$randomTile1, this.$randomTile2]), 1, {
+        x: -wrapperDisplacement,
+      }, '-=1');
+      tl.to([this.$randomTile1, this.$randomTile2], 1, {
+        x: '-=' + wrapperDisplacement,
+      }, '-=1');
 
       this.$tiles.each(function (i, tile) {
         var obj;
 
         if (tile.id === 'tile-BC') {
           obj = {
-            x: 0,
-            y: this.tilesY, // App.height * 0.5,
-            zIndex: 50,
-            ease: Back.easeOut,
+            // y: this.tilesY,
+            // rotation: -4,
+            // ease: Power3.easeOut,
           };
         } else {
-          var screenW = App.width - this.tileSize * 1.5;
-          var screenH = App.height - this.tileSize * 1.5;
+          var direction = Math.random();
+          var _x = 0;
+          var _y = 0;
+          var tileRnd = -(this.tileSize / 2) + this.tileSize * Math.random();
+
+          if (direction < 0.25) {
+            _y = 1;
+          } else if (direction < 0.5) {
+            _x = 1;
+          } else if (direction < 0.75) {
+            _y = -1;
+          } else {
+            _x = -1;
+          }
+
+          var addRandomX = _x === 0 ? Math.abs(tileRnd) * App.width / tileRnd : 0;
+          var addRandomY = _y === 0 ? Math.abs(tileRnd) * App.height / tileRnd : 0;
+          var signX = _x >= 0 ? 1 : -1;
+          var signY = _y >= 0 ? 1 : -1;
+
+          // console.log(~~addRandomX, ~~addRandomY);
+
           obj = {
-            x: -(screenW / 2) + Math.random() * screenW,
-            y: Math.random() * screenH,
+            x: _x * (App.width * 0.9) + ~~addRandomX * signX,
+            y: _y * (App.height * 0.9) + ~~addRandomY * signY,
             rotation: (Math.random() > 0.5 ? -1 : 1) * Math.random() * 4,
-            ease: Back.easeOut,
+            ease: Power4.easeIn,
           };
         }
-        tl.to(tile, 1, obj, '-=0.96');
-      }.bind(this));
 
-      tl.staggerTo(this.$tiles.not(this.$introTile), 2, {y: App.height * 1.5, rotation: 0}, -0.3);
+        var pos = i > 0 ? '-=2.90' : null;
+        tl.to(tile, 3, obj, pos);
+      }.bind(this));
 
       tl.set(this.$tiles.not(this.$introTile), {display: 'none'});
 
+      tl.to(this.el, 0, {css: {className: '+=dark'}});
+
       tl.add(this.chapterTl);
 
-      // tl.to(this.$BowlBeans_01, 7, {y: -App.height + this.$BowlBeans_01.height() / 2}, '-=3');
     },
 
     updateChapterTimeline: function () {
@@ -247,11 +278,11 @@ define(function (require) {
         x: tileX, //'-50%',
         rotation: '-4',
         ease: Back.easeOut,
-      }, '-=0.5');
+      }, '-=1.5');
 
       tl.to(this.$landmark, 1, {
         x: landmarkX, //-20,
-        y: '-50%',
+        // y: '-50%',
         rotation: 2,
         ease: Power3.easeOut,
       }, '-=0.2');

@@ -88,7 +88,7 @@ define(function (require) {
       this.$link.on('click', function() {
         console.log('click');
 
-        window.ga('send', {
+        window.ga('labsTracker.send', {
           'hitType': 'event',          // Required.
           'eventCategory': 'link',   // Required.
           'eventAction': 'click',      // Required.
@@ -135,8 +135,9 @@ define(function (require) {
         opacity: 0,
       });
       TweenMax.set(this.$body, {
+        top: 0,
         height: h + 'px',
-        y: '-50%',
+        y: App.height * 0.5 - h / 2, // '-50%',
         x: '-50%',
       });
       TweenMax.set(this.$landmark, {

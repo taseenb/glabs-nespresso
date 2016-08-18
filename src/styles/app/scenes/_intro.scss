@@ -40,6 +40,7 @@
         line-height: 25px;
       }
 
+
       .logo-app {
         position: relative;
         width: 75%;
@@ -53,17 +54,28 @@
         position: relative;
       }
 
-      .scroll-icon {
+      .scroll-ui {
         position: relative;
         display: block;
         margin-top: $page-margin-y;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 20px;
-        cursor: pointer;
         padding: $page-margin-y;
+        text-align: center;
+
+        .scroll-icon {
+          width: 20px;
+          margin: 0 auto;
+        }
+
+        .scroll-down {
+          margin-top: 15px;
+          font-size: 11px;
+          line-height: 14px;
+        }
       }
+
     }
   }
 

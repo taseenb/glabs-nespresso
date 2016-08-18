@@ -22,30 +22,42 @@
     color: white;
     text-align: center;
     text-decoration: none;
-    top: 50%;
+    top: 48%;
     left: 50%;
     font-size: 26px;
     line-height: 30px;
 
     @media #{$tablet-and-above} {
+      font-size: 31px;
+      line-height: 35px;
+    }
+
+    @media #{$above-tablet} {
       font-size: 36px;
       line-height: 40px;
     }
 
-    @media #{$above-tablet} {
-      font-size: 42px;
-      line-height: 46px;
+    .small-space {
+      font-size: 1px;
     }
 
     > img {
       width: 32px;
+      height: 32px;
+      display: block;
+      margin: 5px auto 0;
+
 
       @media #{$tablet-and-above} {
         width: 35px;
+        height: 35px;
+        margin: 10px auto 0;
       }
 
       @media #{$above-tablet} {
         width: 39px;
+        height: 39px;
+        margin: 15px auto 0;
       }
     }
   }

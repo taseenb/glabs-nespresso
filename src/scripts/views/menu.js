@@ -143,9 +143,9 @@ define(function (require) {
 
       // Update Google Analytics (send)
       if (idx !== this.currentIdx) {
-        console.log($target.data('year'));
+        // console.log($target.data('year'));
 
-        window.ga('send', {
+        window.ga('labsTracker.send', {
           'hitType': 'event',          // Required.
           'eventCategory': 'menu',   // Required.
           'eventAction': 'click',      // Required.
@@ -188,9 +188,9 @@ define(function (require) {
 
       // Update Google Analytics (send)
       if (idx !== this.currentIdx) {
-        console.log($target.data('year'));
+        // console.log($target.data('year'));
 
-        window.ga('send', {
+        window.ga('labsTracker.send', {
           'hitType': 'event',          // Required.
           'eventCategory': 'page',   // Required.
           'eventAction': 'scroll',      // Required.
