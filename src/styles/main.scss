@@ -17,10 +17,14 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
 @include guss-webfonts('Guardian Text Egyptian Web');
 @include guss-typography-defaults;
 
-.element-interactive {
-  //margin-top: 0 !importantant;
-  //margin-bottom: 0 !important;
+// If you want to "unstick" the Paid content bar
+.paidfor-band.is-sticky {
+  top: 0 !important;
+  position: relative !important;
+}
 
+// If you want to remove all margins on the container
+.element-interactive {
   margin: 0 !important;
 }
 
@@ -78,8 +82,6 @@ $guss-webfonts-base-url: 'https://pasteup.guim.co.uk/fonts/';
     @import 'vendor/swiper';
     @import 'app/mobile/app';
   }
-
-
 
 }
 

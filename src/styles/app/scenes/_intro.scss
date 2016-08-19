@@ -57,16 +57,32 @@
       .scroll-ui {
         position: relative;
         display: block;
-        margin-top: $page-margin-y;
+        margin-top: 0;
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         padding: $page-margin-y;
         text-align: center;
 
+        @media #{$tablet-and-above} {
+          margin-top: $page-margin-y / 2;
+        }
+
+        @media #{$above-tablet} {
+          margin-top: $page-margin-y;
+        }
+
         .scroll-icon {
-          width: 20px;
+          width: 18px;
           margin: 0 auto;
+
+          @media #{$tablet-and-above} {
+            width: 19px;
+          }
+
+          @media #{$above-tablet} {
+            width: 20px;
+          }
         }
 
         .scroll-down {

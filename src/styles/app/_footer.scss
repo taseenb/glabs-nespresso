@@ -8,6 +8,7 @@
   transform: translateX(-50%);
   box-sizing: border-box;
   padding: 0 $page-margin-x;
+  white-space: nowrap;
 
   .fb-icon,
   .tw-icon {
@@ -15,5 +16,6 @@
     height: 35px;
     padding: 10px;
     cursor: pointer;
+    display: inline-block;
   }
 }
